@@ -43,148 +43,217 @@ function generateDesignPoints(w: number, h: number, count: number): Array<{ x: n
         ctx.stroke();
     }
 
-    // ── Helper: draw icon at (ix, iy) with scale s ──
+    // ── Helper scale ──
     const s = ic / 20;
 
-    function drawApple(ix: number, iy: number) {
-        // Body (two overlapping circles)
+    // ── Shield + checkmark (top-left) ──
+    function drawShield(ix: number, iy: number) {
         ctx.beginPath();
-        ctx.ellipse(ix - 2.5 * s, iy + s, 4.5 * s, 5.5 * s, 0, 0, Math.PI * 2);
+        ctx.moveTo(ix, iy - 9 * s);
+        ctx.lineTo(ix + 7 * s, iy - 5 * s);
+        ctx.lineTo(ix + 7 * s, iy + 2 * s);
+        ctx.quadraticCurveTo(ix + 7 * s, iy + 8 * s, ix, iy + 10 * s);
+        ctx.quadraticCurveTo(ix - 7 * s, iy + 8 * s, ix - 7 * s, iy + 2 * s);
+        ctx.lineTo(ix - 7 * s, iy - 5 * s);
+        ctx.closePath();
         ctx.stroke();
+        // Inner shield
         ctx.beginPath();
-        ctx.ellipse(ix + 2.5 * s, iy + s, 4.5 * s, 5.5 * s, 0, 0, Math.PI * 2);
+        ctx.moveTo(ix, iy - 6 * s);
+        ctx.lineTo(ix + 5 * s, iy - 3 * s);
+        ctx.lineTo(ix + 5 * s, iy + 2 * s);
+        ctx.quadraticCurveTo(ix + 5 * s, iy + 6 * s, ix, iy + 8 * s);
+        ctx.quadraticCurveTo(ix - 5 * s, iy + 6 * s, ix - 5 * s, iy + 2 * s);
+        ctx.lineTo(ix - 5 * s, iy - 3 * s);
+        ctx.closePath();
         ctx.stroke();
-        // Stem
+        // Checkmark
+        ctx.beginPath();
+        ctx.moveTo(ix - 3 * s, iy + 1 * s);
+        ctx.lineTo(ix - 0.5 * s, iy + 3.5 * s);
+        ctx.lineTo(ix + 4 * s, iy - 2.5 * s);
+        ctx.stroke();
+    }
+
+    // ── Bar chart + magnifying glass (top-right) ──
+    function drawAnalytics(ix: number, iy: number) {
+        // Magnifying glass circle rim
+        const mr = 6.0 * s;
+        ctx.beginPath();
+        ctx.arc(ix - 1.5 * s, iy - 1.5 * s, mr, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Magnifying glass handle (rounded + slightly tapered)
+        // Angle is approx 45 deg (PI/4)
+        const angle = Math.PI * 0.25;
+        const handleLen = 8 * s;
+        const startX = (ix - 1.5 * s) + mr * Math.cos(angle);
+        const startY = (iy - 1.5 * s) + mr * Math.sin(angle);
+
+        ctx.beginPath();
+        // Thick line for handle
+        ctx.lineWidth = Math.min(w, h) * 0.009;
+        ctx.lineCap = "round";
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(startX + handleLen * Math.cos(angle), startY + handleLen * Math.sin(angle));
+        ctx.stroke();
+        // Reset line width
+        ctx.lineWidth = Math.min(w, h) * 0.005;
+
+        // Bar chart inside (3 bars rising)
+        const chartX = ix - 1.5 * s;
+        const chartY = iy - 1.5 * s;
+
+        // Axis
+        ctx.beginPath();
+        ctx.moveTo(chartX - 3.5 * s, chartY - 3.5 * s); // Top of Y axis
+        ctx.lineTo(chartX - 3.5 * s, chartY + 3.5 * s); // Bottom-left corner
+        ctx.lineTo(chartX + 3.5 * s, chartY + 3.5 * s); // End of X axis
+        ctx.stroke();
+
+        // Bars
+        const barW = 1.5 * s;
+        const spacing = 0.5 * s;
+        const startBarX = chartX - 3 * s + spacing;
+
+        // Bar 1
+        ctx.fillStyle = "#000"; // Fill bars for solidity
+        ctx.fillRect(startBarX, chartY + 3.5 * s - 2 * s, barW, 2 * s);
+        // Bar 2
+        ctx.fillRect(startBarX + barW + spacing, chartY + 3.5 * s - 4 * s, barW, 4 * s);
+        // Bar 3
+        ctx.fillRect(startBarX + (barW + spacing) * 2, chartY + 3.5 * s - 6 * s, barW, 6 * s);
+    }
+
+    // ── Laptop + shopping cart + document (bottom-left) ──
+    function drawEcommerce(ix: number, iy: number) {
+        // Document/list behind (top-left offset)
+        const dx = ix - 5 * s, dy = iy - 4 * s;
+        ctx.beginPath();
+        ctx.roundRect(dx - 5 * s, dy - 4 * s, 9 * s, 11 * s, 1 * s);
+        ctx.stroke();
+
+        // Lines on document
+        ctx.beginPath();
+        ctx.moveTo(dx - 3 * s, dy - 1.5 * s); ctx.lineTo(dx + 2 * s, dy - 1.5 * s);
+        ctx.moveTo(dx - 3 * s, dy + 1.0 * s); ctx.lineTo(dx + 2 * s, dy + 1.0 * s);
+        ctx.moveTo(dx - 3 * s, dy + 3.5 * s); ctx.lineTo(dx + 2 * s, dy + 3.5 * s);
+        ctx.stroke();
+
+        // Laptop screen
+        ctx.clearRect(ix - 3.5 * s, iy - 6.5 * s, 13 * s, 10 * s); // Clear behind laptop
+        ctx.beginPath();
+        ctx.roundRect(ix - 3 * s, iy - 6 * s, 12 * s, 9 * s, 1 * s);
+        ctx.stroke();
+        // Laptop base
+        ctx.beginPath();
+        ctx.moveTo(ix - 5 * s, iy + 3 * s);
+        ctx.lineTo(ix + 11 * s, iy + 3 * s);
+        ctx.stroke();
+
+        // Shopping cart icon inside screen
+        // Cart body
         ctx.beginPath();
         ctx.moveTo(ix, iy - 4.5 * s);
-        ctx.bezierCurveTo(ix, iy - 8 * s, ix + 3.5 * s, iy - 9 * s, ix + 3.5 * s, iy - 9 * s);
+        ctx.lineTo(ix + 1.5 * s, iy - 0.5 * s);
+        ctx.lineTo(ix + 7.5 * s, iy - 0.5 * s);
+        ctx.lineTo(ix + 8.5 * s, iy - 3.5 * s);
+        ctx.lineTo(ix + 1 * s, iy - 3.5 * s);
         ctx.stroke();
-        // Leaf
+        // Wheels
         ctx.beginPath();
-        ctx.moveTo(ix, iy - 6.5 * s);
-        ctx.bezierCurveTo(ix - 3.5 * s, iy - 9.5 * s, ix - 5.5 * s, iy - 6.5 * s, ix, iy - 6.5 * s);
-        ctx.stroke();
+        ctx.arc(ix + 3 * s, iy + 0.5 * s, 1 * s, 0, Math.PI * 2);
+        ctx.arc(ix + 6.5 * s, iy + 0.5 * s, 1 * s, 0, Math.PI * 2);
+        ctx.stroke(); // Hollow wheels looks cleaner
     }
 
-    function drawCup(ix: number, iy: number) {
+    // ── Megaphone + checklist + dollar (bottom-right) ──
+    function drawMarketing(ix: number, iy: number) {
+        // --- Megaphone ---
+        // Cone
         ctx.beginPath();
-        ctx.moveTo(ix - 4 * s, iy - 5 * s);
-        ctx.lineTo(ix - 5 * s, iy + 6 * s);
-        ctx.lineTo(ix + 5 * s, iy + 6 * s);
-        ctx.lineTo(ix + 4 * s, iy - 5 * s);
+        ctx.moveTo(ix - 7 * s, iy - 2 * s);
+        ctx.lineTo(ix - 7 * s, iy + 2 * s);
+        ctx.lineTo(ix + 1 * s, iy + 5 * s);
+        ctx.lineTo(ix + 1 * s, iy - 5 * s);
         ctx.closePath();
         ctx.stroke();
-        // Lid line
+        // Mouthpiece/Body
         ctx.beginPath();
-        ctx.moveTo(ix - 4.5 * s, iy - 3 * s);
-        ctx.lineTo(ix + 4.5 * s, iy - 3 * s);
-        ctx.stroke();
-        // Straw
-        ctx.beginPath();
-        ctx.moveTo(ix + 2 * s, iy - 5 * s);
-        ctx.lineTo(ix, iy - 11 * s);
-        ctx.stroke();
-    }
-
-    function drawPharmaBottle(ix: number, iy: number) {
-        // Body
-        ctx.beginPath();
-        ctx.roundRect(ix - 5 * s, iy - 3 * s, 10 * s, 11 * s, 2 * s);
-        ctx.stroke();
-        // Cap
-        ctx.beginPath();
-        ctx.roundRect(ix - 3 * s, iy - 7.5 * s, 6 * s, 5 * s, 1.5 * s);
-        ctx.stroke();
-        // Cross
-        ctx.beginPath();
-        ctx.moveTo(ix, iy);
-        ctx.lineTo(ix, iy + 5 * s);
-        ctx.moveTo(ix - 3 * s, iy + 2.5 * s);
-        ctx.lineTo(ix + 3 * s, iy + 2.5 * s);
-        ctx.stroke();
-    }
-
-    function drawPill(ix: number, iy: number) {
-        ctx.beginPath();
-        ctx.roundRect(ix - 5 * s, iy - 2 * s, 10 * s, 4 * s, 2 * s);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(ix, iy - 2 * s);
-        ctx.lineTo(ix, iy + 2 * s);
-        ctx.stroke();
-    }
-
-    function drawBox(ix: number, iy: number) {
-        // Main box
-        ctx.beginPath();
-        ctx.roundRect(ix - 6 * s, iy - 2 * s, 12 * s, 9 * s, 1.5 * s);
-        ctx.stroke();
-        // Horizontal divider
-        ctx.beginPath();
-        ctx.moveTo(ix - 6 * s, iy + 2.5 * s);
-        ctx.lineTo(ix + 6 * s, iy + 2.5 * s);
-        ctx.stroke();
-        // Vertical dividers on top half
-        ctx.beginPath();
-        ctx.moveTo(ix - 2 * s, iy - 2 * s);
-        ctx.lineTo(ix - 2 * s, iy + 2.5 * s);
-        ctx.moveTo(ix + 2 * s, iy - 2 * s);
-        ctx.lineTo(ix + 2 * s, iy + 2.5 * s);
-        ctx.stroke();
-        // Flap (top)
-        ctx.beginPath();
-        ctx.moveTo(ix - 6 * s, iy - 2 * s);
-        ctx.lineTo(ix - 2 * s, iy - 6.5 * s);
-        ctx.lineTo(ix + 2 * s, iy - 6.5 * s);
-        ctx.lineTo(ix + 6 * s, iy - 2 * s);
-        ctx.stroke();
-    }
-
-    function drawShoppingBag(ix: number, iy: number) {
-        ctx.beginPath();
-        ctx.moveTo(ix - 6 * s, iy - 1 * s);
-        ctx.lineTo(ix - 4 * s, iy + 7 * s);
-        ctx.lineTo(ix + 4 * s, iy + 7 * s);
-        ctx.lineTo(ix + 6 * s, iy - 1 * s);
-        ctx.closePath();
+        ctx.roundRect(ix - 10 * s, iy - 2 * s, 3 * s, 4 * s, 0.5 * s);
         ctx.stroke();
         // Handle
         ctx.beginPath();
-        ctx.moveTo(ix - 3 * s, iy - 1 * s);
-        ctx.bezierCurveTo(ix - 3 * s, iy - 6 * s, ix + 3 * s, iy - 6 * s, ix + 3 * s, iy - 1 * s);
+        ctx.moveTo(ix - 6 * s, iy + 2 * s);
+        ctx.quadraticCurveTo(ix - 6 * s, iy + 6 * s, ix - 2 * s, iy + 6 * s);
+        ctx.lineTo(ix - 1 * s, iy + 4.5 * s); // connect back to cone
         ctx.stroke();
-    }
 
-    function drawPerson(ix: number, iy: number) {
-        // Head
+        // Sound waves (arcs)
         ctx.beginPath();
-        ctx.arc(ix, iy - 7 * s, 3 * s, 0, Math.PI * 2);
+        ctx.arc(ix + 2 * s, iy, 4 * s, -0.6, 0.6);
         ctx.stroke();
-        // Body
         ctx.beginPath();
-        ctx.moveTo(ix - 4 * s, iy + 6 * s);
-        ctx.lineTo(ix - 4 * s, iy - 1 * s);
-        ctx.bezierCurveTo(ix - 4 * s, iy - 4 * s, ix + 4 * s, iy - 4 * s, ix + 4 * s, iy - 1 * s);
-        ctx.lineTo(ix + 4 * s, iy + 6 * s);
+        ctx.arc(ix + 2 * s, iy, 7 * s, -0.6, 0.6);
+        ctx.stroke();
+
+        // --- Checklist (Offset to top-right) ---
+        const lx = ix + 4 * s, ly = iy - 6 * s;
+        // Clear area behind checklist so it pops
+        ctx.clearRect(lx - 1 * s, ly - 1 * s, 9 * s, 11 * s);
+
+        ctx.beginPath();
+        ctx.roundRect(lx, ly, 7 * s, 9 * s, 1 * s);
+        ctx.stroke();
+        // Lines
+        for (let r = 0; r < 3; r++) {
+            const ry = ly + 2.5 * s + r * 2.5 * s;
+            // Bullet
+            ctx.beginPath();
+            ctx.arc(lx + 1.5 * s, ry, 0.5 * s, 0, Math.PI * 2);
+            ctx.fill();
+            // Line
+            ctx.beginPath();
+            ctx.moveTo(lx + 3 * s, ry);
+            ctx.lineTo(lx + 6 * s, ry);
+            ctx.stroke();
+        }
+
+        // --- Dollar Coin (Money) ---
+        const dx = ix + 2 * s, dy = iy + 6 * s;
+        const dr = 3.5 * s;
+        // Clear behind coin
+        ctx.clearRect(dx - dr - 1, dy - dr - 1, dr * 2 + 2, dr * 2 + 2);
+
+        // Coin circle
+        ctx.beginPath();
+        ctx.arc(dx, dy, dr, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Dollar Sign ($) - drawn as S with line
+        ctx.beginPath();
+        // S shape
+        ctx.moveTo(dx + 1.5 * s, dy - 2 * s);
+        ctx.bezierCurveTo(dx - 1.5 * s, dy - 2 * s, dx - 1.5 * s, dy - 0.5 * s, dx, dy);
+        ctx.bezierCurveTo(dx + 1.5 * s, dy + 0.5 * s, dx + 1.5 * s, dy + 2 * s, dx - 1.5 * s, dy + 2 * s);
+        ctx.stroke();
+        // Vertical line
+        ctx.beginPath();
+        ctx.moveTo(dx, dy - 2.5 * s);
+        ctx.lineTo(dx, dy + 2.5 * s);
         ctx.stroke();
     }
 
     // ── Place icons at corners ──
-    const off = ic * 0.52; // offset between paired icons
-
     iconCentres.forEach(({ x, y, label }) => {
         if (label === "tl") {
-            drawApple(x - off, y);
-            drawCup(x + off, y);
+            drawShield(x, y);
         } else if (label === "tr") {
-            drawPharmaBottle(x - off * 0.5, y);
-            drawPill(x + off * 0.9, y - ic * 0.15);
-            drawPill(x + off * 0.9, y + ic * 0.25);
+            drawAnalytics(x, y);
         } else if (label === "bl") {
-            drawBox(x, y);
+            drawEcommerce(x, y);
         } else if (label === "br") {
-            drawShoppingBag(x - off * 0.6, y);
-            drawPerson(x + off * 0.7, y);
+            drawMarketing(x, y);
         }
     });
 
