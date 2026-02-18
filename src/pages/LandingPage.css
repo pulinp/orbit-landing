@@ -836,19 +836,20 @@
    Two-Column CTA Section
    ======================================== */
 .lp-who {
+    /* Snap to the site-wide main column (3rem gutters on both sides) */
+    grid-column: main;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
     min-height: auto;
-    padding: 4rem 2rem;
+    padding-block: 4rem;
 }
 
 @media (min-width: 930px) {
     .lp-who {
         flex-direction: row;
-        justify-content: space-around;
-        padding: 0 2rem;
+        padding-block: 0;
+        /* No gap — cards are flush against each other */
+        gap: 0;
     }
 }
 
@@ -856,12 +857,17 @@
     min-height: 40vh;
     display: grid;
     place-content: center;
+    text-align: center;
     gap: 1.2em;
+    padding: 2rem;
 }
 
 @media (min-width: 930px) {
     .lp-who-card {
         min-height: 70vh;
+        /* Each card takes exactly half the available width */
+        flex: 1;
+        min-width: 0;
     }
 }
 
@@ -882,6 +888,30 @@
     display: block;
     color: var(--lp-on-surface-variant);
     font-weight: 350;
+}
+
+/* Suppliers card: particle canvas host */
+.lp-who-card--suppliers {
+    position: relative;
+    border-radius: 2rem;
+    transition: box-shadow 0.4s ease;
+}
+
+.lp-who-card--suppliers>*:not(canvas) {
+    position: relative;
+    z-index: 1;
+}
+
+/* Warehouse card: particle canvas host */
+.lp-who-card--warehouse {
+    position: relative;
+    border-radius: 2rem;
+    transition: box-shadow 0.4s ease;
+}
+
+.lp-who-card--warehouse>*:not(canvas) {
+    position: relative;
+    z-index: 1;
 }
 
 .lp-who-card .lp-btn {
@@ -908,12 +938,36 @@
     aspect-ratio: auto;
     min-height: 50vh;
     border-radius: 2em;
-    background: var(--lp-on-surface);
+    background-color: var(--lp-on-surface);
     color: var(--lp-surface);
     display: grid;
     padding: 4em;
     gap: 1.5rem;
     align-content: center;
+    position: relative;
+    overflow: hidden;
+
+    /* Particle System Config */
+    --ring-radius: 100;
+    --ring-thickness: 500;
+
+    --particle-count: 60;
+    --particle-rows: 20;
+    --particle-size: 1.5;
+    --particle-color: #ffffff;
+    --particle-min-alpha: 0.03;
+    --particle-max-alpha: 0.25;
+
+    --seed: 350;
+
+    background-image: paint(ring-particles);
+    animation: ripple 6s linear infinite, ring 6s ease-in-out infinite alternate;
+    transition: --ring-x 3s ease, --ring-y 3s ease;
+}
+
+.lp-final-cta-card>* {
+    position: relative;
+    z-index: 1;
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
+import WarehouseParticleCanvas from "../components/WarehouseParticleCanvas";
 import {
     Package,
     Truck,
@@ -106,6 +108,8 @@ const useCases = [
 export default function LandingPage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [iconsVisible, setIconsVisible] = useState(false);
+    const [supplierHovered, setSupplierHovered] = useState(false);
+    const [warehouseHovered, setWarehouseHovered] = useState(false);
     const iconsRef = useRef<HTMLDivElement>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -119,41 +123,53 @@ export default function LandingPage() {
         }
     }, []);
 
-    // Mouse Interaction
+    // Mouse Interaction for particle sections
     useEffect(() => {
-        const $hero = document.getElementById("hero");
-        if (!$hero) return;
+        const sections = [
+            document.getElementById("hero"),
+            document.getElementById("final-cta-card"),
+        ].filter(Boolean) as HTMLElement[];
 
-        let isInteractive = false;
+        if (sections.length === 0) return;
 
-        const handlePointerMove = (e: MouseEvent) => {
-            if (!isInteractive) {
-                $hero.classList.add("interactive");
-                isInteractive = true;
+        const stateMap = new Map<HTMLElement, boolean>();
+        sections.forEach((el) => stateMap.set(el, false));
+
+        const handlePointerMove = (el: HTMLElement) => (e: PointerEvent) => {
+            if (!stateMap.get(el)) {
+                el.classList.add("interactive");
+                stateMap.set(el, true);
             }
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
+            const rect = el.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-            $hero.style.setProperty("--ring-x", `${x}`);
-            $hero.style.setProperty("--ring-y", `${y}`);
-            $hero.style.setProperty("--ring-interactive", "1");
+            el.style.setProperty("--ring-x", `${x}`);
+            el.style.setProperty("--ring-y", `${y}`);
+            el.style.setProperty("--ring-interactive", "1");
         };
 
-        const handlePointerLeave = () => {
-            $hero.classList.remove("interactive");
-            isInteractive = false;
-            $hero.style.setProperty("--ring-x", "50");
-            $hero.style.setProperty("--ring-y", "50");
-            $hero.style.setProperty("--ring-interactive", "0");
+        const handlePointerLeave = (el: HTMLElement) => () => {
+            el.classList.remove("interactive");
+            stateMap.set(el, false);
+            el.style.setProperty("--ring-x", "50");
+            el.style.setProperty("--ring-y", "50");
+            el.style.setProperty("--ring-interactive", "0");
         };
 
-        $hero.addEventListener("pointermove", handlePointerMove as any);
-        $hero.addEventListener("pointerleave", handlePointerLeave);
+        const cleanups: (() => void)[] = [];
+        sections.forEach((el) => {
+            const move = handlePointerMove(el);
+            const leave = handlePointerLeave(el);
+            el.addEventListener("pointermove", move);
+            el.addEventListener("pointerleave", leave);
+            cleanups.push(() => {
+                el.removeEventListener("pointermove", move);
+                el.removeEventListener("pointerleave", leave);
+            });
+        });
 
-        return () => {
-            $hero.removeEventListener("pointermove", handlePointerMove as any);
-            $hero.removeEventListener("pointerleave", handlePointerLeave);
-        };
+        return () => cleanups.forEach((fn) => fn());
     }, []);
 
     // Intersection observer to slide-in icons
@@ -341,7 +357,12 @@ export default function LandingPage() {
 
             {/* ── Two-Column CTA ── */}
             <section className="lp-who" id="who">
-                <div className="lp-who-card">
+                <div
+                    className="lp-who-card lp-who-card--suppliers"
+                    onMouseEnter={() => setSupplierHovered(true)}
+                    onMouseLeave={() => setSupplierHovered(false)}
+                >
+                    <SupplierParticleCanvas hovered={supplierHovered} />
                     <h3>
                         For suppliers
                         <span>Manage your operations</span>
@@ -353,7 +374,12 @@ export default function LandingPage() {
                         Get Started
                     </button>
                 </div>
-                <div className="lp-who-card">
+                <div
+                    className="lp-who-card lp-who-card--warehouse"
+                    onMouseEnter={() => setWarehouseHovered(true)}
+                    onMouseLeave={() => setWarehouseHovered(false)}
+                >
+                    <WarehouseParticleCanvas hovered={warehouseHovered} />
                     <h3>
                         For warehouses
                         <span>Power your facility</span>
@@ -369,7 +395,7 @@ export default function LandingPage() {
 
             {/* ── Final CTA ── */}
             <section className="lp-final-cta" id="final-cta">
-                <div className="lp-final-cta-card lp-dark">
+                <div className="lp-final-cta-card lp-dark" id="final-cta-card">
                     <p>Get started with Orbit — it&apos;s free</p>
                     <div className="lp-final-cta-buttons">
                         <button
