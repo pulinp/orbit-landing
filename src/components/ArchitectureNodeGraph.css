@@ -1,0 +1,217 @@
+.ang-container {
+    position: relative;
+    width: 100%;
+    /* Full width, spanning the website */
+    grid-column: fullbleed;
+    padding: 6rem 3rem;
+    /* Standard padding + extra vertical space */
+    /* Subtle dot grid background */
+    background-image: radial-gradient(var(--lp-outline-variant) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: var(--lp-surface);
+    /* Match site background */
+    overflow: hidden;
+    /* Hide overflowing lines */
+
+    /* Center the internal content max-width */
+    display: flex;
+    justify-content: center;
+}
+
+/* Wrapper to constrain the content width */
+.ang-content-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+}
+
+.ang-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    /* Behind cards */
+}
+
+.ang-connection-pulse {
+    animation: flowPulse 3s linear infinite;
+}
+
+@keyframes flowPulse {
+    to {
+        stroke-dashoffset: -110;
+    }
+}
+
+/* 3-Column Layout */
+.ang-layout {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 340px 1fr;
+    gap: 8rem;
+    /* Increased gap to spread the graph */
+    align-items: center;
+    /* Vertically center the columns */
+}
+
+@media (max-width: 1024px) {
+    .ang-layout {
+        grid-template-columns: 1fr 280px 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .ang-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .ang-col-center {
+        order: -1;
+        /* Move center column to top on mobile */
+    }
+}
+
+.ang-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ang-col-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card Styles */
+.ang-card {
+    background: var(--lp-surface);
+    border: 1px solid var(--lp-outline);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    width: 100%;
+}
+
+.ang-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    border-color: var(--accent-color);
+}
+
+.ang-card.central {
+    border-width: 2px;
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+    /* Make the central card explicitly larger/clearer */
+    box-shadow: 0 10px 25px -5px rgba(26, 179, 148, 0.15), 0 8px 10px -6px rgba(26, 179, 148, 0.1);
+    background: #fcfcfc;
+}
+
+.ang-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+}
+
+.ang-icon-wrapper {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    display: grid;
+    place-content: center;
+}
+
+.ang-card-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--lp-on-surface);
+    flex-grow: 1;
+}
+
+.ang-badge {
+    font-size: 0.65rem;
+    padding: 0.2em 0.6em;
+    border-radius: 1em;
+    background: var(--lp-surface-variant);
+    color: var(--lp-on-surface-variant);
+    font-weight: 500;
+}
+
+.ang-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ang-attribute {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--lp-on-surface-variant);
+}
+
+.ang-attr-bullet {
+    color: var(--lp-outline);
+    font-weight: bold;
+}
+
+.ang-attr-icon {
+    color: var(--lp-on-surface-variant);
+}
+
+/* Handles (Visual only) */
+.ang-handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--lp-surface);
+    border: 1px solid var(--lp-outline);
+    border-radius: 50%;
+    z-index: 3;
+    opacity: 0;
+    /* Hide handles by default for cleaner look, show on hover maybe? or keeping hidden as requested by "clean" */
+    transition: opacity 0.2s;
+}
+
+.ang-card:hover .ang-handle {
+    opacity: 1;
+}
+
+.ang-handle-left {
+    top: 50%;
+    left: -4px;
+    transform: translateY(-50%);
+}
+
+.ang-handle-right {
+    top: 50%;
+    right: -4px;
+    transform: translateY(-50%);
+}
+
+.ang-handle-top {
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ang-handle-bottom {
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
