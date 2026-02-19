@@ -480,12 +480,38 @@ export default function LandingPage() {
             </section>
 
             {/* ── Footer ── */}
-            <footer className="lp-footer">
-                <p>© 2026 Orbit. All rights reserved.</p>
-                <div className="lp-footer-links">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Contact</a>
+            <footer className="lp-footer" id="footer">
+                <div className="lp-footer-top">
+                    <h3 className="lp-footer-tagline">Experience liftoff</h3>
+                    <div className="lp-footer-nav">
+                        <div className="lp-footer-col">
+                            <a href="#product">Download</a>
+                            <a href="#product">Product</a>
+                            <a href="#docs">Docs</a>
+                            <a href="#changelog">Changelog</a>
+                            <a href="#press">Press</a>
+                            <a href="#releases">Releases</a>
+                        </div>
+                        <div className="lp-footer-col">
+                            <a href="/blog">Blog</a>
+                            <a href="/pricing">Pricing</a>
+                            <a href="/use-cases">Use Cases</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="lp-footer-brand">
+                    <span>Orbit</span>
+                </div>
+
+                <div className="lp-footer-bottom">
+                    <div className="lp-footer-logo-small">Orbit</div>
+                    <div className="lp-footer-legal">
+                        <a href="/about">About Orbit</a>
+                        <a href="/products">Orbit Products</a>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                    </div>
                 </div>
             </footer>
         </div>
