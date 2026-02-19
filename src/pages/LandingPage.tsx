@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
 import WarehouseParticleCanvas from "../components/WarehouseParticleCanvas";
+import FinalCtaParticleCanvas from "../components/FinalCtaParticleCanvas";
 import ArchitectureNodeGraph from "../components/ArchitectureNodeGraph";
 import {
     Zap,
@@ -451,24 +452,29 @@ export default function LandingPage() {
 
 
 
+
+
             {/* ── Final CTA ── */}
             <section className="lp-final-cta" id="final-cta">
-                <div className="lp-final-cta-card lp-dark" id="final-cta-card">
-                    <h2>You Bring the Vision. Orbit Runs the Operations.</h2>
-                    <p>Launch on a unified commerce operating system designed for global scale.</p>
-                    <div className="lp-final-cta-buttons">
-                        <button
-                            className="lp-btn lp-btn-primary"
-                            onClick={() => goTo("/auth")}
-                        >
-                            Launch on Orbit
-                        </button>
-                        <button
-                            className="lp-btn lp-btn-secondary"
-                            onClick={() => goTo("/apply")}
-                        >
-                            Apply as a Specialist
-                        </button>
+                <div className="lp-final-cta-card lp-dark" id="final-cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <FinalCtaParticleCanvas />
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                        <h2>You Bring the Vision. Orbit Runs the Operations.</h2>
+
+                        <div className="lp-final-cta-buttons">
+                            <button
+                                className="lp-btn lp-btn-primary"
+                                onClick={() => goTo("/auth")}
+                            >
+                                Launch on Orbit
+                            </button>
+                            <button
+                                className="lp-btn lp-btn-secondary"
+                                onClick={() => goTo("/apply")}
+                            >
+                                Apply as a Specialist
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>

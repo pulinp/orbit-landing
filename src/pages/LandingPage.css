@@ -1101,22 +1101,12 @@
     position: relative;
     overflow: hidden;
 
-    /* Particle System Config */
-    --ring-radius: 100;
-    --ring-thickness: 500;
+    /* Particle System Config Removed (Replaced by FinalCtaParticleCanvas) */
+    /* --ring-radius: 100; ... */
 
-    --particle-count: 60;
-    --particle-rows: 20;
-    --particle-size: 1.5;
-    --particle-color: #ffffff;
-    --particle-min-alpha: 0.03;
-    --particle-max-alpha: 0.25;
-
-    --seed: 350;
-
-    background-image: paint(ring-particles);
-    animation: ripple 6s linear infinite, ring 6s ease-in-out infinite alternate;
-    transition: --ring-x 3s ease, --ring-y 3s ease;
+    /* background-image: paint(ring-particles); */
+    /* animation: ripple 6s linear infinite, ring 6s ease-in-out infinite alternate; */
+    /* transition: --ring-x 3s ease, --ring-y 3s ease; */
 }
 
 .lp-final-cta-card>* {
