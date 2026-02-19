@@ -403,23 +403,7 @@
     color: var(--lp-primary);
 }
 
-.lp-hero p {
-    font-size: clamp(2rem, 5vw, 4.2rem);
-    text-align: center;
-    font-weight: 500;
-    margin: 0 0 2rem;
-    line-height: 1.15;
-    color: var(--lp-on-surface);
-    max-width: 16ch;
-}
 
-.lp-hero p span {
-    display: block;
-    font-size: 0.65em;
-    color: var(--lp-on-surface-variant);
-    font-weight: 400;
-    margin-top: 0.3em;
-}
 
 .lp-hero-cta {
     display: flex;
@@ -435,17 +419,27 @@
 
 /* Hero entrance animation */
 .lp-hero-logo,
-.lp-hero p,
+.lp-hero-title,
+.lp-hero-subtitle,
+.lp-hero-supporting,
 .lp-hero-cta {
     animation: hero-fade-up 0.6s ease both;
 }
 
-.lp-hero p {
+.lp-hero-title {
     animation-delay: 0.1s;
 }
 
-.lp-hero-cta {
+.lp-hero-subtitle {
     animation-delay: 0.2s;
+}
+
+.lp-hero-supporting {
+    animation-delay: 0.3s;
+}
+
+.lp-hero-cta {
+    animation-delay: 0.4s;
 }
 
 @keyframes hero-fade-up {
@@ -458,6 +452,45 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.lp-hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 350;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+    color: var(--lp-on-surface);
+    max-width: 20ch;
+}
+
+.lp-hero-title span {
+    display: block;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--lp-primary) 0%, #2f3034 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lp-hero-subtitle {
+    font-size: 1.1rem;
+    font-weight: 350;
+    max-width: 80ch;
+    text-align: center;
+    margin: 0 auto 1rem;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.5;
+}
+
+
+
+.lp-hero-supporting {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--lp-primary);
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
 }
 
 /* ========================================
@@ -509,13 +542,15 @@
 }
 
 /* ========================================
-   Product Section
+   Product Section (Reframed)
    ======================================== */
 .lp-product {
     display: grid;
     grid-template-columns: subgrid;
     min-height: auto;
     padding-bottom: 2rem;
+    grid-column: fullbleed;
+    row-gap: 4rem;
 }
 
 .lp-product>*:not(.lp-icons) {
@@ -524,20 +559,6 @@
 
 .lp-product .lp-icons {
     grid-column: fullbleed;
-}
-
-.lp-product h2 {
-    font-size: 2.5rem;
-    font-weight: 350;
-    margin: 0.5rem 0;
-    line-height: 1.1;
-    max-width: 25ch;
-}
-
-@media (min-width: 930px) {
-    .lp-product h2 {
-        width: 50%;
-    }
 }
 
 /* Icons row */
@@ -561,36 +582,20 @@
     place-content: center;
     font-size: 1.8rem;
     color: var(--lp-on-surface-variant);
-    animation: wobble 4s ease infinite alternate;
-}
-
-.lp-icon-bubble:nth-child(5n+1) {
-    animation-delay: 0s;
-}
-
-.lp-icon-bubble:nth-child(5n+2) {
-    animation-delay: -1s;
-}
-
-.lp-icon-bubble:nth-child(5n+3) {
-    animation-delay: -2s;
-}
-
-.lp-icon-bubble:nth-child(5n+4) {
-    animation-delay: -3s;
-}
-
-.lp-icon-bubble:nth-child(5n+5) {
-    animation-delay: -4s;
+    /* Smoother sine-wave animation */
+    /* Use the CSS variable --i for staggered delay */
+    /* Each item is delayed by 0.2s * index */
+    animation: wobble 3s ease-in-out infinite alternate;
+    animation-delay: calc(var(--i) * -0.4s);
 }
 
 @keyframes wobble {
     from {
-        transform: translateY(75%);
+        transform: translateY(60%);
     }
 
     to {
-        transform: translateY(-75%);
+        transform: translateY(-60%);
     }
 }
 
@@ -605,79 +610,293 @@
     }
 }
 
-/* Features grid */
-.lp-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+.lp-product-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.lp-feature {
-    padding-bottom: 2rem;
+.lp-product-intro h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 350;
+    line-height: 1.1;
+    margin-bottom: 2rem;
 }
 
-.lp-feature h3 {
-    font-weight: 400;
-    font-size: 1.3rem;
-    line-height: 1.15;
-    margin: 0 0 0.75rem;
+.lp-text-gradient {
+    background: linear-gradient(to right, var(--lp-primary), #2f3034);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
-.lp-feature img {
-    border-radius: 1.5rem;
-    width: 100%;
-}
-
-.lp-feature p {
-    font-weight: 300;
-    line-height: 1.35;
+.lp-product-copy p {
+    font-size: 1.25rem;
+    line-height: 1.6;
     color: var(--lp-on-surface-variant);
+    margin-bottom: 1.5rem;
+}
+
+.lp-closing-line {
+    font-size: 1.4rem !important;
+    font-weight: 500;
+    color: var(--lp-on-surface) !important;
+    margin-top: 2rem;
+    border-left: 4px solid var(--lp-primary);
+    padding-left: 1.5rem;
+    text-align: left;
+    display: inline-block;
+}
+
+/* Architecture Section */
+.lp-architecture-section {
+    margin-top: 2rem;
+}
+
+.lp-architecture-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.lp-architecture-header h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.lp-architecture-header p {
+    font-size: 1.1rem;
+    color: var(--lp-on-surface-variant);
+    max-width: 60ch;
+    margin: 0 auto;
+}
+
+.lp-architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.lp-layer {
+    background: var(--lp-surface-variant);
+    border: 1px solid var(--lp-outline);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lp-layer:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: var(--lp-primary);
+}
+
+.lp-layer-central {
+    background: #f0fdf9;
+    border-color: rgba(26, 179, 148, 0.2);
+    grid-column: 1 / -1;
+    text-align: center;
+    align-items: center;
+}
+
+.lp-layer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.lp-layer-code {
+    font-family: monospace;
+    background: var(--lp-on-surface);
+    color: white;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.lp-layer h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.lp-layer-desc {
     font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--lp-on-surface);
+    opacity: 0.8;
     margin: 0;
 }
 
-@media (max-width: 930px) {
-    .lp-features {
-        grid-template-columns: 1fr;
-    }
-
-    .lp-feature-img-wrapper {
-        margin-bottom: 1rem;
-    }
+.lp-layer-details {
+    margin-top: auto;
+    width: 100%;
+    text-align: left;
 }
 
-@media (min-width: 930px) {
-    .lp-features {
-        position: relative;
-    }
+.lp-layer-details h5 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--lp-on-surface-variant);
+    margin: 1rem 0 0.5rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding-bottom: 0.25rem;
+}
 
-    .lp-feature-img-wrapper {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-    }
+.lp-layer-details ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
-    .lp-feature-img-wrapper img {
-        position: sticky;
-        width: 100%;
-        height: auto;
-        top: calc((100vh - 60%) / 2);
-        border-radius: 2rem;
-    }
+.lp-layer-details li {
+    font-size: 0.9rem;
+    color: var(--lp-on-surface-variant);
+    padding: 0.15em 0;
+    display: flex;
+    align-items: center;
+}
 
-    .lp-feature {
-        grid-column: 1;
-        padding-block: 12vh;
-        display: grid;
-        place-content: center;
-    }
+.lp-layer-details li::before {
+    content: "•";
+    color: var(--lp-primary);
+    margin-right: 0.5em;
+}
 
-    .lp-feature p {
-        width: 65%;
-        max-width: 50ch;
-    }
+.lp-specialist-block {
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+/* ========================================
+   Agent Execution Model
+   ======================================== */
+.lp-agent-model {
+    grid-column: main;
+    padding: 4rem 0;
+    border-top: 1px solid var(--lp-outline-variant);
+}
+
+.lp-agent-model-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.lp-agent-model-header h2 {
+    font-size: 2.2rem;
+    font-weight: 350;
+    margin-bottom: 0.5rem;
+}
+
+.lp-agent-model-header p {
+    color: var(--lp-on-surface-variant);
+}
+
+.lp-agent-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.lp-agent-card {
+    background: white;
+    border: 1px solid var(--lp-outline);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.lp-agent-card:hover {
+    transform: translateY(-5px);
+}
+
+.lp-agent-card-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+}
+
+.lp-agent-card-icon.autonomous {
+    background: var(--lp-primary);
+    box-shadow: 0 0 0 4px rgba(26, 179, 148, 0.2);
+}
+
+.lp-agent-card-icon.supervised {
+    background: #f7a072;
+    box-shadow: 0 0 0 4px rgba(247, 160, 114, 0.2);
+}
+
+.lp-agent-card-icon.approval {
+    background: #ef5b5b;
+    box-shadow: 0 0 0 4px rgba(239, 91, 91, 0.2);
+}
+
+.lp-agent-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.lp-agent-card p {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.lp-agent-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    background: var(--lp-surface-variant);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.lp-agent-card-list li {
+    padding: 0.25em 0;
+    font-size: 0.9rem;
+    color: var(--lp-on-surface-variant);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.lp-agent-card-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--lp-outline-variant);
+    border-radius: 50%;
+}
+
+
+
+
+
+/* Card Tag */
+.lp-card-tag {
+    background: var(--lp-surface-variant);
+    padding: 0.2em 0.8em;
+    border-radius: 99px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--lp-on-surface-variant);
+    margin-bottom: 1rem;
+    display: inline-block;
 }
 
 /* ========================================
@@ -720,8 +939,8 @@
 
 @media (min-width: 930px) {
     .lp-usecases-intro {
-        width: calc(30vw - 1.5rem);
-        margin-left: auto;
+        max-width: 60ch;
+        margin-left: 0;
     }
 }
 

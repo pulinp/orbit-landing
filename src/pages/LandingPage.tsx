@@ -2,16 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
 import WarehouseParticleCanvas from "../components/WarehouseParticleCanvas";
 import {
+    Zap,
+    ShieldCheck,
+    MessageSquare,
+    Menu,
+    X,
+    Play,
+    ChevronLeft,
+    ChevronRight,
     Package,
     Truck,
     Warehouse,
-    ShieldCheck,
     ShoppingCart,
-    BarChart3,
+    ChartColumn,
     Globe,
     Boxes,
     Settings,
-    Zap,
     Code,
     FileText,
     Terminal,
@@ -19,14 +25,8 @@ import {
     Upload,
     Layers,
     GitBranch,
-    MessageSquare,
     Share2,
     ArrowRight,
-    Menu,
-    X,
-    Play,
-    ChevronLeft,
-    ChevronRight,
 } from "lucide-react";
 import "./LandingPage.css";
 
@@ -40,46 +40,7 @@ const goTo = (path: string) => {
     window.location.href = `${PLATFORM_URL}${path}`;
 };
 
-const iconList = [
-    Package, Truck, Warehouse, ShieldCheck, ShoppingCart,
-    BarChart3, Globe, Boxes, Settings, Zap,
-    Code, FileText, Terminal, RefreshCw, Upload,
-    Layers, GitBranch, MessageSquare, Share2, ArrowRight,
-    Package, Truck, Warehouse, ShieldCheck,
-];
 
-const features = [
-    {
-        title: "Real-Time Inventory Visibility",
-        description:
-            "Monitor stock levels, product locations, and storage capacities across every warehouse in your network with a single unified dashboard.",
-        image: "/landing/feature-inventory.png",
-    },
-    {
-        title: "End-to-End Shipment Tracking",
-        description:
-            "Track shipments from origin to destination with live status updates, route visualization, and automated exception alerts.",
-        image: "/landing/feature-shipments.png",
-    },
-    {
-        title: "Connected Warehouse Network",
-        description:
-            "Manage a distributed network of warehouses with capacity monitoring, health indicators, and performance analytics from one place.",
-        image: "/landing/feature-warehouses.png",
-    },
-    {
-        title: "Compliance Intelligence",
-        description:
-            "Stay ahead of regulatory requirements with automated document verification, risk scoring, and ESG tracking built into your workflow.",
-        image: "/landing/feature-compliance.png",
-    },
-    {
-        title: "Unified Order Pipeline",
-        description:
-            "Oversee every order from placement to delivery with visual pipeline views, revenue insights, and multi-channel consolidation.",
-        image: "/landing/feature-orders.png",
-    },
-];
 
 const useCases = [
     {
@@ -103,6 +64,14 @@ const useCases = [
             "Integrate your Shopify, Amazon, or DTC channels and let Orbit orchestrate fulfillment across your warehouse network automatically.",
         image: "/landing/usecase-retailer.png",
     },
+];
+
+const iconList = [
+    Package, Truck, Warehouse, ShieldCheck, ShoppingCart,
+    ChartColumn, Globe, Boxes, Settings, Zap,
+    Code, FileText, Terminal, RefreshCw, Upload,
+    Layers, GitBranch, MessageSquare, Share2, ArrowRight,
+    Package, Truck, Warehouse, ShieldCheck,
 ];
 
 export default function LandingPage() {
@@ -189,6 +158,8 @@ export default function LandingPage() {
         return () => obs.disconnect();
     }, []);
 
+
+
     const scrollCarousel = (dir: "left" | "right") => {
         const el = carouselRef.current;
         if (!el) return;
@@ -243,19 +214,25 @@ export default function LandingPage() {
                 <h1 className="lp-hero-logo">
                     <span>O</span>rbit
                 </h1>
-                <p>
-                    Supply chain,
-                    <span>simplified and connected</span>
+                <h2 className="lp-hero-title">
+                    The Operating System for
+                    <span>Vibe-Commerce</span>
+                </h2>
+                <p className="lp-hero-subtitle">
+                    Orbit is open commerce infrastructure that coordinates autonomous agents and specialist providers across compliance, logistics, marketing, support, and e-commerce.
                 </p>
+                <div className="lp-hero-supporting">
+                    One platform. Seven functions. Continuous orchestration.
+                </div>
                 <div className="lp-hero-cta">
                     <button
                         className="lp-btn lp-btn-accent"
                         onClick={() => goTo("/auth")}
                     >
-                        Get Started Free
+                        Launch on Orbit
                     </button>
                     <a href="#product" className="lp-btn lp-btn-secondary">
-                        Explore the platform
+                        Explore the Platform
                     </a>
                 </div>
             </section>
@@ -272,40 +249,276 @@ export default function LandingPage() {
 
             {/* ── Product Section ── */}
             <section className="lp-product" id="product">
-                <h2>
-                    Orbit is your unified supply chain platform — connecting warehouses, suppliers, and orders in one view.
-                </h2>
-
                 <div
                     className={`lp-icons ${iconsVisible ? "lp-icons-animate" : ""}`}
                     ref={iconsRef}
                 >
                     {iconList.map((Icon, i) => (
-                        <div className="lp-icon-bubble" key={i}>
+                        <div
+                            className="lp-icon-bubble"
+                            key={i}
+                            style={{ "--i": i } as React.CSSProperties}
+                        >
                             <Icon size={28} strokeWidth={1.5} />
                         </div>
                     ))}
                 </div>
+                <div className="lp-product-intro">
+                    <h2>
+                        Not Another Tool. <span className="lp-text-gradient">A Commerce Infrastructure Layer.</span>
+                    </h2>
+                    <div className="lp-product-copy">
+                        <p>
+                            Traditional commerce software provides dashboards.
+                            <strong> Orbit provides coordinated execution.</strong>
+                        </p>
+                        <p>
+                            Instead of fragmented vendors and disconnected systems, Orbit creates a shared operational layer where inventory, compliance, logistics, support, and orders operate in synchronized workflows.
+                        </p>
+                        <p className="lp-closing-line">
+                            Merchants focus on vision.<br />
+                            Orbit coordinates operations.
+                        </p>
+                    </div>
+                </div>
 
-                <div className="lp-features" id="features">
-                    {features.map((feat, i) => (
-                        <div className="lp-feature" key={i}>
-                            <div className="lp-feature-img-wrapper">
-                                <img src={feat.image} alt={feat.title} loading="lazy" />
+                <div className="lp-architecture-section">
+                    <div className="lp-architecture-header">
+                        <h3>A Full Commerce Stack, Coordinated.</h3>
+                        <p>
+                            Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
+                        </p>
+                    </div>
+
+                    <div className="lp-architecture-grid">
+                        {/* Central Layer */}
+                        <div className="lp-layer lp-layer-central">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">OPS</span>
+                                <h4>Operations Control Tower</h4>
                             </div>
-                            <div className="lp-feature-content">
-                                <h3>{feat.title}</h3>
-                                <p>{feat.description}</p>
+                            <p className="lp-layer-desc">The coordination engine.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Cross-functional workflow orchestration</li>
+                                    <li>SLA monitoring</li>
+                                    <li>Escalation routing</li>
+                                    <li>Data synchronization across modules</li>
+                                </ul>
                             </div>
                         </div>
-                    ))}
+
+                        {/* Layer 1: MIA */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">MIA</span>
+                                <h4>Market Intelligence</h4>
+                            </div>
+                            <p className="lp-layer-desc">Forecast demand, monitor competitors, optimize pricing.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Continuous market data ingestion</li>
+                                    <li>Demand modeling</li>
+                                    <li>Pricing recommendations</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>Strategic positioning</li>
+                                        <li>Market expansion decisions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Layer 2: CIA */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">CIA</span>
+                                <h4>Compliance</h4>
+                            </div>
+                            <p className="lp-layer-desc">Embedded regulatory engine.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Classification workflows</li>
+                                    <li>Document validation</li>
+                                    <li>Risk detection</li>
+                                    <li>Regulatory monitoring</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>Edge cases</li>
+                                        <li>Regulatory exceptions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Layer 3: ECOM */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">ECOM</span>
+                                <h4>E-Commerce</h4>
+                            </div>
+                            <p className="lp-layer-desc">Multi-channel synchronization and listing intelligence.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Catalog updates</li>
+                                    <li>Inventory synchronization</li>
+                                    <li>SEO automation</li>
+                                    <li>Channel consistency</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>Channel strategy</li>
+                                        <li>Marketplace optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Layer 4: MKT */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">MKT</span>
+                                <h4>Marketing</h4>
+                            </div>
+                            <p className="lp-layer-desc">Performance automation layer.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Budget allocation</li>
+                                    <li>Bid optimization</li>
+                                    <li>Campaign monitoring</li>
+                                    <li>Performance reporting</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>Creative strategy</li>
+                                        <li>Brand positioning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Layer 5: LOG */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">LOG</span>
+                                <h4>Logistics</h4>
+                            </div>
+                            <p className="lp-layer-desc">Intelligent carrier and routing layer.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Carrier selection</li>
+                                    <li>Route optimization</li>
+                                    <li>Exception monitoring</li>
+                                    <li>Cost comparisons</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>Complex freight negotiations</li>
+                                        <li>Strategic routing partnerships</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Layer 6: SUP */}
+                        <div className="lp-layer">
+                            <div className="lp-layer-header">
+                                <span className="lp-layer-code">SUP</span>
+                                <h4>Support (Pre-Sales + Post-Sales)</h4>
+                            </div>
+                            <p className="lp-layer-desc">Customer Experience Infrastructure.</p>
+                            <div className="lp-layer-details">
+                                <h5>Agent handles:</h5>
+                                <ul>
+                                    <li>Pre-sales customer inquiries</li>
+                                    <li>Post-purchase support</li>
+                                    <li>Returns and refund workflows</li>
+                                    <li>Warranty and quality claims</li>
+                                    <li>Ticket triage and routing</li>
+                                    <li>Sentiment analysis</li>
+                                    <li>Feedback aggregation</li>
+                                    <li>Root-cause tagging</li>
+                                </ul>
+                                <div className="lp-specialist-block">
+                                    <h5>Specialists handle:</h5>
+                                    <ul>
+                                        <li>High-risk escalations</li>
+                                        <li>Brand-sensitive responses</li>
+                                        <li>Policy-level decisions</li>
+                                        <li>Complex disputes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Agent Execution Model ── */}
+            <section className="lp-agent-model">
+                <div className="lp-agent-model-header">
+                    <h2>Autonomous. Supervised. Accountable.</h2>
+                    <p>
+                        Orbit agents operate in three modes depending on risk and confidence thresholds.
+                    </p>
+                </div>
+                <div className="lp-agent-cards">
+                    <div className="lp-agent-card">
+                        <div className="lp-agent-card-icon autonomous">
+                            <Zap size={32} />
+                        </div>
+                        <h3>Autonomous</h3>
+                        <p>Agent executes and logs actions.</p>
+                        <ul className="lp-agent-card-list">
+                            <li>Routine workflows</li>
+                            <li>Low-risk decisions</li>
+                            <li>High confidence</li>
+                        </ul>
+                    </div>
+                    <div className="lp-agent-card">
+                        <div className="lp-agent-card-icon supervised">
+                            <ShieldCheck size={32} />
+                        </div>
+                        <h3>Supervised</h3>
+                        <p>Agent executes; specialist reviews.</p>
+                        <ul className="lp-agent-card-list">
+                            <li>Complex exceptions</li>
+                            <li>Medium risk</li>
+                            <li>Learning phase</li>
+                        </ul>
+                    </div>
+                    <div className="lp-agent-card">
+                        <div className="lp-agent-card-icon approval">
+                            <MessageSquare size={32} />
+                        </div>
+                        <h3>Approval</h3>
+                        <p>Agent recommends; merchant approves.</p>
+                        <ul className="lp-agent-card-list">
+                            <li>Critical decisions</li>
+                            <li>High financial impact</li>
+                            <li>SLA overrides</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
             {/* ── Use Cases / Carousel ── */}
             <section className="lp-usecases" id="usecases">
                 <div className="lp-usecases-header">
-                    <h2>Built for every link in the chain</h2>
+                    <h2>Built for Every Node in Your Commerce Network</h2>
                     <p className="lp-usecases-intro">
                         Whether you&apos;re a manufacturer shipping finished goods, a distributor managing
                         multi-warehouse fulfillment, or a retailer integrating sales channels — Orbit adapts
@@ -355,6 +568,8 @@ export default function LandingPage() {
                 </div>
             </section>
 
+
+
             {/* ── Two-Column CTA ── */}
             <section className="lp-who" id="who">
                 <div
@@ -367,6 +582,7 @@ export default function LandingPage() {
                         For suppliers
                         <span>Manage your operations</span>
                     </h3>
+
                     <button
                         className="lp-btn lp-btn-accent"
                         onClick={() => goTo("/auth")}
@@ -384,6 +600,7 @@ export default function LandingPage() {
                         For warehouses
                         <span>Power your facility</span>
                     </h3>
+
                     <button
                         className="lp-btn lp-btn-secondary"
                         onClick={() => goTo("/warehouse/login")}
@@ -393,22 +610,25 @@ export default function LandingPage() {
                 </div>
             </section>
 
+
+
             {/* ── Final CTA ── */}
             <section className="lp-final-cta" id="final-cta">
                 <div className="lp-final-cta-card lp-dark" id="final-cta-card">
-                    <p>Get started with Orbit — it&apos;s free</p>
+                    <h2>You Bring the Vision. Orbit Runs the Operations.</h2>
+                    <p>Launch on a unified commerce operating system designed for global scale.</p>
                     <div className="lp-final-cta-buttons">
                         <button
                             className="lp-btn lp-btn-primary"
                             onClick={() => goTo("/auth")}
                         >
-                            Create your account
+                            Launch on Orbit
                         </button>
                         <button
                             className="lp-btn lp-btn-secondary"
-                            onClick={() => goTo("/admin/login")}
+                            onClick={() => goTo("/apply")}
                         >
-                            Admin Portal
+                            Apply as a Specialist
                         </button>
                     </div>
                 </div>
