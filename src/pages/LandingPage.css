@@ -1080,7 +1080,8 @@
     display: grid;
     grid-template-columns: subgrid;
     min-height: auto;
-    padding-bottom: 4rem;
+    padding-bottom: 0;
+    /* Removed padding to close gap to footer */
 }
 
 .lp-final-cta>* {
@@ -1196,13 +1197,12 @@
     grid-column: fullbleed-start / fullbleed-end;
     background-color: #ffffff;
     color: #000000;
-    padding: 6rem 3rem 4rem;
-    /* More top padding */
+    padding: 2rem 3rem 4rem;
+    /* Base padding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: auto;
-    /* Remove vh height, let content define it */
     position: relative;
     z-index: 10;
 }
@@ -1214,8 +1214,11 @@
     flex-wrap: wrap;
     gap: 4rem;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 2rem auto -18rem;
+    /* Reduced top margin from 8rem to 2rem to close gap */
     width: 100%;
+    position: relative;
+    z-index: 5;
 }
 
 .lp-footer-tagline {
@@ -1250,24 +1253,118 @@
     opacity: 0.6;
 }
 
-/* Giant Brand Text */
+/* Giant Brand Text & Orbit Animation */
 .lp-footer-brand {
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    /* Align to bottom for semi-circle effect */
     justify-content: center;
     overflow: hidden;
-    padding: 6rem 0;
-    /* More breathing room */
+    /* Cut off the bottom half of the orbit */
+    padding: 0;
+    /* Fully removed top padding */
+}
+
+.lp-footer-orbit-container {
+    position: relative;
+    width: 80rem;
+    /* Enlarged orbit */
+    height: 45rem;
+    /* Increased height to ensure planet top clearance */
+    display: flex;
+    align-items: flex-end;
+    /* Text at the bottom */
+    justify-content: center;
+    overflow: hidden;
 }
 
 .lp-footer-brand span {
     font-size: 22vw;
-    /* Tuned for "Orbit" (5 chars) to fit with side room */
     font-weight: 700;
     letter-spacing: -0.07em;
-    line-height: 0.8;
+    line-height: 0.7;
+    /* Tighter line height to sit on baseline */
     user-select: none;
+    z-index: 2;
+    position: relative;
+    margin-bottom: -0.05em;
+    /* Optical baseline alignment */
+}
+
+.lp-footer-ellipses {
+    border-radius: 50%;
+    position: absolute;
+    border-style: solid;
+    pointer-events: none;
+}
+
+.lp-footer-ellipses--thin {
+    width: 80rem;
+    /* Enlarged */
+    height: 80rem;
+    /* Enlarged */
+    top: 5rem;
+    /* Increased top clearance */
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.08);
+    /* Very subtle orbit line */
+    animation: lp-ellipsesOrbit 20s linear infinite;
+    z-index: 1;
+}
+
+.lp-footer-ellipses--thick {
+    width: 78rem;
+    /* Enlarged */
+    height: 78rem;
+    /* Enlarged */
+    top: 6rem;
+    left: 1rem;
+    border-color: #000 transparent;
+    border-width: 2px;
+    transform: rotate(-45deg);
+    animation: lp-ellipsesRotate 15s ease-in-out infinite alternate;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.lp-footer-ellipses--planet {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--lp-primary);
+    border: 2px solid #000;
+    top: 10%;
+    right: 15%;
+    position: absolute;
+    transform: translate(50%, -50%);
+}
+
+.lp-footer-ellipses--planet:before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, var(--lp-primary) 0%, transparent 70%);
+    opacity: 0.3;
+}
+
+@keyframes lp-ellipsesRotate {
+    0% {
+        transform: rotate(-45deg);
+    }
+
+    100% {
+        transform: rotate(-135deg);
+    }
+}
+
+@keyframes lp-ellipsesOrbit {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Bottom Bar */
@@ -1275,7 +1372,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 1rem;
+    /* Tighter spacing */
     font-size: 11px;
     /* Very small legal text like reference */
     font-weight: 500;

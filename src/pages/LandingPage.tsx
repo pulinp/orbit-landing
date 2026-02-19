@@ -194,9 +194,8 @@ export default function LandingPage() {
                     <nav className="lp-nav">
                         <ul>
                             <li><a href="#product">Platform</a></li>
-                            <li><a href="#usecases">Solutions</a></li>
-                            <li><a href="#who">Pricing</a></li>
-                            <li><a href="#final-cta">Resources</a></li>
+                            <li><a href="#who">Network</a></li>
+                            <li><a href="#usecases">Use Cases</a></li>
                         </ul>
                     </nav>
 
@@ -308,7 +307,7 @@ export default function LandingPage() {
             </section>
 
             {/* ── Agent Execution Model ── */}
-            <section className="lp-agent-model">
+            <section className="lp-agent-model" id="agent-model">
                 <div className="lp-agent-model-header">
                     <h2>Autonomous. Supervised. Accountable.</h2>
                     <p>
@@ -352,6 +351,46 @@ export default function LandingPage() {
                             <li>SLA overrides</li>
                         </ul>
                     </div>
+                </div>
+            </section>
+
+            {/* ── Two-Column CTA ── */}
+            <section className="lp-who" id="who">
+                <div
+                    className="lp-who-card lp-who-card--suppliers"
+                    onMouseEnter={() => setSupplierHovered(true)}
+                    onMouseLeave={() => setSupplierHovered(false)}
+                >
+                    <SupplierParticleCanvas hovered={supplierHovered} />
+                    <h3>
+                        For suppliers
+                        <span>Manage your operations</span>
+                    </h3>
+
+                    <button
+                        className="lp-btn lp-btn-accent"
+                        onClick={() => goTo("/auth")}
+                    >
+                        Get Started
+                    </button>
+                </div>
+                <div
+                    className="lp-who-card lp-who-card--warehouse"
+                    onMouseEnter={() => setWarehouseHovered(true)}
+                    onMouseLeave={() => setWarehouseHovered(false)}
+                >
+                    <WarehouseParticleCanvas hovered={warehouseHovered} />
+                    <h3>
+                        For warehouses
+                        <span>Power your facility</span>
+                    </h3>
+
+                    <button
+                        className="lp-btn lp-btn-secondary"
+                        onClick={() => goTo("/warehouse/login")}
+                    >
+                        Warehouse Login
+                    </button>
                 </div>
             </section>
 
@@ -410,48 +449,6 @@ export default function LandingPage() {
 
 
 
-            {/* ── Two-Column CTA ── */}
-            <section className="lp-who" id="who">
-                <div
-                    className="lp-who-card lp-who-card--suppliers"
-                    onMouseEnter={() => setSupplierHovered(true)}
-                    onMouseLeave={() => setSupplierHovered(false)}
-                >
-                    <SupplierParticleCanvas hovered={supplierHovered} />
-                    <h3>
-                        For suppliers
-                        <span>Manage your operations</span>
-                    </h3>
-
-                    <button
-                        className="lp-btn lp-btn-accent"
-                        onClick={() => goTo("/auth")}
-                    >
-                        Get Started
-                    </button>
-                </div>
-                <div
-                    className="lp-who-card lp-who-card--warehouse"
-                    onMouseEnter={() => setWarehouseHovered(true)}
-                    onMouseLeave={() => setWarehouseHovered(false)}
-                >
-                    <WarehouseParticleCanvas hovered={warehouseHovered} />
-                    <h3>
-                        For warehouses
-                        <span>Power your facility</span>
-                    </h3>
-
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => goTo("/warehouse/login")}
-                    >
-                        Warehouse Login
-                    </button>
-                </div>
-            </section>
-
-
-
 
 
             {/* ── Final CTA ── */}
@@ -501,7 +498,13 @@ export default function LandingPage() {
                 </div>
 
                 <div className="lp-footer-brand">
-                    <span>Orbit</span>
+                    <div className="lp-footer-orbit-container">
+                        <div className="lp-footer-ellipses lp-footer-ellipses--thin">
+                            <div className="lp-footer-ellipses lp-footer-ellipses--planet"></div>
+                        </div>
+                        <div className="lp-footer-ellipses lp-footer-ellipses--thick"></div>
+                        <span>Orbit</span>
+                    </div>
                 </div>
 
                 <div className="lp-footer-bottom">
