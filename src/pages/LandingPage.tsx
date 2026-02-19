@@ -265,21 +265,30 @@ export default function LandingPage() {
                     ))}
                 </div>
                 <div className="lp-product-intro">
-                    <h2>
-                        Not Another Tool. <span className="lp-text-gradient">A Commerce Infrastructure Layer.</span>
-                    </h2>
-                    <div className="lp-product-copy">
-                        <p>
-                            Traditional commerce software provides dashboards.
-                            <strong> Orbit provides coordinated execution.</strong>
-                        </p>
-                        <p>
-                            Instead of fragmented vendors and disconnected systems, Orbit creates a shared operational layer where inventory, compliance, logistics, support, and orders operate in synchronized workflows.
-                        </p>
-                        <p className="lp-closing-line">
-                            Merchants focus on vision.<br />
-                            Orbit coordinates operations.
-                        </p>
+                    <div className="lp-product-content">
+                        <div className="lp-product-text">
+                            <h2>
+                                Not Another Tool. <br />
+                                <span className="lp-text-gradient">A Commerce Infrastructure Layer.</span>
+                            </h2>
+                            <div className="lp-product-copy">
+                                <p>
+                                    Traditional commerce software provides dashboards.
+                                    <strong> Orbit provides coordinated execution.</strong>
+                                </p>
+                                <p>
+                                    Instead of fragmented vendors and disconnected systems, Orbit creates a shared operational layer where inventory, compliance, logistics, support, and orders operate in synchronized workflows.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="lp-product-image">
+                            {/* Dashboard Screenshot */}
+                            <img
+                                src="/assets/dashboard_mockup.png"
+                                alt="Orbit Dashboard Interface showing SKU performance and stock analytics"
+                                className="lp-dashboard-img"
+                            />
+                        </div>
                     </div>
                 </div>
 
