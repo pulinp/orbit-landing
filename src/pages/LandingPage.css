@@ -1337,9 +1337,10 @@
     background-color: var(--lp-primary);
     border: 2px solid #000;
     top: 10%;
-    right: 15%;
+    left: 20%;
     position: absolute;
-    transform: translate(50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 .lp-footer-ellipses--planet:before {
