@@ -1,10 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-interface Props {
-    hovered?: boolean; // Kept for compatibility, though we'll track mouse internally for this canvas
-}
 
-export default function FinalCtaParticleCanvas({ hovered }: Props) {
+export default function FinalCtaParticleCanvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
