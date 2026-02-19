@@ -456,7 +456,10 @@ export default function LandingPage() {
                 <div className="lp-final-cta-card lp-dark" id="final-cta-card" style={{ position: 'relative', overflow: 'hidden' }}>
                     <FinalCtaParticleCanvas />
                     <div style={{ position: 'relative', zIndex: 1 }}>
-                        <h2>You Bring the Vision. Orbit Runs the Operations.</h2>
+                        <h2>
+                            You Bring the Vision.<br />
+                            Orbit Runs the Operations.
+                        </h2>
 
                         <div className="lp-final-cta-buttons">
                             <button
@@ -479,7 +482,7 @@ export default function LandingPage() {
             {/* ── Footer ── */}
             <footer className="lp-footer" id="footer">
                 <div className="lp-footer-top">
-                    <h3 className="lp-footer-tagline">Experience liftoff</h3>
+                    <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
                     <div className="lp-footer-nav">
                         <div className="lp-footer-col">
                             <a href="#product">Download</a>
