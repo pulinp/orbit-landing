@@ -9,7 +9,7 @@ import {
     MessageSquare,
     Menu,
     X,
-    Play,
+
     ChevronLeft,
     ChevronRight,
     Package,
@@ -238,13 +238,17 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* ── Visual Section ── */}
-            <section className="lp-visual">
-                <div className="lp-visual-card">
-                    <div className="lp-visual-inner">
-                        <Play size={80} strokeWidth={1} />
-                        <p>See Orbit in action</p>
-                    </div>
+            {/* ── Architecture Section ── */}
+            <section className="lp-architecture-section">
+                <div className="lp-architecture-header">
+                    <h3>A Full Commerce Stack, Coordinated.</h3>
+                    <p>
+                        Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
+                    </p>
+                </div>
+
+                <div className="lp-architecture-grid">
+                    <ArchitectureNodeGraph />
                 </div>
             </section>
 
@@ -292,18 +296,6 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                <div className="lp-architecture-section">
-                    <div className="lp-architecture-header">
-                        <h3>A Full Commerce Stack, Coordinated.</h3>
-                        <p>
-                            Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
-                        </p>
-                    </div>
-
-                    <div className="lp-architecture-grid">
-                        <ArchitectureNodeGraph />
-                    </div>
-                </div>
             </section>
 
             {/* ── Agent Execution Model ── */}
@@ -410,6 +402,7 @@ export default function LandingPage() {
                         <div className="lp-carousel-item" key={i}>
                             <figure>
                                 <img src={uc.image} alt={uc.title} loading="lazy" />
+                                <div className="lp-carousel-overlay" />
                                 <figcaption>{uc.caption}</figcaption>
                             </figure>
                             <h3>{uc.title}</h3>
