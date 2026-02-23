@@ -355,8 +355,8 @@ export default function LandingPage() {
                 >
                     <SupplierParticleCanvas hovered={supplierHovered} />
                     <h3>
-                        For suppliers
-                        <span>Manage your operations</span>
+                        For Specialists
+                        <span>Manage brand operations</span>
                     </h3>
 
                     <button
