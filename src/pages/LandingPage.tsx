@@ -216,11 +216,11 @@ export default function LandingPage() {
                     <span>O</span>rbit
                 </h1>
                 <h2 className="lp-hero-title">
-                    The Operating System for
-                    <span>Vibe-Commerce</span>
+                    You bring the brand.<br />
+                    <span>We bring the operations.</span>
                 </h2>
                 <p className="lp-hero-subtitle">
-                    Orbit is open commerce infrastructure that coordinates autonomous agents and specialist providers across compliance, logistics, marketing, support, and e-commerce.
+                    Orbit is the full-stack US market entry platform for international brands — coordinating compliance, logistics, warehousing, e-commerce, and marketing under one contract, so you're live in 14 days.
                 </p>
                 <div className="lp-hero-supporting">
                     One platform. Seven functions. Continuous orchestration.
@@ -238,17 +238,436 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* ── Architecture Section ── */}
-            <section className="lp-architecture-section">
-                <div className="lp-architecture-header">
-                    <h3>A Full Commerce Stack, Coordinated.</h3>
-                    <p>
-                        Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* ── Stats Band ── */}
+            <div className="lp-stats-band">
+                <div className="lp-stat-item">
+                    <span className="lp-stat-number lp-stat-accent">14</span>
+                    <span className="lp-stat-label">Days to US Launch</span>
+                </div>
+                <div className="lp-stat-item">
+                    <span className="lp-stat-number">6</span>
+                    <span className="lp-stat-label">Functions Handled</span>
+                </div>
+                <div className="lp-stat-item">
+                    <span className="lp-stat-number">1</span>
+                    <span className="lp-stat-label">Contract. Not Seven.</span>
+                </div>
+                <div className="lp-stat-item">
+                    <span className="lp-stat-number">3</span>
+                    <span className="lp-stat-label">Brands Launched — Cohort 1</span>
+                </div>
+                <div className="lp-stat-item">
+                    <span className="lp-stat-number lp-stat-accent">100%</span>
+                    <span className="lp-stat-label">Compliance Rate</span>
+                </div>
+            </div>
+
+            {/* ── Problem Section ── */}
+            <section className="lp-problem-section" id="problem">
+                <div className="lp-problem-header">
+                    <div className="lp-problem-header-left">
+                        <div className="lp-section-tag">01 / PROBLEM</div>
+                        <h2>Three ways founders burn time entering the US</h2>
+                    </div>
+                    <div className="lp-problem-header-right">
+                        <p>International brands doing $500K–5M at home are stuck choosing between broken options. Every path costs months of founder attention and still doesn't guarantee US market traction.</p>
+                    </div>
+                </div>
+
+                <div className="lp-problem-list">
+                    <div className="lp-problem-item">
+                        <div className="lp-problem-num">001</div>
+                        <div>
+                            <div className="lp-problem-title">Scattered Consultants</div>
+                            <div className="lp-problem-subtitle">"Seven vendors, zero coordination"</div>
+                        </div>
+                        <div>
+                            <p className="lp-problem-desc">You hire a compliance firm, a 3PL, a marketing agency, and an Amazon specialist — and then spend all your time on coordination calls that none of them attend together. The cost of misalignment falls on you.</p>
+                            <ul className="lp-problem-issues">
+                                <li><span className="lp-issue-dash">—</span> No single point of accountability</li>
+                                <li><span className="lp-issue-dash">—</span> Optimised individually, not for your outcome</li>
+                                <li><span className="lp-issue-dash">—</span> 4–6 months to get everything aligned</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="lp-problem-item">
+                        <div className="lp-problem-num">002</div>
+                        <div>
+                            <div className="lp-problem-title">Full DIY</div>
+                            <div className="lp-problem-subtitle">"I'll figure it out myself"</div>
+                        </div>
+                        <div>
+                            <p className="lp-problem-desc">FDA filings, tariff codes, warehouse contracts, Amazon PPC — you're doing seven jobs none of which is building your brand. Compliance errors are costly. The learning curve is 6–12 months. You lose the market window.</p>
+                            <ul className="lp-problem-issues">
+                                <li><span className="lp-issue-dash">—</span> Founders burn out on logistics</li>
+                                <li><span className="lp-issue-dash">—</span> Compliance mistakes cost $50K+</li>
+                                <li><span className="lp-issue-dash">—</span> No leverage — every task is manual</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="lp-problem-item">
+                        <div className="lp-problem-num">003</div>
+                        <div>
+                            <div className="lp-problem-title">Single-Function Providers</div>
+                            <div className="lp-problem-subtitle">"Great at one thing, blind to the rest"</div>
+                        </div>
+                        <div>
+                            <p className="lp-problem-desc">You find a best-in-class 3PL and a great compliance partner — then discover they've never worked together and you're the integration layer. You've reduced the vendor count but not the coordination problem.</p>
+                            <ul className="lp-problem-issues">
+                                <li><span className="lp-issue-dash">—</span> Handoff gaps fall through the cracks</li>
+                                <li><span className="lp-issue-dash">—</span> Difficult to pivot when one part breaks</li>
+                                <li><span className="lp-issue-dash">—</span> Still running 5 projects instead of 7</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="lp-problem-bridge">
+                    <p>What every international brand actually needs is a single operations team that's already wired together, already understands US compliance, and is ready to move on day one — not day ninety.</p>
+                </div>
+            </section>
+
+            {/* ── Functions Bento ── */}
+            <section className="lp-functions-section" id="functions">
+                <div className="lp-functions-header">
+                    <div>
+                        <div className="lp-section-tag">02 / WHAT WE HANDLE</div>
+                        <h2>Six functions.<br />One contract.</h2>
+                    </div>
+                    <div className="lp-functions-header-right">
+                        <p>Every critical function for US market entry, owned end-to-end. Not brokered out, not subcontracted — our team, our accountability, your brand.</p>
+                    </div>
+                </div>
+
+                <div className="lp-fn-bento">
+                    <div className="lp-fn-tile lp-fn-intelligence">
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">01</span>
+                                <span className="lp-fn-category">Core</span>
+                            </div>
+                            <div className="lp-fn-title">Market Intelligence</div>
+                            <div className="lp-fn-desc">AI-powered competitive analysis, US consumer trend mapping, and category positioning research. You arrive in the US market already knowing where to play and who's buying — not guessing after the fact.</div>
+                        </div>
+                        <div>
+                            <div className="lp-fn-large-stat">AI</div>
+                            <div className="lp-fn-large-stat-label">Powered analysis</div>
+                            <div className="lp-fn-footer">
+                                <span className="lp-fn-footer-label">Delivered pre-launch</span>
+                                <span className="lp-fn-footer-status">Running</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lp-fn-tile lp-fn-compliance">
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">02</span>
+                            </div>
+                            <div className="lp-fn-title">Compliance</div>
+                            <div className="lp-fn-desc">FDA, FCC, CPSC — every requirement for your product category, flagged and filed before you ship a unit. No customs holds.</div>
+                        </div>
+                        <div className="lp-fn-footer">
+                            <span className="lp-fn-footer-label">All categories</span>
+                            <span className="lp-fn-footer-status">100% rate</span>
+                        </div>
+                    </div>
+
+                    <div className="lp-fn-tile lp-fn-logistics">
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">03</span>
+                            </div>
+                            <div className="lp-fn-title">Logistics</div>
+                            <div className="lp-fn-desc">Inbound freight, customs brokerage, and last-mile — fully coordinated. Your product arrives on time, every time.</div>
+                        </div>
+                        <div className="lp-fn-footer">
+                            <span className="lp-fn-footer-label">Door to warehouse</span>
+                        </div>
+                    </div>
+
+                    <div className="lp-fn-tile lp-fn-warehousing">
+                        <div className="lp-fn-tile-header">
+                            <span className="lp-fn-index">04</span>
+                        </div>
+                        <div className="lp-fn-title">Warehousing &amp; Fulfilment</div>
+                        <div className="lp-fn-desc">Flexible US warehouse infrastructure. No long-term contracts, no volume minimums. Scale as your US sales grow — not based on a forecast you made before you launched.</div>
+                        <div className="lp-fn-footer">
+                            <span className="lp-fn-footer-label">No minimums · Flexible terms</span>
+                            <span className="lp-fn-footer-status">US-based</span>
+                        </div>
+                    </div>
+
+                    <div className="lp-fn-tile lp-fn-ecommerce">
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">05</span>
+                                <span className="lp-fn-category">Revenue</span>
+                            </div>
+                            <div className="lp-fn-title">E-commerce Setup</div>
+                            <div className="lp-fn-desc">Amazon marketplace, Shopify storefront, and DTC channel — built and optimised for US buyers. Listings, A+ content, conversion architecture, and launch campaigns ready before day one.</div>
+                        </div>
+                        <div className="lp-fn-footer">
+                            <span className="lp-fn-footer-label">Amazon · Shopify · DTC</span>
+                            <span className="lp-fn-footer-status">Ready day 1</span>
+                        </div>
+                    </div>
+
+                    <div className="lp-fn-tile lp-fn-marketing">
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">06</span>
+                            </div>
+                            <div className="lp-fn-title">Marketing</div>
+                            <div className="lp-fn-desc">Performance campaigns and brand positioning calibrated to US consumers — not a translated version of what worked at home.</div>
+                        </div>
+                        <div className="lp-fn-footer">
+                            <span className="lp-fn-footer-label">Performance + Brand</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Process Section ── */}
+            <section className="lp-process-section" id="process">
+                <div className="lp-process-inner">
+                    <div>
+                        <div className="lp-section-tag">03 / PROCESS</div>
+                        <h2 className="lp-process-h2">From first call<br />to first US sale.</h2>
+                    </div>
+                    <div className="lp-process-track">
+                        <div className="lp-process-step">
+                            <div className="lp-step-num-display">01</div>
+                            <div className="lp-process-step-tag">INTAKE</div>
+                            <h4>Tell Us About Your Brand</h4>
+                            <p>One intake session. We learn your product, your home market position, your target US customer, and your timeline. No lengthy questionnaires — 90 minutes and we have what we need.</p>
+                            <div className="lp-process-step-footer">
+                                <span className="lp-process-step-time">Day 0 → Day 1</span>
+                            </div>
+                        </div>
+                        <div className="lp-process-step">
+                            <div className="lp-step-num-display">02</div>
+                            <div className="lp-process-step-tag">PLANNING</div>
+                            <h4>We Build Your US Launch Plan</h4>
+                            <p>Within 48 hours: a compliance checklist for your product, logistics routing, warehousing setup, and a 90-day e-commerce and marketing roadmap. Reviewed together before we execute.</p>
+                            <div className="lp-process-step-footer">
+                                <span className="lp-process-step-time">Day 1 → Day 3</span>
+                            </div>
+                        </div>
+                        <div className="lp-process-step">
+                            <div className="lp-step-num-display">03</div>
+                            <div className="lp-process-step-tag">LAUNCH</div>
+                            <h4>Live in the US in 14 Days</h4>
+                            <p>Your product is compliant, warehoused in the US, listed on the right channels, and backed by a live marketing programme. You brief us on the brand. We run the operations.</p>
+                            <div className="lp-process-step-footer">
+                                <span className="lp-process-step-time">Day 3 → Day 14</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Differentiators Section ── */}
+            <section className="lp-diff-section" id="why">
+                <div className="lp-diff-inner">
+                    <div className="lp-diff-header">
+                        <div className="lp-section-tag">04 / WHY ORBIT</div>
+                        <h2 className="lp-diff-h2">Four things<br />no one else offers.</h2>
+                    </div>
+                    <div className="lp-diff-bento">
+                        <div className="lp-diff-tile lp-diff-tile-speed">
+                            <div className="lp-diff-eyebrow">Speed</div>
+                            <h4>14 Days, Not 6 Months</h4>
+                            <p>The average international brand takes 4–6 months to establish US operations from scratch. We've pre-built the infrastructure, pre-negotiated the logistics contracts, and pre-tested the compliance pathways. You get the result of 18 months of groundwork on day one.</p>
+                            <div className="lp-diff-big-stat">14<span className="lp-diff-big-stat-unit"> days</span></div>
+                        </div>
+
+                        <div className="lp-diff-tile lp-diff-tile-full">
+                            <div className="lp-diff-eyebrow">Full-Stack</div>
+                            <h4>The Entire Chain. Not Just One Piece.</h4>
+                            <p>We own all six functions — market intelligence through marketing. That means no handoff gaps, no finger-pointing between vendors, and one SLA that covers everything from port entry to customer purchase.</p>
+                            <div className="lp-diff-fn-list">
+                                {['Market Intelligence', 'Compliance', 'Logistics', 'Warehousing', 'E-commerce', 'Marketing'].map(fn => (
+                                    <div className="lp-diff-fn-row" key={fn}>
+                                        <span className="lp-diff-fn-check">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                                        </span>
+                                        <span className="lp-diff-fn-name">{fn}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="lp-diff-tile">
+                            <div className="lp-diff-eyebrow">Cultural Fit</div>
+                            <h4>We Speak Both Languages</h4>
+                            <p>Our team has worked with brands from Korea, India, and Thailand navigating US consumer culture. We know what translates and what needs reframing before you invest in the wrong message for the wrong audience.</p>
+                        </div>
+
+                        <div className="lp-diff-tile">
+                            <div className="lp-diff-eyebrow">AI-Powered</div>
+                            <h4>Agents Catch What Humans Miss</h4>
+                            <p>Compliance and market intelligence agents monitor regulatory changes and competitive shifts in real time — flagging issues the moment they appear, not in your quarterly review.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Use Cases / Carousel ── */}
+            <section className="lp-usecases" id="usecases">
+                <div className="lp-usecases-header">
+                    <h2>Built for Every Node in Your Commerce Network</h2>
+                    <p className="lp-usecases-intro">
+                        Whether you&apos;re a manufacturer shipping finished goods, a distributor managing
+                        multi-warehouse fulfillment, or a retailer integrating sales channels — Orbit adapts
+                        to your workflow.
                     </p>
                 </div>
 
-                <div className="lp-architecture-grid">
-                    <ArchitectureNodeGraph />
+                <div className="lp-carousel" ref={carouselRef}>
+                    {useCases.map((uc, i) => (
+                        <div className="lp-carousel-item" key={i}>
+                            <figure>
+                                <img src={uc.image} alt={uc.title} loading="lazy" />
+                                <div className="lp-carousel-overlay" />
+                                <figcaption>{uc.caption}</figcaption>
+                            </figure>
+                            <h3>{uc.title}</h3>
+                            <p>{uc.description}</p>
+                            <a href="#product">Learn more</a>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Carousel nav buttons */}
+                <div
+                    style={{
+                        display: "flex",
+                        gap: "0.5rem",
+                        padding: "0 3rem 2rem",
+                        gridColumn: "main",
+                    }}
+                >
+                    <button
+                        className="lp-btn lp-btn-secondary"
+                        onClick={() => scrollCarousel("left")}
+                        aria-label="Previous"
+                        style={{ padding: "0.5em 0.7em" }}
+                    >
+                        <ChevronLeft size={20} />
+                    </button>
+                    <button
+                        className="lp-btn lp-btn-secondary"
+                        onClick={() => scrollCarousel("right")}
+                        aria-label="Next"
+                        style={{ padding: "0.5em 0.7em" }}
+                    >
+                        <ChevronRight size={20} />
+                    </button>
+                </div>
+            </section>
+
+            {/* ── Proof / Testimonials ── */}
+            <section className="lp-proof-section" id="proof">
+                <div className="lp-proof-inner">
+                    <div style={{ marginBottom: '2rem' }}>
+                        <div className="lp-section-tag">05 / RESULTS</div>
+                        <h2 className="lp-proof-h2">Early cohort.<br />Real numbers.</h2>
+                    </div>
+
+                    <div className="lp-proof-numbers">
+                        <div className="lp-proof-num-item">
+                            <span className="lp-proof-num-value lp-proof-num-accent">3</span>
+                            <span className="lp-proof-num-label">Brands Launched</span>
+                        </div>
+                        <div className="lp-proof-num-item">
+                            <span className="lp-proof-num-value">11.4</span>
+                            <span className="lp-proof-num-label">Avg. Days to Live</span>
+                        </div>
+                        <div className="lp-proof-num-item">
+                            <span className="lp-proof-num-value lp-proof-num-accent">100%</span>
+                            <span className="lp-proof-num-label">Compliance Rate</span>
+                        </div>
+                        <div className="lp-proof-num-item">
+                            <span className="lp-proof-num-value">3</span>
+                            <span className="lp-proof-num-label">Countries in Cohort 1</span>
+                        </div>
+                    </div>
+
+                    <div className="lp-testimonials-grid">
+                        <div className="lp-testimonial">
+                            <div className="lp-testimonial-quote">&ldquo;</div>
+                            <p className="lp-testimonial-text">We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Orbit had us live in twelve days. I still don't fully understand how they moved that fast.</p>
+                            <div className="lp-testimonial-byline">
+                                <span className="lp-byline-name">Ji-Hoon K.</span>
+                                <span className="lp-byline-role">Founder, Premium Skincare Brand — Seoul, Korea</span>
+                                <span className="lp-byline-metric">→ $82K US revenue, month one</span>
+                            </div>
+                        </div>
+                        <div className="lp-testimonial lp-testimonial-compact">
+                            <div className="lp-testimonial-quote">&ldquo;</div>
+                            <p className="lp-testimonial-text">I interviewed seven different consultants. None of them owned the full picture. Orbit was the first team that said "we handle all of it" and meant it. That single point of accountability was worth every dollar.</p>
+                            <div className="lp-testimonial-byline">
+                                <span className="lp-byline-name">Priya M.</span>
+                                <span className="lp-byline-role">CEO, Home Goods Brand — Bangalore, India</span>
+                                <span className="lp-byline-metric">→ Live in the US in 11 days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Two-Column CTA ── */}
+            <section className="lp-who" id="who">
+                <div
+                    className="lp-who-card lp-who-card--suppliers"
+                    onMouseEnter={() => setSupplierHovered(true)}
+                    onMouseLeave={() => setSupplierHovered(false)}
+                >
+                    <SupplierParticleCanvas hovered={supplierHovered} />
+                    <h3>
+                        For Specialists
+                        <span>Manage brand operations</span>
+                    </h3>
+
+                    <button
+                        className="lp-btn lp-btn-accent"
+                        onClick={() => goTo("/auth")}
+                    >
+                        Get Started
+                    </button>
+                </div>
+                <div
+                    className="lp-who-card lp-who-card--warehouse"
+                    onMouseEnter={() => setWarehouseHovered(true)}
+                    onMouseLeave={() => setWarehouseHovered(false)}
+                >
+                    <WarehouseParticleCanvas hovered={warehouseHovered} />
+                    <h3>
+                        For warehouses
+                        <span>Power your facility</span>
+                    </h3>
+
+                    <button
+                        className="lp-btn lp-btn-secondary"
+                        onClick={() => goTo("/warehouse/login")}
+                    >
+                        Warehouse Login
+                    </button>
                 </div>
             </section>
 
@@ -373,103 +792,68 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* ── Two-Column CTA ── */}
-            <section className="lp-who" id="who">
-                <div
-                    className="lp-who-card lp-who-card--suppliers"
-                    onMouseEnter={() => setSupplierHovered(true)}
-                    onMouseLeave={() => setSupplierHovered(false)}
-                >
-                    <SupplierParticleCanvas hovered={supplierHovered} />
-                    <h3>
-                        For Specialists
-                        <span>Manage brand operations</span>
-                    </h3>
-
-                    <button
-                        className="lp-btn lp-btn-accent"
-                        onClick={() => goTo("/auth")}
-                    >
-                        Get Started
-                    </button>
-                </div>
-                <div
-                    className="lp-who-card lp-who-card--warehouse"
-                    onMouseEnter={() => setWarehouseHovered(true)}
-                    onMouseLeave={() => setWarehouseHovered(false)}
-                >
-                    <WarehouseParticleCanvas hovered={warehouseHovered} />
-                    <h3>
-                        For warehouses
-                        <span>Power your facility</span>
-                    </h3>
-
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => goTo("/warehouse/login")}
-                    >
-                        Warehouse Login
-                    </button>
-                </div>
-            </section>
-
-            {/* ── Use Cases / Carousel ── */}
-            <section className="lp-usecases" id="usecases">
-                <div className="lp-usecases-header">
-                    <h2>Built for Every Node in Your Commerce Network</h2>
-                    <p className="lp-usecases-intro">
-                        Whether you&apos;re a manufacturer shipping finished goods, a distributor managing
-                        multi-warehouse fulfillment, or a retailer integrating sales channels — Orbit adapts
-                        to your workflow.
+            {/* ── Architecture Section ── */}
+            <section className="lp-architecture-section">
+                <div className="lp-architecture-header">
+                    <h3>A Full Commerce Stack, Coordinated.</h3>
+                    <p>
+                        Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
                     </p>
                 </div>
 
-                <div className="lp-carousel" ref={carouselRef}>
-                    {useCases.map((uc, i) => (
-                        <div className="lp-carousel-item" key={i}>
-                            <figure>
-                                <img src={uc.image} alt={uc.title} loading="lazy" />
-                                <div className="lp-carousel-overlay" />
-                                <figcaption>{uc.caption}</figcaption>
-                            </figure>
-                            <h3>{uc.title}</h3>
-                            <p>{uc.description}</p>
-                            <a href="#product">Learn more</a>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Carousel nav buttons */}
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        padding: "0 3rem 2rem",
-                        gridColumn: "main",
-                    }}
-                >
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => scrollCarousel("left")}
-                        aria-label="Previous"
-                        style={{ padding: "0.5em 0.7em" }}
-                    >
-                        <ChevronLeft size={20} />
-                    </button>
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => scrollCarousel("right")}
-                        aria-label="Next"
-                        style={{ padding: "0.5em 0.7em" }}
-                    >
-                        <ChevronRight size={20} />
-                    </button>
+                <div className="lp-architecture-grid">
+                    <ArchitectureNodeGraph />
                 </div>
             </section>
 
+            {/* ── Contact / CTA Form ── */}
+            <section className="lp-cta-section" id="contact">
+                <div className="lp-cta-inner">
+                    <div className="lp-cta-copy">
+                        <div className="lp-section-tag">06 / GET STARTED</div>
+                        <h2 className="lp-cta-h2">Ready to bring your brand to the US?</h2>
+                        <p className="lp-cta-desc">Fill in the form and we'll send you a custom US launch plan within 48 hours — market intelligence, compliance checklist, and a 90-day revenue projection for your category.</p>
+                        <ul className="lp-cta-promise-list">
+                            <li><span className="lp-promise-icon">→</span> Full compliance audit for your product category</li>
+                            <li><span className="lp-promise-icon">→</span> Recommended logistics and warehousing setup</li>
+                            <li><span className="lp-promise-icon">→</span> 90-day revenue projection based on your category</li>
+                            <li><span className="lp-promise-icon">→</span> No commitment required to receive the plan</li>
+                        </ul>
+                    </div>
 
-
-
+                    <div className="lp-contact-form-wrap">
+                        <div className="lp-form-title">Intake Form — Cohort 2</div>
+                        <form onSubmit={(e) => { e.preventDefault(); const btn = e.currentTarget.querySelector('.lp-form-submit') as HTMLButtonElement; if (btn) { btn.textContent = '✓ Received — plan arriving within 48h'; btn.style.background = '#158d75'; btn.disabled = true; } }}>
+                            <div className="lp-form-row">
+                                <div className="lp-form-group">
+                                    <label className="lp-form-label" htmlFor="f-name">Full Name</label>
+                                    <input className="lp-form-input" id="f-name" type="text" placeholder="Your name" />
+                                </div>
+                                <div className="lp-form-group">
+                                    <label className="lp-form-label" htmlFor="f-email">Email</label>
+                                    <input className="lp-form-input" id="f-email" type="email" placeholder="you@brand.com" />
+                                </div>
+                            </div>
+                            <div className="lp-form-group">
+                                <label className="lp-form-label" htmlFor="f-brand">Brand Website</label>
+                                <input className="lp-form-input" id="f-brand" type="url" placeholder="https://yourbrand.com" />
+                            </div>
+                            <div className="lp-form-row">
+                                <div className="lp-form-group">
+                                    <label className="lp-form-label" htmlFor="f-country">Home Market</label>
+                                    <input className="lp-form-input" id="f-country" type="text" placeholder="Korea / India / Thailand" />
+                                </div>
+                                <div className="lp-form-group">
+                                    <label className="lp-form-label" htmlFor="f-revenue">Annual Revenue</label>
+                                    <input className="lp-form-input" id="f-revenue" type="text" placeholder="e.g. $1.2M" />
+                                </div>
+                            </div>
+                            <button className="lp-form-submit" type="submit">Request US Launch Plan →</button>
+                            <p className="lp-form-footnote">48h turnaround · No sales call without your consent</p>
+                        </form>
+                    </div>
+                </div>
+            </section>
 
             {/* ── Final CTA ── */}
             <section className="lp-final-cta" id="final-cta">

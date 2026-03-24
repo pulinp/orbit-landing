@@ -1486,3 +1486,980 @@
     white-space: nowrap;
     border-width: 0;
 }
+
+/* ========================================
+   Section Tag (shared label above headings)
+   ======================================== */
+.lp-section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--lp-primary);
+    margin-bottom: 0.75rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* ========================================
+   Stats Band
+   ======================================== */
+.lp-stats-band {
+    grid-column: fullbleed;
+    background: var(--lp-surface-variant);
+    border-top: 1px solid var(--lp-outline-variant);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lp-stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-right: 1px solid var(--lp-outline-variant);
+}
+
+.lp-stat-item:last-child {
+    border-right: none;
+}
+
+.lp-stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--lp-on-surface);
+    display: block;
+    line-height: 1;
+}
+
+.lp-stat-accent {
+    color: var(--lp-primary);
+}
+
+.lp-stat-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lp-on-surface-variant);
+    display: block;
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .lp-stats-band {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .lp-stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--lp-outline-variant);
+        width: 100%;
+        padding: 0.75rem;
+    }
+    .lp-stat-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* ========================================
+   Problem Section
+   ======================================== */
+.lp-problem-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface-variant);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-problem-header {
+    max-width: 1140px;
+    margin: 0 auto 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+}
+
+.lp-problem-header h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    margin: 0;
+}
+
+.lp-problem-header-right {
+    padding-top: 1.5rem;
+}
+
+.lp-problem-header-right p {
+    font-size: 1.05rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.75;
+    max-width: 540px;
+    margin: 0;
+}
+
+.lp-problem-list {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.lp-problem-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--lp-outline-variant);
+    transition: background 0.15s ease;
+}
+
+.lp-problem-item:last-child {
+    border-bottom: none;
+}
+
+.lp-problem-num {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--lp-on-surface-variant);
+    opacity: 0.5;
+    padding-top: 4px;
+}
+
+.lp-problem-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+}
+
+.lp-problem-subtitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--lp-on-surface-variant);
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.lp-problem-desc {
+    font-size: 0.9rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.7;
+    margin: 0 0 0.75rem;
+}
+
+.lp-problem-issues {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lp-problem-issues li {
+    font-size: 0.85rem;
+    color: var(--lp-on-surface-variant);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lp-issue-dash {
+    color: var(--lp-on-surface-variant);
+    opacity: 0.4;
+    flex-shrink: 0;
+}
+
+.lp-problem-bridge {
+    max-width: 1140px;
+    margin: 2.5rem auto 0;
+    padding: 1.75rem 2rem;
+    background: var(--lp-surface);
+    border: 1px solid var(--lp-outline-variant);
+    border-left: 3px solid var(--lp-primary);
+    border-radius: 8px;
+}
+
+.lp-problem-bridge p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 500;
+    color: var(--lp-on-surface);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .lp-problem-section {
+        padding: 4rem 1.5rem;
+    }
+    .lp-problem-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .lp-problem-item {
+        grid-template-columns: 50px 1fr;
+        gap: 1rem;
+    }
+    .lp-problem-item > div:last-child {
+        grid-column: 2;
+    }
+}
+
+/* ========================================
+   Functions Bento Section
+   ======================================== */
+.lp-functions-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-functions-header {
+    max-width: 1140px;
+    margin: 0 auto 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+}
+
+.lp-functions-header h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    line-height: 1.1;
+    margin: 0;
+}
+
+.lp-functions-header-right {
+    padding-bottom: 6px;
+}
+
+.lp-functions-header-right p {
+    font-size: 1rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Asymmetric bento grid */
+.lp-fn-bento {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1px;
+    background: var(--lp-outline-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lp-fn-tile {
+    background: var(--lp-surface);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.15s ease;
+}
+
+.lp-fn-tile:hover {
+    background: var(--lp-surface-variant);
+}
+
+.lp-fn-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.lp-fn-index {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--lp-on-surface-variant);
+    opacity: 0.5;
+    letter-spacing: 0.04em;
+}
+
+.lp-fn-category {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lp-primary);
+    background: rgba(26, 179, 148, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.lp-fn-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+    margin-bottom: 0.4rem;
+}
+
+.lp-fn-desc {
+    font-size: 0.82rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.65;
+}
+
+.lp-fn-footer {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--lp-outline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lp-fn-footer-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--lp-on-surface-variant);
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+}
+
+.lp-fn-footer-status {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--lp-primary);
+    letter-spacing: 0.06em;
+}
+
+.lp-fn-large-stat {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--lp-primary);
+    line-height: 1;
+    margin-top: 1rem;
+}
+
+.lp-fn-large-stat-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--lp-on-surface-variant);
+    margin-top: 4px;
+}
+
+/* Grid positions */
+.lp-fn-intelligence {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    background: var(--lp-surface-variant);
+}
+
+.lp-fn-intelligence .lp-fn-title { font-size: 1.4rem; }
+.lp-fn-intelligence .lp-fn-desc { font-size: 0.9rem; }
+
+.lp-fn-compliance  { grid-column: 2; grid-row: 1; }
+.lp-fn-logistics   { grid-column: 3; grid-row: 1; }
+.lp-fn-warehousing { grid-column: 2 / 4; grid-row: 2; }
+.lp-fn-warehousing .lp-fn-title { font-size: 1.3rem; }
+.lp-fn-ecommerce   { grid-column: 1 / 3; grid-row: 3; }
+.lp-fn-marketing   { grid-column: 3; grid-row: 3; }
+
+@media (max-width: 900px) {
+    .lp-functions-section { padding: 4rem 1.5rem; }
+    .lp-functions-header { grid-template-columns: 1fr; gap: 1rem; }
+    .lp-fn-bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    .lp-fn-intelligence { grid-column: 1 / -1; grid-row: auto; }
+    .lp-fn-warehousing  { grid-column: 1 / -1; grid-row: auto; }
+    .lp-fn-ecommerce    { grid-column: 1 / -1; grid-row: auto; }
+    .lp-fn-compliance, .lp-fn-logistics, .lp-fn-marketing { grid-column: auto; grid-row: auto; }
+}
+
+@media (max-width: 600px) {
+    .lp-fn-bento { grid-template-columns: 1fr; }
+    .lp-fn-compliance, .lp-fn-logistics, .lp-fn-marketing { grid-column: 1; }
+}
+
+/* ========================================
+   Process Section
+   ======================================== */
+.lp-process-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface-variant);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-process-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.lp-process-h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    margin: 0 0 3rem;
+    line-height: 1.1;
+}
+
+.lp-process-track {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    background: var(--lp-outline-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lp-process-step {
+    background: var(--lp-surface);
+    padding: 2rem;
+    border-right: 1px solid var(--lp-outline-variant);
+    transition: background 0.15s ease;
+}
+
+.lp-process-step:last-child {
+    border-right: none;
+}
+
+.lp-process-step:hover {
+    background: var(--lp-tonal);
+}
+
+.lp-step-num-display {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    color: var(--lp-outline-variant);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.lp-process-step-tag {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--lp-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.lp-process-step h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+    margin: 0 0 0.5rem;
+}
+
+.lp-process-step p {
+    font-size: 0.88rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.lp-process-step-footer {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--lp-outline);
+}
+
+.lp-process-step-time {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--lp-primary);
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+    .lp-process-section { padding: 4rem 1.5rem; }
+    .lp-process-track { grid-template-columns: 1fr; }
+    .lp-process-step {
+        border-right: none;
+        border-bottom: 1px solid var(--lp-outline-variant);
+    }
+    .lp-process-step:last-child { border-bottom: none; }
+}
+
+/* ========================================
+   Differentiators Section
+   ======================================== */
+.lp-diff-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-diff-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.lp-diff-header {
+    margin-bottom: 2.5rem;
+}
+
+.lp-diff-h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.lp-diff-bento {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1px;
+    background: var(--lp-outline-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lp-diff-tile {
+    background: var(--lp-surface);
+    padding: 2.5rem;
+    transition: background 0.15s ease;
+}
+
+.lp-diff-tile:hover {
+    background: var(--lp-surface-variant);
+}
+
+.lp-diff-eyebrow {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lp-primary);
+    margin-bottom: 0.75rem;
+}
+
+.lp-diff-tile h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+    margin: 0 0 0.5rem;
+}
+
+.lp-diff-tile p {
+    font-size: 0.88rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.lp-diff-big-stat {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+    margin-top: 1.5rem;
+    color: var(--lp-primary);
+}
+
+.lp-diff-big-stat-unit {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--lp-on-surface-variant);
+}
+
+.lp-diff-tile-full {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    background: var(--lp-surface-variant);
+}
+
+.lp-diff-tile-full h4 { font-size: 1.4rem; }
+.lp-diff-tile-full p { font-size: 0.95rem; }
+
+.lp-diff-fn-list {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.lp-diff-fn-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 10px 0.75rem;
+    background: var(--lp-surface);
+    border-radius: 4px;
+    transition: background 0.15s ease;
+}
+
+.lp-diff-fn-row:hover {
+    background: rgba(26, 179, 148, 0.06);
+}
+
+.lp-diff-fn-check {
+    width: 18px;
+    height: 18px;
+    background: rgba(26, 179, 148, 0.1);
+    border: 1px solid rgba(26, 179, 148, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--lp-primary);
+}
+
+.lp-diff-fn-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--lp-on-surface);
+}
+
+@media (max-width: 768px) {
+    .lp-diff-section { padding: 4rem 1.5rem; }
+    .lp-diff-bento { grid-template-columns: 1fr; }
+    .lp-diff-tile-full { grid-column: 1; grid-row: auto; }
+}
+
+/* ========================================
+   Proof / Testimonials Section
+   ======================================== */
+.lp-proof-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface-variant);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-proof-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.lp-proof-h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.lp-proof-numbers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 3rem;
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lp-proof-num-item {
+    padding: 1.75rem;
+    border-right: 1px solid var(--lp-outline-variant);
+    background: var(--lp-surface);
+}
+
+.lp-proof-num-item:last-child {
+    border-right: none;
+}
+
+.lp-proof-num-value {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    color: var(--lp-on-surface);
+    line-height: 1;
+    display: block;
+}
+
+.lp-proof-num-accent {
+    color: var(--lp-primary);
+}
+
+.lp-proof-num-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--lp-on-surface-variant);
+    display: block;
+    margin-top: 0.4rem;
+}
+
+.lp-testimonials-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1px;
+    background: var(--lp-outline-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.lp-testimonial {
+    background: var(--lp-surface);
+    padding: 2.5rem;
+    transition: background 0.15s ease;
+}
+
+.lp-testimonial:hover {
+    background: var(--lp-tonal);
+}
+
+.lp-testimonial-quote {
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--lp-primary);
+    opacity: 0.35;
+    margin-bottom: 0.75rem;
+    font-family: Georgia, serif;
+}
+
+.lp-testimonial-text {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--lp-on-surface);
+    line-height: 1.55;
+    font-style: italic;
+    margin: 0 0 1.5rem;
+}
+
+.lp-testimonial-compact .lp-testimonial-text {
+    font-size: 0.9rem;
+}
+
+.lp-testimonial-byline {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--lp-outline);
+}
+
+.lp-byline-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--lp-on-surface);
+}
+
+.lp-byline-role {
+    font-size: 0.78rem;
+    color: var(--lp-on-surface-variant);
+}
+
+.lp-byline-metric {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--lp-primary);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+
+@media (max-width: 900px) {
+    .lp-proof-section { padding: 4rem 1.5rem; }
+    .lp-proof-numbers { grid-template-columns: 1fr 1fr; }
+    .lp-testimonials-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .lp-proof-numbers { grid-template-columns: 1fr 1fr; }
+    .lp-proof-num-item:nth-child(even) { border-right: none; }
+    .lp-proof-num-item:nth-child(1),
+    .lp-proof-num-item:nth-child(2) {
+        border-bottom: 1px solid var(--lp-outline-variant);
+    }
+}
+
+/* ========================================
+   Contact / CTA Form Section
+   ======================================== */
+.lp-cta-section {
+    grid-column: fullbleed;
+    background: var(--lp-surface);
+    border-bottom: 1px solid var(--lp-outline-variant);
+    padding: 6rem 3rem;
+}
+
+.lp-cta-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+.lp-cta-h2 {
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--lp-on-surface);
+    line-height: 1.1;
+    margin: 0 0 1rem;
+}
+
+.lp-cta-desc {
+    font-size: 0.95rem;
+    font-weight: 350;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.75;
+    margin: 0 0 1.5rem;
+}
+
+.lp-cta-promise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.lp-cta-promise-list li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--lp-on-surface);
+}
+
+.lp-promise-icon {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--lp-primary);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.lp-contact-form-wrap {
+    background: var(--lp-surface-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.lp-form-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+}
+
+.lp-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.lp-form-group {
+    margin-bottom: 1rem;
+}
+
+.lp-form-label {
+    display: block;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--lp-on-surface-variant);
+    margin-bottom: 6px;
+}
+
+.lp-form-input {
+    width: 100%;
+    padding: 0.65rem 0.875rem;
+    background: var(--lp-surface);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--lp-on-surface);
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.lp-form-input::placeholder {
+    color: var(--lp-on-surface-variant);
+    opacity: 0.5;
+}
+
+.lp-form-input:focus {
+    border-color: var(--lp-primary);
+    background: rgba(26, 179, 148, 0.04);
+}
+
+.lp-form-submit {
+    width: 100%;
+    padding: 0.875rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    background: var(--lp-primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.lp-form-submit:hover {
+    background: var(--lp-primary-dark);
+    transform: translateY(-1px);
+}
+
+.lp-form-footnote {
+    text-align: center;
+    font-size: 11px;
+    color: var(--lp-on-surface-variant);
+    opacity: 0.5;
+    margin-top: 0.5rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+@media (max-width: 900px) {
+    .lp-cta-section { padding: 4rem 1.5rem; }
+    .lp-cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .lp-form-row { grid-template-columns: 1fr; }
+}
