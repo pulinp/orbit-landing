@@ -311,45 +311,72 @@ export default function LandingPage() {
                 <div className="lp-agent-model-header">
                     <h2>Autonomous. Supervised. Accountable.</h2>
                     <p>
-                        Orbit agents operate in three modes depending on risk and confidence thresholds.
+                        Orbit automates what&apos;s safe, reviews what&apos;s complex, and lets you decide what matters most.
                     </p>
                 </div>
-                <div className="lp-agent-cards">
-                    <div className="lp-agent-card">
-                        <div className="lp-agent-card-icon autonomous">
-                            <Zap size={32} />
+
+                <div className="lp-agent-steps-container">
+                    <div className="lp-agent-steps-line"></div>
+                    <div className="lp-agent-steps">
+                        {/* Autonomous */}
+                        <div className="lp-agent-step">
+                            <div className="lp-agent-step-icon-wrap autonomous">
+                                <div className="lp-agent-step-icon">
+                                    <Zap size={24} strokeWidth={2.5} />
+                                </div>
+                            </div>
+                            <div className="lp-agent-step-content">
+                                <h3>Autonomous</h3>
+                                <p>Routine tasks run automatically.</p>
+                            </div>
+                            <div className="lp-agent-step-card">
+                                <ul>
+                                    <li>Routine workflows</li>
+                                    <li>Low-risk decisions</li>
+                                    <li>High confidence</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Autonomous</h3>
-                        <p>Agent executes and logs actions.</p>
-                        <ul className="lp-agent-card-list">
-                            <li>Routine workflows</li>
-                            <li>Low-risk decisions</li>
-                            <li>High confidence</li>
-                        </ul>
-                    </div>
-                    <div className="lp-agent-card">
-                        <div className="lp-agent-card-icon supervised">
-                            <ShieldCheck size={32} />
+
+                        {/* Supervised */}
+                        <div className="lp-agent-step">
+                            <div className="lp-agent-step-icon-wrap supervised">
+                                <div className="lp-agent-step-icon">
+                                    <ShieldCheck size={24} strokeWidth={2.5} />
+                                </div>
+                            </div>
+                            <div className="lp-agent-step-content">
+                                <h3>Supervised</h3>
+                                <p>Complex situations are checked by specialists.</p>
+                            </div>
+                            <div className="lp-agent-step-card">
+                                <ul>
+                                    <li>Complex exceptions</li>
+                                    <li>Medium risk</li>
+                                    <li>Learning phase</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Supervised</h3>
-                        <p>Agent executes; specialist reviews.</p>
-                        <ul className="lp-agent-card-list">
-                            <li>Complex exceptions</li>
-                            <li>Medium risk</li>
-                            <li>Learning phase</li>
-                        </ul>
-                    </div>
-                    <div className="lp-agent-card">
-                        <div className="lp-agent-card-icon approval">
-                            <MessageSquare size={32} />
+
+                        {/* Your Approval */}
+                        <div className="lp-agent-step">
+                            <div className="lp-agent-step-icon-wrap approval">
+                                <div className="lp-agent-step-icon">
+                                    <MessageSquare size={24} strokeWidth={2.5} />
+                                </div>
+                            </div>
+                            <div className="lp-agent-step-content">
+                                <h3>Your Approval</h3>
+                                <p>Critical actions require your decision.</p>
+                            </div>
+                            <div className="lp-agent-step-card">
+                                <ul>
+                                    <li>Critical decisions</li>
+                                    <li>High financial impact</li>
+                                    <li>SLA overrides</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Approval</h3>
-                        <p>Agent recommends; merchant approves.</p>
-                        <ul className="lp-agent-card-list">
-                            <li>Critical decisions</li>
-                            <li>High financial impact</li>
-                            <li>SLA overrides</li>
-                        </ul>
                     </div>
                 </div>
             </section>

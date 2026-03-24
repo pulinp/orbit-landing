@@ -722,109 +722,163 @@
 
 
 /* ========================================
-   Agent Execution Model
+   Agent Execution Model (Stepped Progress)
    ======================================== */
 .lp-agent-model {
     grid-column: main;
-    padding: 4rem 0;
+    padding: 6rem 0;
     border-top: 1px solid var(--lp-outline-variant);
 }
 
 .lp-agent-model-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .lp-agent-model-header h2 {
-    font-size: 2.2rem;
-    font-weight: 350;
-    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
 }
 
 .lp-agent-model-header p {
     color: var(--lp-on-surface-variant);
+    font-size: 1.1rem;
+    max-width: 70ch;
+    margin: 0 auto;
 }
 
-.lp-agent-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.lp-agent-steps-container {
+    position: relative;
+    width: 100%;
+    padding: 2rem 0;
+}
+
+.lp-agent-steps-line {
+    position: absolute;
+    top: 50px; /* Aligned with center of icons */
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: linear-gradient(to right, #1ab394 33%, #f7a072 66%, #ef5b5b 100%);
+    opacity: 0.6;
+    z-index: 0;
+}
+
+.lp-agent-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
     gap: 2rem;
 }
 
-.lp-agent-card {
-    background: white;
-    border: 1px solid var(--lp-outline);
-    border-radius: 1.5rem;
-    padding: 2rem;
+.lp-agent-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.lp-agent-card:hover {
-    transform: translateY(-5px);
+.lp-agent-step-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: white;
+    display: grid;
+    place-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: 0 0 0 8px white;
 }
 
-.lp-agent-card-icon {
-    width: 64px;
-    height: 64px;
+.lp-agent-step-icon {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: grid;
     place-content: center;
-    margin: 0 auto 1.5rem;
     color: white;
 }
 
-.lp-agent-card-icon.autonomous {
-    background: var(--lp-primary);
-    box-shadow: 0 0 0 4px rgba(26, 179, 148, 0.2);
+/* Icon Colors */
+.lp-agent-step-icon-wrap.autonomous .lp-agent-step-icon {
+    background: #1ab394;
+    box-shadow: 0 4px 12px rgba(26, 179, 148, 0.4);
 }
 
-.lp-agent-card-icon.supervised {
+.lp-agent-step-icon-wrap.supervised .lp-agent-step-icon {
     background: #f7a072;
-    box-shadow: 0 0 0 4px rgba(247, 160, 114, 0.2);
+    box-shadow: 0 4px 12px rgba(247, 160, 114, 0.4);
 }
 
-.lp-agent-card-icon.approval {
+.lp-agent-step-icon-wrap.approval .lp-agent-step-icon {
     background: #ef5b5b;
-    box-shadow: 0 0 0 4px rgba(239, 91, 91, 0.2);
+    box-shadow: 0 4px 12px rgba(239, 91, 91, 0.4);
 }
 
-.lp-agent-card h3 {
-    font-size: 1.4rem;
+.lp-agent-step-content h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
+    color: var(--lp-on-surface);
 }
 
-.lp-agent-card p {
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+.lp-agent-step-content p {
+    font-size: 1rem;
+    color: var(--lp-on-surface-variant);
+    margin-bottom: 2rem;
+    min-height: 3em;
 }
 
-.lp-agent-card-list {
+.lp-agent-step-card {
+    background: #f8f9fb;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.lp-agent-step:hover .lp-agent-step-card {
+    background: #f0f2f5;
+    transform: translateY(-4px);
+}
+
+.lp-agent-step-card ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: left;
-    background: var(--lp-surface-variant);
-    padding: 1rem;
-    border-radius: 1rem;
-}
-
-.lp-agent-card-list li {
-    padding: 0.25em 0;
-    font-size: 0.9rem;
-    color: var(--lp-on-surface-variant);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.75rem;
 }
 
-.lp-agent-card-list li::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: var(--lp-outline-variant);
-    border-radius: 50%;
+.lp-agent-step-card li {
+    font-size: 0.95rem;
+    color: var(--lp-on-surface-variant);
+    font-weight: 400;
+}
+
+@media (max-width: 900px) {
+    .lp-agent-steps-line {
+        display: none;
+    }
+    
+    .lp-agent-steps {
+        flex-direction: column;
+        gap: 4rem;
+    }
+    
+    .lp-agent-step-icon-wrap {
+        margin-bottom: 1rem;
+    }
+    
+    .lp-agent-step-content p {
+        min-height: auto;
+    }
 }
 
 
