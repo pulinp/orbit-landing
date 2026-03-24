@@ -1,17 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
 import WarehouseParticleCanvas from "../components/WarehouseParticleCanvas";
+import LlmLogos from "../components/LlmLogos";
 import FinalCtaParticleCanvas from "../components/FinalCtaParticleCanvas";
-import ArchitectureNodeGraph from "../components/ArchitectureNodeGraph";
 import {
     Zap,
     ShieldCheck,
     MessageSquare,
     Menu,
     X,
-
-    ChevronLeft,
-    ChevronRight,
     Package,
     Truck,
     Warehouse,
@@ -44,30 +41,6 @@ const goTo = (path: string) => {
 
 
 
-const useCases = [
-    {
-        title: "Manufacturers",
-        caption: "Manufacturers",
-        description:
-            "Streamline production-to-warehouse flows by automating inbound shipment creation and real-time inventory updates.",
-        image: "/landing/usecase-manufacturer.png",
-    },
-    {
-        title: "Distributors",
-        caption: "Distributors",
-        description:
-            "Coordinate multi-warehouse fulfillment with intelligent routing, capacity-aware allocation, and cross-dock management.",
-        image: "/landing/usecase-distributor.png",
-    },
-    {
-        title: "Retailers",
-        caption: "Retailers",
-        description:
-            "Integrate your Shopify, Amazon, or DTC channels and let Orbit orchestrate fulfillment across your warehouse network automatically.",
-        image: "/landing/usecase-retailer.png",
-    },
-];
-
 const iconList = [
     Package, Truck, Warehouse, ShieldCheck, ShoppingCart,
     ChartColumn, Globe, Boxes, Settings, Zap,
@@ -82,7 +55,6 @@ export default function LandingPage() {
     const [supplierHovered, setSupplierHovered] = useState(false);
     const [warehouseHovered, setWarehouseHovered] = useState(false);
     const iconsRef = useRef<HTMLDivElement>(null);
-    const carouselRef = useRef<HTMLDivElement>(null);
 
     // Paint Worklet Registration
     useEffect(() => {
@@ -162,13 +134,6 @@ export default function LandingPage() {
 
 
 
-    const scrollCarousel = (dir: "left" | "right") => {
-        const el = carouselRef.current;
-        if (!el) return;
-        const amount = el.clientWidth * 0.65;
-        el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
-    };
-
     return (
         <div className="landing-page">
             {/* ── Header ── */}
@@ -195,7 +160,8 @@ export default function LandingPage() {
                         <ul>
                             <li><a href="#product">Platform</a></li>
                             <li><a href="#who">Network</a></li>
-                            <li><a href="#usecases">Use Cases</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="/product">How It Works</a></li>
                         </ul>
                     </nav>
 
@@ -252,18 +218,6 @@ export default function LandingPage() {
 
             {/* ── Stats Band ── */}
             <div className="lp-stats-band">
-                <div className="lp-stat-item">
-                    <span className="lp-stat-number lp-stat-accent">14</span>
-                    <span className="lp-stat-label">Days to US Launch</span>
-                </div>
-                <div className="lp-stat-item">
-                    <span className="lp-stat-number">6</span>
-                    <span className="lp-stat-label">Functions Handled</span>
-                </div>
-                <div className="lp-stat-item">
-                    <span className="lp-stat-number">1</span>
-                    <span className="lp-stat-label">Contract. Not Seven.</span>
-                </div>
                 <div className="lp-stat-item">
                     <span className="lp-stat-number">3</span>
                     <span className="lp-stat-label">Brands Launched — Cohort 1</span>
@@ -336,9 +290,7 @@ export default function LandingPage() {
                     </div>
                 </div>
 
-                <div className="lp-problem-bridge">
-                    <p>What every international brand actually needs is a single operations team that's already wired together, already understands US compliance, and is ready to move on day one — not day ninety.</p>
-                </div>
+
             </section>
 
             {/* ── Functions Bento ── */}
@@ -349,7 +301,7 @@ export default function LandingPage() {
                         <h2>Six functions.<br />One contract.</h2>
                     </div>
                     <div className="lp-functions-header-right">
-                        <p>Every critical function for US market entry, owned end-to-end. Not brokered out, not subcontracted — our team, our accountability, your brand.</p>
+                        <p>One team. One contract. Your brand live in the US.</p>
                     </div>
                 </div>
 
@@ -471,7 +423,7 @@ export default function LandingPage() {
                         <div className="lp-process-step">
                             <div className="lp-step-num-display">03</div>
                             <div className="lp-process-step-tag">LAUNCH</div>
-                            <h4>Live in the US in 14 Days</h4>
+                            <h4>Live in the US.</h4>
                             <p>Your product is compliant, warehoused in the US, listed on the right channels, and backed by a live marketing programme. You brief us on the brand. We run the operations.</p>
                             <div className="lp-process-step-footer">
                                 <span className="lp-process-step-time">Day 3 → Day 14</span>
@@ -486,40 +438,17 @@ export default function LandingPage() {
                 <div className="lp-diff-inner">
                     <div className="lp-diff-header">
                         <div className="lp-section-tag">04 / WHY ORBIT</div>
-                        <h2 className="lp-diff-h2">Four things<br />no one else offers.</h2>
+                        <h2 className="lp-diff-h2">Two things<br />no one else offers.</h2>
                     </div>
                     <div className="lp-diff-bento">
-                        <div className="lp-diff-tile lp-diff-tile-speed">
-                            <div className="lp-diff-eyebrow">Speed</div>
-                            <h4>14 Days, Not 6 Months</h4>
-                            <p>The average international brand takes 4–6 months to establish US operations from scratch. We've pre-built the infrastructure, pre-negotiated the logistics contracts, and pre-tested the compliance pathways. You get the result of 18 months of groundwork on day one.</p>
-                            <div className="lp-diff-big-stat">14<span className="lp-diff-big-stat-unit"> days</span></div>
-                        </div>
-
-                        <div className="lp-diff-tile lp-diff-tile-full">
-                            <div className="lp-diff-eyebrow">Full-Stack</div>
-                            <h4>The Entire Chain. Not Just One Piece.</h4>
-                            <p>We own all six functions — market intelligence through marketing. That means no handoff gaps, no finger-pointing between vendors, and one SLA that covers everything from port entry to customer purchase.</p>
-                            <div className="lp-diff-fn-list">
-                                {['Market Intelligence', 'Compliance', 'Logistics', 'Warehousing', 'E-commerce', 'Marketing'].map(fn => (
-                                    <div className="lp-diff-fn-row" key={fn}>
-                                        <span className="lp-diff-fn-check">
-                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-                                        </span>
-                                        <span className="lp-diff-fn-name">{fn}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
                         <div className="lp-diff-tile">
-                            <div className="lp-diff-eyebrow">Cultural Fit</div>
+                            <div className="lp-diff-eyebrow">01 — Cultural Fit</div>
                             <h4>We Speak Both Languages</h4>
                             <p>Our team has worked with brands from Korea, India, and Thailand navigating US consumer culture. We know what translates and what needs reframing before you invest in the wrong message for the wrong audience.</p>
                         </div>
 
                         <div className="lp-diff-tile">
-                            <div className="lp-diff-eyebrow">AI-Powered</div>
+                            <div className="lp-diff-eyebrow">02 — AI-Powered</div>
                             <h4>Agents Catch What Humans Miss</h4>
                             <p>Compliance and market intelligence agents monitor regulatory changes and competitive shifts in real time — flagging issues the moment they appear, not in your quarterly review.</p>
                         </div>
@@ -527,59 +456,7 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* ── Use Cases / Carousel ── */}
-            <section className="lp-usecases" id="usecases">
-                <div className="lp-usecases-header">
-                    <h2>Built for Every Node in Your Commerce Network</h2>
-                    <p className="lp-usecases-intro">
-                        Whether you&apos;re a manufacturer shipping finished goods, a distributor managing
-                        multi-warehouse fulfillment, or a retailer integrating sales channels — Orbit adapts
-                        to your workflow.
-                    </p>
-                </div>
 
-                <div className="lp-carousel" ref={carouselRef}>
-                    {useCases.map((uc, i) => (
-                        <div className="lp-carousel-item" key={i}>
-                            <figure>
-                                <img src={uc.image} alt={uc.title} loading="lazy" />
-                                <div className="lp-carousel-overlay" />
-                                <figcaption>{uc.caption}</figcaption>
-                            </figure>
-                            <h3>{uc.title}</h3>
-                            <p>{uc.description}</p>
-                            <a href="#product">Learn more</a>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Carousel nav buttons */}
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        padding: "0 3rem 2rem",
-                        gridColumn: "main",
-                    }}
-                >
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => scrollCarousel("left")}
-                        aria-label="Previous"
-                        style={{ padding: "0.5em 0.7em" }}
-                    >
-                        <ChevronLeft size={20} />
-                    </button>
-                    <button
-                        className="lp-btn lp-btn-secondary"
-                        onClick={() => scrollCarousel("right")}
-                        aria-label="Next"
-                        style={{ padding: "0.5em 0.7em" }}
-                    >
-                        <ChevronRight size={20} />
-                    </button>
-                </div>
-            </section>
 
             {/* ── Proof / Testimonials ── */}
             <section className="lp-proof-section" id="proof">
@@ -620,11 +497,11 @@ export default function LandingPage() {
                         </div>
                         <div className="lp-testimonial lp-testimonial-compact">
                             <div className="lp-testimonial-quote">&ldquo;</div>
-                            <p className="lp-testimonial-text">I interviewed seven different consultants. None of them owned the full picture. Orbit was the first team that said "we handle all of it" and meant it. That single point of accountability was worth every dollar.</p>
+                            <p className="lp-testimonial-text">We went from zero US presence to $40K in revenue in our first month. I didn't have to think about warehousing or Amazon once.</p>
                             <div className="lp-testimonial-byline">
                                 <span className="lp-byline-name">Priya M.</span>
                                 <span className="lp-byline-role">CEO, Home Goods Brand — Bangalore, India</span>
-                                <span className="lp-byline-metric">→ Live in the US in 11 days</span>
+                                <span className="lp-byline-metric">→ $40K US revenue, month one</span>
                             </div>
                         </div>
                     </div>
@@ -640,7 +517,7 @@ export default function LandingPage() {
                 >
                     <SupplierParticleCanvas hovered={supplierHovered} />
                     <h3>
-                        For Specialists
+                        For brands
                         <span>Manage brand operations</span>
                     </h3>
 
@@ -691,8 +568,8 @@ export default function LandingPage() {
                     <div className="lp-product-content">
                         <div className="lp-product-text">
                             <h2>
-                                Not Another Tool. <br />
-                                <span className="lp-text-gradient">A Commerce Infrastructure Layer.</span>
+                                Not another app to manage.<br />
+                                <span className="lp-text-gradient">A team that runs your US business.</span>
                             </h2>
                             <div className="lp-product-copy">
                                 <p>
@@ -700,9 +577,10 @@ export default function LandingPage() {
                                     <strong> Orbit provides coordinated execution.</strong>
                                 </p>
                                 <p>
-                                    Instead of fragmented vendors and disconnected systems, Orbit creates a shared operational layer where inventory, compliance, logistics, support, and orders operate in synchronized workflows.
+                                    Every part of your US operation — inventory, compliance, orders, logistics — runs in sync. You see the status. We handle the execution.
                                 </p>
                             </div>
+                            <a href="/product" className="lp-product-tech-link">See how it works technically →</a>
                         </div>
                         <div className="lp-product-image">
                             {/* Dashboard Screenshot */}
@@ -714,95 +592,39 @@ export default function LandingPage() {
                         </div>
                     </div>
                 </div>
-
             </section>
 
-            {/* ── Agent Execution Model ── */}
-            <section className="lp-agent-model" id="agent-model">
-                <div className="lp-agent-model-header">
-                    <h2>Autonomous. Supervised. Accountable.</h2>
-                    <p>
-                        Orbit automates what&apos;s safe, reviews what&apos;s complex, and lets you decide what matters most.
-                    </p>
+            {/* ── Pricing Section ── */}
+            <section className="lp-pricing-section" id="pricing">
+                <div className="lp-pricing-header">
+                    <h2>Pricing and plans</h2>
+                    <p className="lp-pricing-sub">Local Businesses or Enterprises, A Plan for All</p>
+                </div>
+                
+                <LlmLogos />
+
+                <div className="lp-pricing-features">
+                    <div className="lp-feature-pill">No Long Term Contracts</div>
+                    <div className="lp-feature-pill">Cancel Anytime</div>
+                    <div className="lp-feature-pill">100% Transparency</div>
                 </div>
 
-                <div className="lp-agent-steps-container">
-                    <div className="lp-agent-steps-line"></div>
-                    <div className="lp-agent-steps">
-                        {/* Autonomous */}
-                        <div className="lp-agent-step">
-                            <div className="lp-agent-step-icon-wrap autonomous">
-                                <div className="lp-agent-step-icon">
-                                    <Zap size={24} strokeWidth={2.5} />
-                                </div>
-                            </div>
-                            <div className="lp-agent-step-content">
-                                <h3>Autonomous</h3>
-                                <p>Routine tasks run automatically.</p>
-                            </div>
-                            <div className="lp-agent-step-card">
-                                <ul>
-                                    <li>Routine workflows</li>
-                                    <li>Low-risk decisions</li>
-                                    <li>High confidence</li>
-                                </ul>
-                            </div>
+                <div className="lp-custom-plan-banner">
+                    <div className="lp-custom-banner-left">
+                        <div className="lp-custom-banner-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+                                <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" stroke="#FF4D4D"/>
+                            </svg>
                         </div>
-
-                        {/* Supervised */}
-                        <div className="lp-agent-step">
-                            <div className="lp-agent-step-icon-wrap supervised">
-                                <div className="lp-agent-step-icon">
-                                    <ShieldCheck size={24} strokeWidth={2.5} />
-                                </div>
-                            </div>
-                            <div className="lp-agent-step-content">
-                                <h3>Supervised</h3>
-                                <p>Complex situations are checked by specialists.</p>
-                            </div>
-                            <div className="lp-agent-step-card">
-                                <ul>
-                                    <li>Complex exceptions</li>
-                                    <li>Medium risk</li>
-                                    <li>Learning phase</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Your Approval */}
-                        <div className="lp-agent-step">
-                            <div className="lp-agent-step-icon-wrap approval">
-                                <div className="lp-agent-step-icon">
-                                    <MessageSquare size={24} strokeWidth={2.5} />
-                                </div>
-                            </div>
-                            <div className="lp-agent-step-content">
-                                <h3>Your Approval</h3>
-                                <p>Critical actions require your decision.</p>
-                            </div>
-                            <div className="lp-agent-step-card">
-                                <ul>
-                                    <li>Critical decisions</li>
-                                    <li>High financial impact</li>
-                                    <li>SLA overrides</li>
-                                </ul>
-                            </div>
+                        <div className="lp-custom-banner-texts">
+                            <h3>Custom Plan For You</h3>
+                            <p>Need more? Need Better? Contact Sales</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* ── Architecture Section ── */}
-            <section className="lp-architecture-section">
-                <div className="lp-architecture-header">
-                    <h3>A Full Commerce Stack, Coordinated.</h3>
-                    <p>
-                        Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
-                    </p>
-                </div>
-
-                <div className="lp-architecture-grid">
-                    <ArchitectureNodeGraph />
+                    <div className="lp-custom-banner-right">
+                        <p>For enterprises requiring tailored solutions, integrations, and support</p>
+                        <button className="lp-btn-purple">Talk To Sales →</button>
+                    </div>
                 </div>
             </section>
 
@@ -822,33 +644,13 @@ export default function LandingPage() {
                     </div>
 
                     <div className="lp-contact-form-wrap">
-                        <div className="lp-form-title">Intake Form — Cohort 2</div>
+                        <div className="lp-form-title">Just drop us your email and we'll reach out</div>
                         <form onSubmit={(e) => { e.preventDefault(); const btn = e.currentTarget.querySelector('.lp-form-submit') as HTMLButtonElement; if (btn) { btn.textContent = '✓ Received — plan arriving within 48h'; btn.style.background = '#158d75'; btn.disabled = true; } }}>
-                            <div className="lp-form-row">
-                                <div className="lp-form-group">
-                                    <label className="lp-form-label" htmlFor="f-name">Full Name</label>
-                                    <input className="lp-form-input" id="f-name" type="text" placeholder="Your name" />
-                                </div>
-                                <div className="lp-form-group">
-                                    <label className="lp-form-label" htmlFor="f-email">Email</label>
-                                    <input className="lp-form-input" id="f-email" type="email" placeholder="you@brand.com" />
-                                </div>
+                            <div className="lp-form-group" style={{ marginBottom: "1.5rem" }}>
+                                <label className="lp-form-label" htmlFor="f-email">Email</label>
+                                <input className="lp-form-input" id="f-email" type="email" placeholder="you@brand.com" required />
                             </div>
-                            <div className="lp-form-group">
-                                <label className="lp-form-label" htmlFor="f-brand">Brand Website</label>
-                                <input className="lp-form-input" id="f-brand" type="url" placeholder="https://yourbrand.com" />
-                            </div>
-                            <div className="lp-form-row">
-                                <div className="lp-form-group">
-                                    <label className="lp-form-label" htmlFor="f-country">Home Market</label>
-                                    <input className="lp-form-input" id="f-country" type="text" placeholder="Korea / India / Thailand" />
-                                </div>
-                                <div className="lp-form-group">
-                                    <label className="lp-form-label" htmlFor="f-revenue">Annual Revenue</label>
-                                    <input className="lp-form-input" id="f-revenue" type="text" placeholder="e.g. $1.2M" />
-                                </div>
-                            </div>
-                            <button className="lp-form-submit" type="submit">Request US Launch Plan →</button>
+                            <button className="lp-form-submit" type="submit">Contact The Team →</button>
                             <p className="lp-form-footnote">48h turnaround · No sales call without your consent</p>
                         </form>
                     </div>
@@ -874,9 +676,15 @@ export default function LandingPage() {
                             </button>
                             <button
                                 className="lp-btn lp-btn-secondary"
-                                onClick={() => goTo("/apply")}
+                                onClick={() => goTo("/auth")}
                             >
-                                Apply as a Specialist
+                                Manage Brand Operations
+                            </button>
+                            <button
+                                className="lp-btn lp-btn-secondary"
+                                onClick={() => goTo("/warehouse/login")}
+                            >
+                                Power Your Warehouse
                             </button>
                         </div>
                     </div>

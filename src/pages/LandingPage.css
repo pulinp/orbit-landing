@@ -2307,6 +2307,163 @@
 }
 
 /* ========================================
+   Pricing Section
+   ======================================== */
+.lp-pricing-section {
+    grid-column: main;
+    padding: 6rem 0;
+    border-top: 1px solid var(--lp-outline-variant);
+    text-align: center;
+}
+
+.lp-pricing-header {
+    margin-bottom: 3rem;
+}
+
+.lp-pricing-header h2 {
+    font-size: clamp(2.4rem, 5vw, 3.2rem);
+    font-weight: 350;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.lp-pricing-sub {
+    font-size: 1.15rem;
+    color: var(--lp-on-surface-variant);
+}
+
+.lp-llm-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.lp-llm-logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.lp-pricing-features {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+
+.lp-feature-pill {
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    background: var(--lp-surface-variant);
+    border: 1px solid var(--lp-outline);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--lp-on-surface);
+}
+
+.lp-custom-plan-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--lp-surface);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid var(--lp-outline-variant);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 768px) {
+    .lp-custom-plan-banner {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+    }
+}
+
+.lp-custom-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lp-custom-banner-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--lp-surface-variant);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--lp-outline);
+    color: var(--lp-primary);
+}
+
+.lp-custom-banner-texts h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: var(--lp-on-surface);
+}
+
+.lp-custom-banner-texts p {
+    font-size: 0.95rem;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.lp-custom-banner-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .lp-custom-banner-right {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+}
+
+.lp-custom-banner-right p {
+    font-size: 0.95rem;
+    max-width: 250px;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.lp-btn-purple {
+    background: var(--lp-on-surface);
+    color: var(--lp-on-primary);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.lp-btn-purple:hover {
+    background: var(--lp-on-surface-variant);
+    transform: scale(0.98);
+}
+
+/* ========================================
    Contact / CTA Form Section
    ======================================== */
 .lp-cta-section {
