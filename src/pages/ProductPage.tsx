@@ -8,11 +8,8 @@ import {
     Layers,
     GitBranch,
     Settings,
-    ChartColumn,
-    Globe,
-    Truck,
-    ShoppingCart
 } from "lucide-react";
+import ArchitectureNodeGraph from "../components/ArchitectureNodeGraph";
 import "./LandingPage.css";
 import "./ProductPage.css";
 
@@ -135,111 +132,15 @@ export default function ProductPage() {
             {/* ── Section 1.5: Architecture Diagram ── */}
             <section className="pp-section pp-architecture-section">
                 <div className="pp-section-inner">
-                    <div className="pp-section-header" style={{ textAlign: 'center' }}>
+                    <div className="lp-architecture-header" style={{ textAlign: 'center' }}>
                         <h2>A Full Commerce Stack, Coordinated.</h2>
-                        <p className="pp-section-intro" style={{ margin: '1rem auto 0' }}>
+                        <p className="pp-section-intro" style={{ margin: '1rem auto 0', maxWidth: '600px' }}>
                             Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
                         </p>
                     </div>
 
-                    <div className="lp-arch-container">
-                        {/* Connecting SVG Lines */}
-                        <svg className="lp-arch-lines" preserveAspectRatio="none" width="100%" height="100%">
-                            <path className="lp-arch-line" d="M 25% 15% C 35% 15%, 40% 50%, 46% 50%" />
-                            <path className="lp-arch-line" d="M 25% 50% C 35% 50%, 40% 50%, 46% 50%" />
-                            <path className="lp-arch-line" d="M 25% 85% C 35% 85%, 40% 50%, 46% 50%" />
-
-                            <path className="lp-arch-line" d="M 75% 15% C 65% 15%, 60% 50%, 54% 50%" />
-                            <path className="lp-arch-line" d="M 75% 50% C 65% 50%, 60% 50%, 54% 50%" />
-                            <path className="lp-arch-line" d="M 75% 85% C 65% 85%, 60% 50%, 54% 50%" />
-                        </svg>
-
-                        {/* Surrounding Nodes Left */}
-                        <div className="lp-arch-col left">
-                            <div className="lp-arch-node module mi">
-                                <div className="lp-arch-node-header">
-                                    <ChartColumn size={16} color="#6366F1" /> Market Intelligence
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Demand Forecasting</li>
-                                    <li>Competitor Analysis</li>
-                                    <li>Price Optimization</li>
-                                </ul>
-                            </div>
-                            <div className="lp-arch-node module cmp">
-                                <div className="lp-arch-node-header">
-                                    <ShieldCheck size={16} color="#EC4899" /> Compliance
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Regulatory Monitoring</li>
-                                    <li>Risk Detection</li>
-                                    <li>Document Validation</li>
-                                </ul>
-                            </div>
-                            <div className="lp-arch-node module ecom">
-                                <div className="lp-arch-node-header">
-                                    <ShoppingCart size={16} color="#F59E0B" /> E-Commerce
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Catalog Sync</li>
-                                    <li>Channel Management</li>
-                                    <li>SEO Automation</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Center Node */}
-                        <div className="lp-arch-node center">
-                            <div className="lp-arch-node-header">
-                                <Layers size={18} color="var(--lp-primary)" /> Operations Control Tower
-                                <span className="lp-arch-badge core">Core</span>
-                            </div>
-                            <ul className="lp-arch-list">
-                                <li><GitBranch size={14} /> Orchestration Engine</li>
-                                <li><Layers size={14} /> Unified Data Layer</li>
-                                <li><ShieldCheck size={14} /> Role-Based Access</li>
-                            </ul>
-                        </div>
-
-                        {/* Surrounding Nodes Right */}
-                        <div className="lp-arch-col right">
-                            <div className="lp-arch-node module mkt">
-                                <div className="lp-arch-node-header">
-                                    <Globe size={16} color="#8B5CF6" /> Marketing
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Ad Spend Optimization</li>
-                                    <li>Campaign Analytics</li>
-                                    <li>Audience Segmentation</li>
-                                </ul>
-                            </div>
-                            <div className="lp-arch-node module log">
-                                <div className="lp-arch-node-header">
-                                    <Truck size={16} color="#10B981" /> Logistics
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Smart Routing</li>
-                                    <li>Carrier Selection</li>
-                                    <li>Freight Audit</li>
-                                </ul>
-                            </div>
-                            <div className="lp-arch-node module sup">
-                                <div className="lp-arch-node-header">
-                                    <MessageSquare size={16} color="#3B82F6" /> Support
-                                    <span className="lp-arch-badge">Module</span>
-                                </div>
-                                <ul className="lp-arch-list dotted">
-                                    <li>Ticket Routing</li>
-                                    <li>Sentiment Analysis</li>
-                                    <li>Auto-Responses</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div className="lp-architecture-grid" style={{ marginTop: '3rem' }}>
+                        <ArchitectureNodeGraph />
                     </div>
                 </div>
             </section>
