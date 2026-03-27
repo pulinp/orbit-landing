@@ -149,7 +149,7 @@ export default function LandingPage() {
             <div className="lp-header-wrapper">
                 <header className="lp-header">
                     <a href="/" className="lp-logo">
-                        <span className="lp-logo-icon">O</span>
+                        {/* <span className="lp-logo-icon">O</span> */}
                         <span className="lp-logo-text">Orbit</span>
                     </a>
 
@@ -189,9 +189,9 @@ export default function LandingPage() {
             {/* ── Hero ── */}
             <section className="lp-hero" id="hero">
                 <div className="lp-hero-content">
-                    <h1 className="lp-hero-logo">
-                        <span>O</span>rbit
-                    </h1>
+                    <div className="lp-hero-supporting">
+                        One platform. Six functions. US launch in 14 days.
+                    </div>
                     <h2 className="lp-hero-title">
                         You bring the brand.<br />
                         <span>We bring the operations.</span>
@@ -199,23 +199,23 @@ export default function LandingPage() {
                     <p className="lp-hero-subtitle">
                         Orbit helps international brands enter the US market by handling compliance, e-commerce, logistics, warehousing, and marketing in one place.
                     </p>
-                    <div className="lp-hero-supporting">
-                        One platform. Six functions. US launch in 14 days..
-                    </div>
+
                     <div className="lp-hero-cta">
+                        <a href="#product" className="lp-btn-link" style={{ fontWeight: 600, color: 'var(--lp-on-surface)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                            Explore Platform <ArrowRight size={16} />
+                        </a>
                         <button
                             className="lp-btn lp-btn-accent"
                             onClick={() => goTo("/auth")}
                         >
-                            Launch on Orbit
+                            Launch on Orbit <Calendar size={16} style={{ marginBottom: '-1px' }} />
                         </button>
-                        <a href="#product" className="lp-btn lp-btn-secondary">
-                            Explore the Platform
-                        </a>
                     </div>
                 </div>
 
-                <HeroVisual />
+                <div className="lp-hero-visual-wrapper">
+                    <HeroVisual />
+                </div>
             </section>
 
 

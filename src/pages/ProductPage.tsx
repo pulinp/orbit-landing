@@ -27,7 +27,7 @@ export default function ProductPage() {
             <div className="lp-header-wrapper">
                 <header className="lp-header">
                     <a href="/" className="lp-logo">
-                        <span className="lp-logo-icon">O</span>
+                        {/* <span className="lp-logo-icon">O</span> */}
                         <span className="lp-logo-text">Orbit</span>
                     </a>
 
