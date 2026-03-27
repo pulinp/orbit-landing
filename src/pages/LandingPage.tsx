@@ -313,7 +313,7 @@ export default function LandingPage() {
                 <div className="lp-functions-header">
                     <div>
                         <div className="lp-section-tag">02 / WHAT WE HANDLE</div>
-                        <h2>Seven functions.<br />One contract.</h2>
+                        <h2>Six functions.<br />One contract.</h2>
                     </div>
                     <div className="lp-functions-header-right">
                         <p>One team. One contract. Your brand launched in the US.</p>
@@ -328,7 +328,8 @@ export default function LandingPage() {
                                 <span className="lp-fn-category">Core</span>
                             </div>
                             <div className="lp-fn-title">Market Intelligence</div>
-                            <div className="lp-fn-desc">AI-powered competitive analysis, US consumer trend mapping, and category positioning research. You arrive in the US market already knowing where to play and who's buying — not guessing after the fact.</div>
+                            <div className="lp-fn-desc-short">AI-powered trend mapping & competitive analysis.</div>
+                            <div className="lp-fn-desc-full">AI-powered competitive analysis, US consumer trend mapping, and category positioning research. You arrive in the US market already knowing where to play and who's buying — not guessing after the fact.</div>
                         </div>
                         <div>
                             <div className="lp-fn-large-stat">AI</div>
@@ -346,11 +347,16 @@ export default function LandingPage() {
                                 <span className="lp-fn-index">02</span>
                             </div>
                             <div className="lp-fn-title">Compliance</div>
-                            <div className="lp-fn-desc">FDA, FCC, CPSC — every requirement for your product category, flagged and filed before you ship a unit. No customs holds.</div>
+                            <div className="lp-fn-desc-short">FDA, FCC, CPSC — every requirement filed.</div>
+                            <div className="lp-fn-desc-full">FDA, FCC, CPSC — every requirement for your product category, flagged and filed before you ship a unit. No customs holds.</div>
                         </div>
-                        <div className="lp-fn-footer">
-                            <span className="lp-fn-footer-label">All categories</span>
-                            <span className="lp-fn-footer-status">100% rate</span>
+                        <div>
+                            <div className="lp-fn-large-stat">100%</div>
+                            <div className="lp-fn-large-stat-label">AI clearance rate</div>
+                            <div className="lp-fn-footer">
+                                <span className="lp-fn-footer-label">All categories</span>
+                                <span className="lp-fn-footer-status">100% rate</span>
+                            </div>
                         </div>
                     </div>
 
@@ -360,22 +366,35 @@ export default function LandingPage() {
                                 <span className="lp-fn-index">03</span>
                             </div>
                             <div className="lp-fn-title">Logistics</div>
-                            <div className="lp-fn-desc">Inbound freight, customs brokerage, and last-mile — fully coordinated. Your product arrives on time, every time.</div>
+                            <div className="lp-fn-desc-short">Inbound freight & last-mile.</div>
+                            <div className="lp-fn-desc-full">Inbound freight, customs brokerage, and last-mile — fully coordinated. Your product arrives on time, every time.</div>
                         </div>
-                        <div className="lp-fn-footer">
-                            <span className="lp-fn-footer-label">Door to warehouse</span>
+                        <div>
+                            <div className="lp-fn-large-stat">24/7</div>
+                            <div className="lp-fn-large-stat-label">AI-routed freight</div>
+                            <div className="lp-fn-footer">
+                                <span className="lp-fn-footer-label">Door to warehouse</span>
+                                <span className="lp-fn-footer-status">Active</span>
+                            </div>
                         </div>
                     </div>
 
                     <div className="lp-fn-tile lp-fn-warehousing">
-                        <div className="lp-fn-tile-header">
-                            <span className="lp-fn-index">04</span>
+                        <div>
+                            <div className="lp-fn-tile-header">
+                                <span className="lp-fn-index">04</span>
+                            </div>
+                            <div className="lp-fn-title">Warehousing &amp; Fulfilment</div>
+                            <div className="lp-fn-desc-short">Flexible US warehouse scale without minimums.</div>
+                            <div className="lp-fn-desc-full">Flexible US warehouse infrastructure. No long-term contracts, no volume minimums. Scale as your US sales grow — not based on a forecast you made before you launched.</div>
                         </div>
-                        <div className="lp-fn-title">Warehousing &amp; Fulfilment</div>
-                        <div className="lp-fn-desc">Flexible US warehouse infrastructure. No long-term contracts, no volume minimums. Scale as your US sales grow — not based on a forecast you made before you launched.</div>
-                        <div className="lp-fn-footer">
-                            <span className="lp-fn-footer-label">No minimums · Flexible terms</span>
-                            <span className="lp-fn-footer-status">US-based</span>
+                        <div>
+                            <div className="lp-fn-large-stat">0</div>
+                            <div className="lp-fn-large-stat-label">Minimums via AI allocation</div>
+                            <div className="lp-fn-footer mt-auto">
+                                <span className="lp-fn-footer-label">No minimums · Flexible terms</span>
+                                <span className="lp-fn-footer-status">US-based</span>
+                            </div>
                         </div>
                     </div>
 
@@ -386,11 +405,16 @@ export default function LandingPage() {
                                 <span className="lp-fn-category">Revenue</span>
                             </div>
                             <div className="lp-fn-title">E-commerce Setup</div>
-                            <div className="lp-fn-desc">Amazon marketplace, Shopify storefront, and DTC channel — built and optimised for US buyers. Listings, A+ content, conversion architecture, and launch campaigns ready before day one.</div>
+                            <div className="lp-fn-desc-short">Amazon, Shopify, and DTC storefront built for US.</div>
+                            <div className="lp-fn-desc-full">Amazon marketplace, Shopify storefront, and DTC channel — built and optimised for US buyers. Listings, A+ content, conversion architecture, and launch campaigns ready before day one.</div>
                         </div>
-                        <div className="lp-fn-footer">
-                            <span className="lp-fn-footer-label">Amazon · Shopify · DTC</span>
-                            <span className="lp-fn-footer-status">Ready day 1</span>
+                        <div>
+                            <div className="lp-fn-large-stat">Day 1</div>
+                            <div className="lp-fn-large-stat-label">AI optimized listings</div>
+                            <div className="lp-fn-footer">
+                                <span className="lp-fn-footer-label">Amazon · Shopify · DTC</span>
+                                <span className="lp-fn-footer-status">Ready day 1</span>
+                            </div>
                         </div>
                     </div>
 
@@ -400,10 +424,16 @@ export default function LandingPage() {
                                 <span className="lp-fn-index">06</span>
                             </div>
                             <div className="lp-fn-title">Marketing</div>
-                            <div className="lp-fn-desc">Performance campaigns and brand positioning calibrated to US consumers — not a translated version of what worked at home.</div>
+                            <div className="lp-fn-desc-short">Performance & brand marketing for the US.</div>
+                            <div className="lp-fn-desc-full">Performance campaigns and brand positioning calibrated to US consumers — not a translated version of what worked at home.</div>
                         </div>
-                        <div className="lp-fn-footer">
-                            <span className="lp-fn-footer-label">Performance + Brand</span>
+                        <div>
+                            <div className="lp-fn-large-stat">ROI</div>
+                            <div className="lp-fn-large-stat-label">AI performance scaling</div>
+                            <div className="lp-fn-footer">
+                                <span className="lp-fn-footer-label">Performance + Brand</span>
+                                <span className="lp-fn-footer-status">Scaling</span>
+                            </div>
                         </div>
                     </div>
                 </div>
