@@ -35,6 +35,7 @@ import {
     Rocket,
     Check
 } from "lucide-react";
+import HeroVisual from "../components/HeroVisual";
 import "./LandingPage.css";
 
 /**
@@ -187,30 +188,34 @@ export default function LandingPage() {
 
             {/* ── Hero ── */}
             <section className="lp-hero" id="hero">
-                <h1 className="lp-hero-logo">
-                    <span>O</span>rbit
-                </h1>
-                <h2 className="lp-hero-title">
-                    You bring the brand.<br />
-                    <span>We bring the operations.</span>
-                </h2>
-                <p className="lp-hero-subtitle">
-                    Orbit is the full-stack US market entry platform for international brands — coordinating compliance, logistics, warehousing, e-commerce, and marketing under one contract. Go live in the US market in 14 days.
-                </p>
-                <div className="lp-hero-supporting">
-                    One platform. Six functions. Continuous orchestration.
+                <div className="lp-hero-content">
+                    <h1 className="lp-hero-logo">
+                        <span>O</span>rbit
+                    </h1>
+                    <h2 className="lp-hero-title">
+                        You bring the brand.<br />
+                        <span>We bring the operations.</span>
+                    </h2>
+                    <p className="lp-hero-subtitle">
+                        Orbit helps international brands enter the US market by handling compliance, e-commerce, logistics, warehousing, and marketing in one place.
+                    </p>
+                    <div className="lp-hero-supporting">
+                        One platform. Six functions. US launch in 14 days..
+                    </div>
+                    <div className="lp-hero-cta">
+                        <button
+                            className="lp-btn lp-btn-accent"
+                            onClick={() => goTo("/auth")}
+                        >
+                            Launch on Orbit
+                        </button>
+                        <a href="#product" className="lp-btn lp-btn-secondary">
+                            Explore the Platform
+                        </a>
+                    </div>
                 </div>
-                <div className="lp-hero-cta">
-                    <button
-                        className="lp-btn lp-btn-accent"
-                        onClick={() => goTo("/auth")}
-                    >
-                        Launch on Orbit
-                    </button>
-                    <a href="#product" className="lp-btn lp-btn-secondary">
-                        Explore the Platform
-                    </a>
-                </div>
+
+                <HeroVisual />
             </section>
 
 
