@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
-import WarehouseParticleCanvas from "../components/WarehouseParticleCanvas";
 import LlmLogos from "../components/LlmLogos";
 import FinalCtaParticleCanvas from "../components/FinalCtaParticleCanvas";
 import {
@@ -146,7 +145,6 @@ export default function LandingPage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [iconsVisible, setIconsVisible] = useState(false);
     const [supplierHovered, setSupplierHovered] = useState(false);
-    const [warehouseHovered, setWarehouseHovered] = useState(false);
     const iconsRef = useRef<HTMLDivElement>(null);
 
     // Paint Worklet Registration
