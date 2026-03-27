@@ -16,6 +16,10 @@
     --lp-secondary-btn-hover: #f0f1f5;
     --lp-nav-hover: rgba(183, 191, 217, 0.2);
     --lp-font: "Inter", "Google Sans Flex", system-ui, -apple-system, sans-serif;
+
+    --color-problem-surface: #fff5f4;
+    --color-problem-accent: #c0392b;
+    --color-problem-border: rgba(192, 57, 43, 0.2);
 }
 
 /* ========================================
@@ -2243,6 +2247,77 @@
 
 .lp-fn-tile:hover {
     background: var(--lp-primary);
+}
+
+.lp-fn-bento-tile {
+    background: var(--color-problem-surface);
+    border: 1px solid var(--color-problem-border);
+    transition: all 0.25s ease;
+}
+
+.lp-fn-bento-tile .lp-fn-index {
+    color: var(--color-problem-accent);
+    opacity: 0.6;
+}
+
+.lp-fn-bento-tile:hover .lp-fn-index {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.lp-fn-tile-problem-hook {
+    font-size: 0.85rem;
+    font-weight: 350;
+    color: var(--color-problem-accent);
+    line-height: 1.65;
+    transition: opacity 0.25s ease;
+}
+
+.lp-fn-tile-problem-body {
+    font-size: 0.85rem;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.6;
+    margin-top: 0.2rem;
+    transition: opacity 0.25s ease;
+}
+
+.lp-fn-bento-tile:hover {
+    background: var(--lp-primary);
+    border-color: var(--lp-primary);
+}
+
+.lp-fn-bento-tile:hover .lp-fn-tile-problem-hook,
+.lp-fn-bento-tile:hover .lp-fn-tile-problem-body {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lp-fn-bento-content-stack {
+    display: grid;
+    margin-top: 0.5rem;
+}
+
+.lp-fn-bento-problem-state {
+    grid-area: 1 / 1;
+}
+
+.lp-fn-bento-solution-state {
+    grid-area: 1 / 1;
+}
+
+/* Reset height limitations to perfectly lock the tile's max height */
+.lp-fn-bento-tile .lp-fn-bento-solution-state {
+    max-height: none;
+    overflow: visible;
+}
+
+.lp-fn-bento-solution-footer {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.lp-fn-bento-tile:hover .lp-fn-bento-solution-footer {
+    opacity: 1;
 }
 
 .lp-fn-tile-header {
