@@ -3819,3 +3819,288 @@
     50% { opacity: 0.3; }
     100% { opacity: 1; box-shadow: 0 0 0 6px rgba(229, 57, 53, 0); }
 }
+
+
+/* ========================================
+   Testimonial Globe Section
+   ======================================== */
+.tg-globe-section {
+    padding: 6rem 2rem 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.tg-dual-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1300px;
+}
+
+/* Left Content */
+.tg-content-side {
+    flex: 1;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.tg-grid-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.tg-orbit-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--lp-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tg-orbit-heading {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--lp-on-surface);
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+.tg-orbit-sub {
+    font-size: 1.15rem;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Active Testimonial Card */
+.tg-active-testimonial-card {
+    background: #ffffff;
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tg-active-testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.08);
+}
+
+.tg-quote-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tg-quote-number {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #9ca3af;
+    letter-spacing: 0.05em;
+}
+
+.tg-pulse-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--lp-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(26, 179, 148, 0.2);
+    animation: tg-pulse 2s infinite ease-in-out;
+}
+
+@keyframes tg-pulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(26, 179, 148, 0.4);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(26, 179, 148, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(26, 179, 148, 0);
+    }
+}
+
+.tg-main-quote {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--lp-on-surface);
+    margin: 0;
+}
+
+.tg-main-client {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tg-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tg-client-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.tg-client-details strong {
+    font-size: 1rem;
+    color: var(--lp-on-surface);
+}
+
+.tg-client-details span {
+    font-size: 0.85rem;
+    color: var(--lp-on-surface-variant);
+}
+
+/* Right Globe Area */
+.tg-globe-side {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+}
+
+.tg-drag-instruction {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    background: var(--lp-surface-variant);
+    color: var(--lp-on-surface-variant);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 50;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 3D Scene */
+.tg-scene {
+    width: 600px;
+    height: 600px;
+    perspective: 1500px;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tg-scene:active {
+    cursor: grabbing;
+}
+
+.tg-sphere {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-15deg) rotateY(0deg);
+}
+
+/* Globe Tile */
+.tg-globe-tile {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 36px;
+    height: 26px;
+    margin: -13px 0 0 -18px;
+    transform-style: preserve-3d;
+}
+
+/* Tile Inner */
+.tg-tile-inner {
+    width: 100%;
+    height: 100%;
+    background-color: var(--lp-surface-variant);
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 1), 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0.8;
+}
+
+/* Active Tile */
+.tg-globe-tile.active .tg-tile-inner {
+    background-color: var(--lp-primary);
+    transform: scale(1.6);
+    opacity: 1;
+    box-shadow: 0 0 25px rgba(26, 179, 148, 0.5);
+    border: 1px solid #6ee7b7;
+}
+
+/* ── Testimonial Globe Responsive ── */
+@media (max-width: 1100px) {
+    .tg-dual-panel {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .tg-content-side {
+        max-width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tg-orbit-heading {
+        font-size: 2.5rem;
+    }
+
+    .tg-globe-side {
+        min-height: 450px;
+    }
+
+    .tg-scene {
+        width: 450px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .tg-globe-section {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .tg-orbit-heading {
+        font-size: 2rem;
+    }
+
+    .tg-active-testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .tg-globe-side {
+        min-height: 350px;
+    }
+
+    .tg-scene {
+        width: 320px;
+        height: 320px;
+    }
+
+    .tg-drag-instruction {
+        display: none;
+    }
+}

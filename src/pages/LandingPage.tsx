@@ -35,6 +35,7 @@ import {
     Check
 } from "lucide-react";
 import HeroVisual from "../components/HeroVisual";
+import TestimonialGlobe from "../components/TestimonialGlobe";
 import "./LandingPage.css";
 
 /**
@@ -487,6 +488,9 @@ Orbit fixes all six.</p>
                     </div>
                 </div>
             </section>
+
+            {/* ── Testimonial Globe (Interactive 3D) ── */}
+            <TestimonialGlobe />
 
             {/* ── Pricing Section (05 / PRICING) ── */}
             <section className="lp-pricing-section" id="pricing">
