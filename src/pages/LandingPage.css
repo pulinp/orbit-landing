@@ -3922,7 +3922,7 @@
 .tg-quote-icon-large {
     font-size: 7.5rem;
     line-height: 0.6;
-    color: rgba(26, 179, 148, 0.08); /* Translucent Orbit Green */
+    color: rgba(26, 179, 148, 0.2); /* Deeper Translucent Orbit Green */
     font-family: serif;
     margin-left: -0.8rem;
     user-select: none;
@@ -3970,7 +3970,8 @@
 .tg-main-quote {
     font-size: 1.4rem;
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 400;
+    font-style: italic;
     color: var(--lp-on-surface);
     margin: 0;
     letter-spacing: -0.01em;
@@ -3993,7 +3994,7 @@
     justify-content: center;
     position: relative;
     flex-shrink: 0;
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 2px solid var(--lp-primary); /* Orbit Green Ring */
     animation: orb-pulse 4s infinite ease-in-out;
 }
 
@@ -4003,11 +4004,12 @@
 }
 
 .tg-orb-initials {
-    font-family: "PT Serif", "Playfair Display", serif;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-family: var(--lp-font);
+    font-size: 1rem;
+    font-weight: 700;
     color: var(--lp-on-surface-variant);
-    opacity: 0.8;
+    opacity: 0.9;
+    letter-spacing: -0.02em;
 }
 
 .tg-client-details {
@@ -4094,9 +4096,9 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 24px;   /* Smaller width */
-    height: 16px;  /* Smaller height */
-    margin: -8px 0 0 -12px;
+    width: 32px;   /* Bigger rectangles */
+    height: 20px;  /* Bigger rectangles */
+    margin: -10px 0 0 -16px;
     transform-style: preserve-3d;
 }
 
