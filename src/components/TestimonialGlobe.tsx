@@ -1,20 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Globe } from "./ui/cobe-globe";
 
+// Sorted by closest distance to New York -> farthest
 const testimonialsSource = [
+    {
+        name: "Karama",
+        initials: "K",
+        quote: "Every market has a language. Ours didn't translate — not because the brand wasn't strong, but because we were speaking to people who didn't have the context yet. Orbit built that bridge. Same brand, new conversation.",
+        title: "Creative Director, Fashion Brand — USA",
+        metric: "→ First international stockist secured, week six"
+    },
+    {
+        name: "Elena S.",
+        initials: "ES",
+        quote: "Scaling into North America felt like a gamble until we found Orbit. They didn't just provide a platform; they provided a roadmap. The level of operational detail they handle allowed us to focus entirely on the creative side of the brand.",
+        title: "Founder, Sustainable Decor Brand — Mexico City, Mexico",
+        metric: "→ 3x growth in North American reach, quarter one"
+    },
     {
         name: "Keshida Layone",
         initials: "KL",
         quote: "There's a particular kind of silence when your work is good and no one who can afford it knows you exist. Orbit broke that silence. Not with noise — with precision. The right eyes found me. The rest followed.",
         title: "Visual Artist & Founder, Fine Art Brand — USA",
         metric: "→ First international collector sales, week three"
-    },
-    {
-        name: "Bayangrom",
-        initials: "B",
-        quote: "The brand was alive. The orders were coming. But the backend was swallowing us whole. Orbit took the weight — literally. Warehousing, shipping, fulfilment — handled. We got back to building, not firefighting.",
-        title: "Founder, Cultural Streetwear Brand — India",
-        metric: "→ Fulfilment time cut from 12 days to 3"
     },
     {
         name: "Emsworth Terry Cotton",
@@ -24,11 +32,11 @@ const testimonialsSource = [
         metric: "→ Wholesale enquiries up 4x, month two"
     },
     {
-        name: "Karama",
-        initials: "K",
-        quote: "Every market has a language. Ours didn't translate — not because the brand wasn't strong, but because we were speaking to people who didn't have the context yet. Orbit built that bridge. Same brand, new conversation.",
-        title: "Creative Director, Fashion Brand — USA",
-        metric: "→ First international stockist secured, week six"
+        name: "Lucas M.",
+        initials: "LM",
+        quote: "Compliance in the US is a massive roadblock for European health tech. We anticipated six months of deep legal review before even seeing a customer. Orbit's native infrastructure bypassed the friction completely—we were fully compliant and selling in under three weeks.",
+        title: "Director of Ops, HealthTech Brand — Berlin, Germany",
+        metric: "→ US market entry accelerated by 5 months"
     },
     {
         name: "Ji-Hoon K.",
@@ -38,67 +46,73 @@ const testimonialsSource = [
         metric: "→ $82K US revenue, month one"
     },
     {
+        name: "Bayangrom",
+        initials: "B",
+        quote: "The brand was alive. The orders were coming. But the backend was swallowing us whole. Orbit took the weight — literally. Warehousing, shipping, fulfilment — handled. We got back to building, not firefighting.",
+        title: "Founder, Cultural Streetwear Brand — India",
+        metric: "→ Fulfilment time cut from 12 days to 3"
+    },
+    {
         name: "Priya M.",
         initials: "PM",
         quote: "We went from zero US presence to $40K in revenue in our first month. I didn't have to think about warehousing or Amazon once.",
         title: "CEO, Home Goods Brand — Bangalore, India",
         metric: "→ $40K US revenue, month one"
-    },
-    {
-        name: "Lucas M.",
-        initials: "LM",
-        quote: "Compliance in the US is a massive roadblock for European health tech. We anticipated six months of deep legal review before even seeing a customer. Orbit's native infrastructure bypassed the friction completely—we were fully compliant and selling in under three weeks.",
-        title: "Director of Ops, HealthTech Brand — Berlin, Germany",
-        metric: "→ US market entry accelerated by 5 months"
-    },
-    {
-        name: "Elena S.",
-        initials: "ES",
-        quote: "Scaling into North America felt like a gamble until we found Orbit. They didn't just provide a platform; they provided a roadmap. The level of operational detail they handle allowed us to focus entirely on the creative side of the brand.",
-        title: "Founder, Sustainable Decor Brand — Mexico City, Mexico",
-        metric: "→ 3x growth in North American reach, quarter one"
     }
 ];
 
+const NYC_LOCATION: [number, number] = [40.7128, -74.006];
+
 const globeMarkers = [
-  { id: "sf", location: [37.7595, -122.4367] as [number, number], label: "San Francisco" },
-  { id: "nyc", location: [40.7128, -74.006] as [number, number], label: "New York" },
-  { id: "tokyo", location: [35.6762, 139.6503] as [number, number], label: "Tokyo" },
-  { id: "london", location: [51.5074, -0.1278] as [number, number], label: "London" },
-  { id: "sydney", location: [-33.8688, 151.2093] as [number, number], label: "Sydney" },
-  { id: "capetown", location: [-33.9249, 18.4241] as [number, number], label: "Cape Town" },
-  { id: "dubai", location: [25.2048, 55.2708] as [number, number], label: "Dubai" },
-  { id: "paris", location: [48.8566, 2.3522] as [number, number], label: "Paris" },
-  { id: "saopaulo", location: [-23.5505, -46.6333] as [number, number], label: "São Paulo" },
+  { id: "nyc", location: NYC_LOCATION, label: "Orbit Operations (NY)" },
+  { id: "t1", location: [41.8781, -87.6298] as [number, number], label: "Chicago, USA" },
+  { id: "t2", location: [19.4326, -99.1332] as [number, number], label: "Mexico City, Mexico" },
+  { id: "t3", location: [34.0522, -118.2437] as [number, number], label: "Los Angeles, USA" },
+  { id: "t4", location: [51.5074, -0.1278] as [number, number], label: "London, UK" },
+  { id: "t5", location: [52.5200, 13.4050] as [number, number], label: "Berlin, Germany" },
+  { id: "t6", location: [37.5665, 126.9780] as [number, number], label: "Seoul, Korea" },
+  { id: "t7", location: [19.0760, 72.8777] as [number, number], label: "Mumbai, India" },
+  { id: "t8", location: [12.9716, 77.5946] as [number, number], label: "Bangalore, India" },
 ];
 
 const globeArcs = [
-  {
-    id: "sf-tokyo",
-    from: [37.7595, -122.4367] as [number, number],
-    to: [35.6762, 139.6503] as [number, number],
-    label: "SF → Tokyo"
-  },
-  {
-    id: "nyc-london",
-    from: [40.7128, -74.006] as [number, number],
-    to: [51.5074, -0.1278] as [number, number],
-    label: "NYC → London"
-  },
+  { id: "arc1", from: [41.8781, -87.6298] as [number, number], to: NYC_LOCATION, label: "Karama (Chicago → New York)" },
+  { id: "arc2", from: [19.4326, -99.1332] as [number, number], to: NYC_LOCATION, label: "Elena S. (Mexico City → New York)" },
+  { id: "arc3", from: [34.0522, -118.2437] as [number, number], to: NYC_LOCATION, label: "Keshida Layone (Los Angeles → New York)" },
+  { id: "arc4", from: [51.5074, -0.1278] as [number, number], to: NYC_LOCATION, label: "Emsworth Terry Cotton (London → New York)" },
+  { id: "arc5", from: [52.5200, 13.4050] as [number, number], to: NYC_LOCATION, label: "Lucas M. (Berlin → New York)" },
+  { id: "arc6", from: [37.5665, 126.9780] as [number, number], to: NYC_LOCATION, label: "Ji-Hoon K. (Seoul → New York)" },
+  { id: "arc7", from: [19.0760, 72.8777] as [number, number], to: NYC_LOCATION, label: "Bayangrom (Mumbai → New York)" },
+  { id: "arc8", from: [12.9716, 77.5946] as [number, number], to: NYC_LOCATION, label: "Priya M. (Bangalore → New York)" },
 ];
 
 export default function TestimonialGlobe() {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    // Auto-scroll testimonials
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % testimonialsSource.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, []);
+    const handleRotationComplete = () => {
+        setActiveIndex((prev) => (prev + 1) % testimonialsSource.length);
+    };
+
+    const handleMarkerClick = (id: string) => {
+        if (id.startsWith('t')) {
+            const idx = parseInt(id.replace('t', '')) - 1;
+            if (!isNaN(idx)) setActiveIndex(idx);
+        }
+    };
 
     const active = testimonialsSource[activeIndex];
+    const activeMarkerId = `t${activeIndex + 1}`;
+    const activeMarkerData = globeMarkers.find(m => m.id === activeMarkerId);
+    
+    const dynamicMarkers = globeMarkers.map((m) => {
+        // We only want to see the start (active brand location) and the end node (NYC) labels
+        const isActiveNode = m.id === activeMarkerId || m.id === 'nyc';
+        
+        return {
+            ...m,
+            label: isActiveNode ? m.label : undefined
+        };
+    });
 
     return (
         <section className="tg-globe-section" id="testimonial-globe">
@@ -144,8 +158,15 @@ export default function TestimonialGlobe() {
                 {/* Right: Interactive 3D Globe */}
                 <div className="tg-globe-side" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Globe 
-                        markers={globeMarkers}
-                        arcs={globeArcs}
+                        markers={dynamicMarkers}
+                        onMarkerClick={handleMarkerClick}
+                        onRotationComplete={handleRotationComplete}
+                        focusLocation={activeMarkerData?.location}
+                        arcs={globeArcs.map((arc, idx) => ({
+                            ...arc,
+                            label: idx === activeIndex ? arc.label : undefined,
+                            color: idx === activeIndex ? ([0.1, 0.1, 0.2] as [number, number, number]) : ([0.85, 0.85, 0.85] as [number, number, number])
+                        }))}
                         className="w-full max-w-lg"
                         markerColor={[0.3, 0.45, 0.85]}
                         baseColor={[1, 1, 1]}
@@ -155,6 +176,7 @@ export default function TestimonialGlobe() {
                         mapBrightness={10}
                         markerSize={0.025}
                         markerElevation={0.01}
+                        speed={0.021} // Matches exactly 5 seconds per full rotation at 60fps
                     />
                 </div>
             </div>
