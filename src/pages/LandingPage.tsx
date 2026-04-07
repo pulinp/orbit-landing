@@ -25,7 +25,6 @@ import {
     GitBranch,
     Share2,
     ArrowRight,
-    ArrowUpRight,
     Calendar,
     CreditCard,
     Search,
@@ -52,11 +51,11 @@ const bentoModules = [
   {
     id: "01",
     label: "Market Intelligence",
-    problemHook: "Entering blind",
-    problemBody: "Most brands guess their US positioning \u2014 wrong price, wrong category, wrong channel.",
+    problemHook: "You're guessing. Your competitors aren't.",
+    problemBody: "Entering a new market without market intelligence isn’t bold, it’s expensive. Most companies realize their assumptions about customers segments, geographic alignment, competition, and positioning were wrong only after they’ve already spent resources.",
     stat: "Day 1",
     statLabel: "Competitive clarity",
-    solutionDetail: "We map competitors, pricing, and whitespace before you spend a dollar \u2014 so every decision is grounded in real US market data.",
+    solutionDetail: "We continuously analyze customer behavior, regional and competitive signals before, during, and after market entry, enabling data-driven positioning, and efficient resource allocation.",
     tags: ["Competitor tracking", "Pricing analysis"],
     status: "Active",
     category: "Core",
@@ -64,11 +63,11 @@ const bentoModules = [
   {
     id: "02",
     label: "Compliance & Regulatory",
-    problemHook: "Held at customs",
-    problemBody: "Manual classification errors, missing docs, and regulatory blind spots cause costly delays.",
+    problemHook: "One wrong filing and your shipment doesn't move.",
+    problemBody: "Companies discover documentation gaps only after shipments are delayed, fined, or blocked, resulting in financial loss and operational disruption.",
     stat: "100%",
     statLabel: "AI clearance rate",
-    solutionDetail: "Auto-classification, document management, and customs clearance \u2014 handled end-to-end so nothing gets stuck at the border.",
+    solutionDetail: "Auto-classification, document management, and end-to-end customs handling. Nothing was held at the border because someone missed a field.",
     tags: ["FDA", "Customs", "HS codes"],
     status: "Active",
     category: "Core",
@@ -76,11 +75,11 @@ const bentoModules = [
   {
     id: "03",
     label: "Logistics & Fulfillment",
-    problemHook: "Shipments disappear",
-    problemBody: "Brands cobble together carriers with no visibility, no accountability, and surprise costs.",
+    problemHook: "You ship but you don’t see",
+    problemBody: "Disconnected carriers and systems create blind spots and brands lack real-time visibility, predictable delivery, and cost control across shipments.",
     stat: "24/7",
     statLabel: "AI-routed freight",
-    solutionDetail: "We select the right carriers, manage every shipment, and provide end-to-end tracking from door to warehouse to customer.",
+    solutionDetail: "We continuously optimize routing, carrier selection, and tracking across the shipment lifecycle, ensuring end-to-end visibility, reliability, and cost efficiency.",
     tags: ["Door to Warehouse", "Last-mile"],
     status: "Active",
     category: "Core",
@@ -88,11 +87,11 @@ const bentoModules = [
   {
     id: "04",
     label: "Warehousing & Inventory",
-    problemHook: "Stockouts or dead stock",
-    problemBody: "Over-ordering ties up cash. Under-ordering kills your ranking. Neither should be a manual guess.",
+    problemHook: "Inventory guesswork is expensive.",
+    problemBody: "Limited demand visibility leads to overstocking or stockouts lead to tying up capital or losing sales due to reactive, manual planning.",
     stat: "0",
-    statLabel: "Minimum commitment",
-    solutionDetail: "Intelligent replenishment, optimized placement, and a flexible US footprint \u2014 inventory that moves with demand, not against it.",
+    statLabel: "",
+    solutionDetail: "We align inventory with demand through intelligent replenishment by understanding geographic and demographic data, ensuring optimal stock levels and efficient capital use.",
     tags: ["US-based", "No minimums"],
     status: "Active",
     category: "Core",
@@ -100,11 +99,11 @@ const bentoModules = [
   {
     id: "05",
     label: "E-commerce Setup",
-    problemHook: "Weeks to first sale",
-    problemBody: "Entity setup, payment rails, storefronts, marketplace listings \u2014 brands drown in setup before selling a single unit.",
+    problemHook: "Weeks of setup before a single sale.",
+    problemBody: "Fragmented setup across entities, payments, storefronts, and marketplaces slows time-to-market and delays revenue.",
     stat: "Day 1",
     statLabel: "Ready to transact",
-    solutionDetail: "We build your Shopify store, personalized site, and marketplace presence \u2014 plus handle US entity formation and merchant of record setup.",
+    solutionDetail: "We handle US entity formation, merchant of record setup, your Shopify store, and marketplace listings. You sell. We make sure the infrastructure lets you.",
     tags: ["Shopify", "Amazon", "US entity"],
     status: "Active",
     category: "Revenue",
@@ -112,11 +111,11 @@ const bentoModules = [
   {
     id: "06",
     label: "Marketing & Growth",
-    problemHook: "Spending before learning",
-    problemBody: "Brands burn budget on US ads before understanding the market \u2014 wrong message, wrong audience, no ROI.",
+    problemHook: "Guesswork burns budget",
+    problemBody: "Brands invest in marketing without validated insights, resulting in poor targeting, weak messaging, inefficient SEO, and misaligned geographic spend.",
     stat: "Data-led",
     statLabel: "Growth execution",
-    solutionDetail: "We build your US growth strategy after market intelligence is in \u2014 brand positioning, content, and performance marketing on proven signals.",
+    solutionDetail: "We continuously use market intelligence to refine targeting, positioning, SEO, and geographic strategy, driving adaptive, data-driven growth with measurable returns.",
     tags: ["Performance", "Brand", "D2C"],
     status: "Active",
     category: "Revenue",
@@ -339,10 +338,7 @@ export default function LandingPage() {
                         <h2>Six problems. One contract.</h2>
                     </div>
                     <div className="lp-functions-header-right">
-                        <p>Most brands don't fail in the US because of bad products.<br />
-They fail because the infrastructure wasn't there &mdash;<br />
-wrong setup, wrong compliance, wrong timing, wrong channels.<br />
-Orbit fixes all six.</p>
+                        <p>Most international brands don't lose the US market to a better product. They lose it to the infrastructure gap. Wrong compliance, wrong channels, wrong timing, no single operator holding it together. Orbit closes that gap before it costs you.</p>
                     </div>
                 </div>
 
@@ -384,36 +380,72 @@ Orbit fixes all six.</p>
             {/* ── Process Section ── */}
             <section className="lp-process-section" id="process">
                 <div className="lp-process-inner">
-                    <div>
+                    <div className="pp-section-header">
                         <div className="lp-section-tag">02 / PROCESS</div>
                         <h2 className="lp-process-h2">From first call<br />to first US sale.</h2>
                     </div>
-                    <div className="lp-process-track">
-                        <div className="lp-process-step">
-                            <div className="lp-step-num-display">01</div>
-                            <div className="lp-process-step-tag">INTAKE</div>
-                            <h4>Tell Us About Your Brand</h4>
-                            <p>One intake session. We learn your product, your home market position, your target US customer, and your timeline. No lengthy questionnaires — 90 minutes and we have what we need.</p>
-                            <div className="lp-process-step-footer">
-                                <span className="lp-process-step-time">Day 0 → Day 1</span>
+
+                    <div className="lp-agent-steps-container">
+                        <div className="lp-agent-steps-line"></div>
+                        <div className="lp-agent-steps">
+                            {/* Intake */}
+                            <div className="lp-agent-step">
+                                <div className="lp-agent-step-icon-wrap autonomous">
+                                    <div className="lp-agent-step-icon">
+                                        <Zap size={24} strokeWidth={2.5} />
+                                    </div>
+                                </div>
+                                <div className="lp-agent-step-content">
+                                    <h3>Intake</h3>
+                                    <p>Tell Us About Your Brand</p>
+                                </div>
+                                <div className="lp-agent-step-card">
+                                    <ul>
+                                        <li>One intake session</li>
+                                        <li>Product & market mapping</li>
+                                        <li>Day 0 → Day 1</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div className="lp-process-step">
-                            <div className="lp-step-num-display">02</div>
-                            <div className="lp-process-step-tag">PLANNING</div>
-                            <h4>We Build Your US Launch Plan</h4>
-                            <p>Within 48 hours: a compliance checklist for your product, logistics routing, warehousing setup, and a 90-day e-commerce and marketing roadmap. Reviewed together before we execute.</p>
-                            <div className="lp-process-step-footer">
-                                <span className="lp-process-step-time">Day 1 → Day 3</span>
+
+                            {/* Planning */}
+                            <div className="lp-agent-step">
+                                <div className="lp-agent-step-icon-wrap supervised">
+                                    <div className="lp-agent-step-icon">
+                                        <ShieldCheck size={24} strokeWidth={2.5} />
+                                    </div>
+                                </div>
+                                <div className="lp-agent-step-content">
+                                    <h3>Planning</h3>
+                                    <p>We Build Your US Launch Plan</p>
+                                </div>
+                                <div className="lp-agent-step-card">
+                                    <ul>
+                                        <li>48h compliance checklist</li>
+                                        <li>Logistics & marketing roadmap</li>
+                                        <li>Day 1 → Day 3</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div className="lp-process-step">
-                            <div className="lp-step-num-display">03</div>
-                            <div className="lp-process-step-tag">LAUNCH</div>
-                            <h4>Your Brand is Live in the US</h4>
-                            <p>Your product is compliant, warehoused in the US, listed on the right channels, and backed by a live marketing programme. You brief us on the brand. We run the operations.</p>
-                            <div className="lp-process-step-footer">
-                                <span className="lp-process-step-time">Day 3 → Day 14</span>
+
+                            {/* Launch */}
+                            <div className="lp-agent-step">
+                                <div className="lp-agent-step-icon-wrap approval">
+                                    <div className="lp-agent-step-icon">
+                                        <MessageSquare size={24} strokeWidth={2.5} />
+                                    </div>
+                                </div>
+                                <div className="lp-agent-step-content">
+                                    <h3>Launch</h3>
+                                    <p>Your Brand is Live in the US</p>
+                                </div>
+                                <div className="lp-agent-step-card">
+                                    <ul>
+                                        <li>Warehoused & listed</li>
+                                        <li>Live marketing programme</li>
+                                        <li>Day 3 → Day 14</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -442,52 +474,7 @@ Orbit fixes all six.</p>
                 </div>
             </section>
 
-            {/* ── Proof / Testimonials (04 / RESULTS) ── */}
-            <section className="lp-proof-section" id="proof">
-                <div className="lp-proof-inner">
-                    <div className="lp-testimonial-header-split">
-                        <div className="lp-testimonial-header-left">
-                            <div className="lp-tag-testimonial">
-                                <ArrowUpRight size={14} strokeWidth={2.5} /> Testimonials
-                            </div>
-                            <h2 className="lp-testimonial-hero-quote">
-                                “Orbit has been, simply, transformative for us”
-                            </h2>
-                        </div>
-                        <div className="lp-testimonial-header-right">
-                            <p className="lp-testimonial-subtext">
-                                —says the Co-Founder of Bayangrom, one of India's fastest growing apparel brand
-                            </p>
-                            <div className="lp-testimonial-actions">
-                                <button className="lp-btn lp-btn-primary lp-btn-consult">
-                                    Book A Consult <Calendar size={14} style={{ marginBottom: '-1px' }} />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="lp-testimonials-grid">
-                        <div className="lp-testimonial">
-                            <div className="lp-testimonial-quote">&ldquo;</div>
-                            <p className="lp-testimonial-text">We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Orbit had us live in twelve days. I still don't fully understand how they moved that fast.</p>
-                            <div className="lp-testimonial-byline">
-                                <span className="lp-byline-name">Ji-Hoon K.</span>
-                                <span className="lp-byline-role">Founder, Premium Skincare Brand — Seoul, Korea</span>
-                                <span className="lp-byline-metric">→ $82K US revenue, month one</span>
-                            </div>
-                        </div>
-                        <div className="lp-testimonial lp-testimonial-compact">
-                            <div className="lp-testimonial-quote">&ldquo;</div>
-                            <p className="lp-testimonial-text">We went from zero US presence to $40K in revenue in our first month. I didn't have to think about warehousing or Amazon once.</p>
-                            <div className="lp-testimonial-byline">
-                                <span className="lp-byline-name">Priya M.</span>
-                                <span className="lp-byline-role">CEO, Home Goods Brand — Bangalore, India</span>
-                                <span className="lp-byline-metric">→ $40K US revenue, month one</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* ── Testimonial Globe (Interactive 3D) ── */}
             <TestimonialGlobe />
