@@ -176,7 +176,7 @@ export default function TestimonialGlobe() {
                         mapBrightness={10}
                         markerSize={0.025}
                         markerElevation={0.01}
-                        speed={0.021} // Matches exactly 5 seconds per full rotation at 60fps
+                        speed={0.0105} // Matches exactly 10 seconds per full rotation at 60fps
                     />
                 </div>
             </div>
