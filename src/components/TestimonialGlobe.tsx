@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Globe } from "./ui/cobe-globe";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// Sorted by closest distance to New York -> farthest
+// Sorted by longitude: west to east (US → Europe → Asia)
 const testimonialsSource = [
+    {
+        name: "Keshida Layone",
+        initials: "KL",
+        quote: "There's a particular kind of silence when your work is good and no one who can afford it knows you exist. Orbit broke that silence. Not with noise — with precision. The right eyes found me. The rest followed.",
+        title: "Visual Artist & Founder, Fine Art Brand — USA",
+        metric: "→ First international collector sales, week three"
+    },
     {
         name: "Karama",
         initials: "K",
@@ -16,13 +24,6 @@ const testimonialsSource = [
         quote: "Scaling into North America felt like a gamble until we found Orbit. They didn't just provide a platform; they provided a roadmap. The level of operational detail they handle allowed us to focus entirely on the creative side of the brand.",
         title: "Founder, Sustainable Decor Brand — Mexico City, Mexico",
         metric: "→ 3x growth in North American reach, quarter one"
-    },
-    {
-        name: "Keshida Layone",
-        initials: "KL",
-        quote: "There's a particular kind of silence when your work is good and no one who can afford it knows you exist. Orbit broke that silence. Not with noise — with precision. The right eyes found me. The rest followed.",
-        title: "Visual Artist & Founder, Fine Art Brand — USA",
-        metric: "→ First international collector sales, week three"
     },
     {
         name: "Emsworth Terry Cotton",
@@ -39,13 +40,6 @@ const testimonialsSource = [
         metric: "→ US market entry accelerated by 5 months"
     },
     {
-        name: "Ji-Hoon K.",
-        initials: "JK",
-        quote: "We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Orbit had us live in twelve days. I still don't fully understand how they moved that fast.",
-        title: "Founder, Premium Skincare Brand — Seoul, Korea",
-        metric: "→ $82K US revenue, month one"
-    },
-    {
         name: "Bayangrom",
         initials: "B",
         quote: "The brand was alive. The orders were coming. But the backend was swallowing us whole. Orbit took the weight — literally. Warehousing, shipping, fulfilment — handled. We got back to building, not firefighting.",
@@ -58,6 +52,13 @@ const testimonialsSource = [
         quote: "We went from zero US presence to $40K in revenue in our first month. I didn't have to think about warehousing or Amazon once.",
         title: "CEO, Home Goods Brand — Bangalore, India",
         metric: "→ $40K US revenue, month one"
+    },
+    {
+        name: "Ji-Hoon K.",
+        initials: "JK",
+        quote: "We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Orbit had us live in twelve days. I still don't fully understand how they moved that fast.",
+        title: "Founder, Premium Skincare Brand — Seoul, Korea",
+        metric: "→ $82K US revenue, month one"
     }
 ];
 
@@ -65,39 +66,64 @@ const NYC_LOCATION: [number, number] = [40.7128, -74.006];
 
 const globeMarkers = [
   { id: "nyc", location: NYC_LOCATION, label: "Orbit Operations (NY)" },
-  { id: "t1", location: [41.8781, -87.6298] as [number, number], label: "Chicago, USA" },
-  { id: "t2", location: [19.4326, -99.1332] as [number, number], label: "Mexico City, Mexico" },
-  { id: "t3", location: [34.0522, -118.2437] as [number, number], label: "Los Angeles, USA" },
+  { id: "t1", location: [34.0522, -118.2437] as [number, number], label: "Los Angeles, USA" },
+  { id: "t2", location: [41.8781, -87.6298] as [number, number], label: "Chicago, USA" },
+  { id: "t3", location: [19.4326, -99.1332] as [number, number], label: "Mexico City, Mexico" },
   { id: "t4", location: [51.5074, -0.1278] as [number, number], label: "London, UK" },
   { id: "t5", location: [52.5200, 13.4050] as [number, number], label: "Berlin, Germany" },
-  { id: "t6", location: [37.5665, 126.9780] as [number, number], label: "Seoul, Korea" },
-  { id: "t7", location: [19.0760, 72.8777] as [number, number], label: "Mumbai, India" },
-  { id: "t8", location: [12.9716, 77.5946] as [number, number], label: "Bangalore, India" },
+  { id: "t6", location: [19.0760, 72.8777] as [number, number], label: "Mumbai, India" },
+  { id: "t7", location: [12.9716, 77.5946] as [number, number], label: "Bangalore, India" },
+  { id: "t8", location: [37.5665, 126.9780] as [number, number], label: "Seoul, Korea" },
 ];
 
 const globeArcs = [
-  { id: "arc1", from: [41.8781, -87.6298] as [number, number], to: NYC_LOCATION, label: "Karama (Chicago → New York)" },
-  { id: "arc2", from: [19.4326, -99.1332] as [number, number], to: NYC_LOCATION, label: "Elena S. (Mexico City → New York)" },
-  { id: "arc3", from: [34.0522, -118.2437] as [number, number], to: NYC_LOCATION, label: "Keshida Layone (Los Angeles → New York)" },
+  { id: "arc1", from: [34.0522, -118.2437] as [number, number], to: NYC_LOCATION, label: "Keshida Layone (Los Angeles → New York)" },
+  { id: "arc2", from: [41.8781, -87.6298] as [number, number], to: NYC_LOCATION, label: "Karama (Chicago → New York)" },
+  { id: "arc3", from: [19.4326, -99.1332] as [number, number], to: NYC_LOCATION, label: "Elena S. (Mexico City → New York)" },
   { id: "arc4", from: [51.5074, -0.1278] as [number, number], to: NYC_LOCATION, label: "Emsworth Terry Cotton (London → New York)" },
   { id: "arc5", from: [52.5200, 13.4050] as [number, number], to: NYC_LOCATION, label: "Lucas M. (Berlin → New York)" },
-  { id: "arc6", from: [37.5665, 126.9780] as [number, number], to: NYC_LOCATION, label: "Ji-Hoon K. (Seoul → New York)" },
-  { id: "arc7", from: [19.0760, 72.8777] as [number, number], to: NYC_LOCATION, label: "Bayangrom (Mumbai → New York)" },
-  { id: "arc8", from: [12.9716, 77.5946] as [number, number], to: NYC_LOCATION, label: "Priya M. (Bangalore → New York)" },
+  { id: "arc6", from: [19.0760, 72.8777] as [number, number], to: NYC_LOCATION, label: "Bayangrom (Mumbai → New York)" },
+  { id: "arc7", from: [12.9716, 77.5946] as [number, number], to: NYC_LOCATION, label: "Priya M. (Bangalore → New York)" },
+  { id: "arc8", from: [37.5665, 126.9780] as [number, number], to: NYC_LOCATION, label: "Ji-Hoon K. (Seoul → New York)" },
 ];
 
 export default function TestimonialGlobe() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [autoAdvance, setAutoAdvance] = useState(true);
 
-    const handleRotationComplete = () => {
-        setActiveIndex((prev) => (prev + 1) % testimonialsSource.length);
-    };
+    // Auto-advance testimonials every 12 seconds (reduced switch speed)
+    useEffect(() => {
+        if (!autoAdvance) return;
+        
+        const timer = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % testimonialsSource.length);
+        }, 12000);
+
+        return () => clearInterval(timer);
+    }, [autoAdvance]);
 
     const handleMarkerClick = (id: string) => {
         if (id.startsWith('t')) {
             const idx = parseInt(id.replace('t', '')) - 1;
-            if (!isNaN(idx)) setActiveIndex(idx);
+            if (!isNaN(idx)) {
+                setActiveIndex(idx);
+                setAutoAdvance(false);
+                
+                // Resume auto-advance after 12 seconds of no interaction
+                const resumeTimer = setTimeout(() => setAutoAdvance(true), 12000);
+                return () => clearTimeout(resumeTimer);
+            }
         }
+    };
+
+    const handlePrevious = () => {
+        setActiveIndex((prev) => (prev - 1 + testimonialsSource.length) % testimonialsSource.length);
+        setAutoAdvance(false);
+    };
+
+    const handleNext = () => {
+        setActiveIndex((prev) => (prev + 1) % testimonialsSource.length);
+        setAutoAdvance(false);
     };
 
     const active = testimonialsSource[activeIndex];
@@ -115,7 +141,7 @@ export default function TestimonialGlobe() {
     });
 
     return (
-        <section className="tg-globe-section" id="testimonial-globe">
+        <section className="tg-globe-section" id="testimonials">
             <div className="tg-dual-panel">
                 {/* Left: Text + Active Testimonial Card */}
                 <div className="tg-content-side">
@@ -127,7 +153,7 @@ export default function TestimonialGlobe() {
                         </p>
                     </header>
 
-                    <div className="tg-active-testimonial-card shadow-premium" style={{ minHeight: '300px' }}>
+                    <div className="tg-active-testimonial-card shadow-premium\" style={{ minHeight: '280px' }}>
                         <div className="tg-card-top-row">
                             <div className="tg-quote-section-group">
                                 <div className="tg-quote-icon-large">“</div>
@@ -152,6 +178,24 @@ export default function TestimonialGlobe() {
                                 <span className="tg-client-metric">{active.metric}</span>
                             </div>
                         </div>
+
+                        {/* Navigation Controls Inside Card */}
+                        <div className="tg-nav-controls">
+                            <button 
+                                className="tg-nav-button" 
+                                onClick={handlePrevious}
+                                aria-label="Previous testimonial"
+                            >
+                                <ChevronLeft size={18} />
+                            </button>
+                            <button 
+                                className="tg-nav-button" 
+                                onClick={handleNext}
+                                aria-label="Next testimonial"
+                            >
+                                <ChevronRight size={18} />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -160,7 +204,6 @@ export default function TestimonialGlobe() {
                     <Globe 
                         markers={dynamicMarkers}
                         onMarkerClick={handleMarkerClick}
-                        onRotationComplete={handleRotationComplete}
                         focusLocation={activeMarkerData?.location}
                         arcs={globeArcs.map((arc, idx) => ({
                             ...arc,
@@ -176,7 +219,7 @@ export default function TestimonialGlobe() {
                         mapBrightness={10}
                         markerSize={0.025}
                         markerElevation={0.01}
-                        speed={0.0105} // Matches exactly 10 seconds per full rotation at 60fps
+                        speed={0.005} // Slower rotation: ~20 seconds per full rotation
                     />
                 </div>
             </div>

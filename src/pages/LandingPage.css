@@ -25,6 +25,19 @@
 /* ========================================
    Reset & Base (scoped to .landing-page)
    ======================================== */
+/* ========================================
+   Scroll Anchor Offset (for fixed header)
+   ======================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+section[id],
+footer[id],
+div[id] {
+    scroll-margin-top: 4rem;
+}
+
 .landing-page {
     font-family: var(--lp-font);
     color: var(--lp-on-surface);
@@ -32,6 +45,34 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* Scrollbar Styling - Transparent overlay */
+.landing-page::-webkit-scrollbar {
+    width: 8px;
+}
+
+.landing-page::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.landing-page::-webkit-scrollbar-thumb {
+    background: rgba(18, 19, 23, 0.4);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.landing-page::-webkit-scrollbar-thumb:hover {
+    background: rgba(18, 19, 23, 0.6);
+    background-clip: padding-box;
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-color: rgba(18, 19, 23, 0.4) transparent;
+    scrollbar-width: thin;
 }
 
 .landing-page *,
@@ -225,6 +266,7 @@
         font-weight: 350;
         border-radius: 0;
         border-bottom: 1px solid var(--lp-outline);
+        background: var(--lp-surface);
     }
 
     .lp-menu-toggle:checked~.lp-menu-btn {
@@ -1901,7 +1943,7 @@
     grid-column: fullbleed-start / fullbleed-end;
     background-color: #ffffff;
     color: #000000;
-    padding: 2rem 0 4rem;
+    padding: 2rem 0 1.5rem;
     /* Removed horizontal padding, subgrid handles gutters */
     display: grid;
     grid-template-columns: subgrid;
@@ -3320,8 +3362,20 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .lp-pricing-section {
+        padding: 2rem 0;
+    }
+}
+
 .lp-pricing-header {
     margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .lp-pricing-header {
+        margin-bottom: 1.25rem;
+    }
 }
 
 .lp-pricing-header h2 {
@@ -3366,6 +3420,13 @@
     flex-wrap: wrap;
 }
 
+@media (max-width: 768px) {
+    .lp-pricing-features {
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
 .lp-feature-pill {
     padding: 0.5rem 1.1rem;
     border-radius: 999px;
@@ -3376,6 +3437,13 @@
     color: var(--lp-on-surface);
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .lp-feature-pill {
+        padding: 0.45rem 0.95rem;
+        font-size: 0.85rem;
+    }
 }
 
 /* Pricing Grid */
@@ -3391,6 +3459,17 @@
 @media (max-width: 900px) {
     .lp-pricing-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .lp-pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0;
+        margin: 1.5rem auto 2.5rem;
     }
 }
 
@@ -3410,6 +3489,33 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 30px rgba(0,0,0,0.06);
     border-color: var(--lp-outline);
+}
+
+@media (max-width: 768px) {
+    .lp-pricing-card {
+        border-radius: 16px;
+    }
+    
+    .lp-pricing-card-top {
+        padding: 1.25rem;
+    }
+    
+    .lp-pricing-card-top h3 {
+        font-size: 1.5rem;
+    }
+    
+    .lp-pricing-price {
+        font-size: 1.1rem;
+    }
+    
+    .lp-pricing-desc {
+        font-size: 0.85rem;
+        min-height: auto;
+    }
+    
+    .lp-pricing-card-bottom {
+        padding: 1.25rem;
+    }
 }
 
 .lp-pricing-card-top {
@@ -3555,21 +3661,30 @@
     align-items: center;
     background: var(--lp-surface);
     border-radius: 16px;
-    padding: 1.5rem 2.5rem;
+    padding: 1.5rem 1.5rem;
     text-align: left;
-    width: calc(100% - 3rem);
-    max-width: calc(1280px - 3rem);
+    max-width: 1280px;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 1.5rem auto 2.5rem;
     border: 1px solid var(--lp-outline-variant);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 900px) {
+    .lp-custom-plan-banner {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem 1.5rem;
+        margin: 1.5rem auto 2.5rem;
+    }
 }
 
 @media (max-width: 768px) {
     .lp-custom-plan-banner {
         flex-direction: column;
         gap: 2rem;
-        padding: 2rem;
+        padding: 0;
+        margin: 1.5rem auto 2.5rem;
     }
 }
 
@@ -3596,6 +3711,18 @@
     font-weight: 600;
     margin: 0 0 0.25rem;
     color: var(--lp-on-surface);
+}
+
+@media (max-width: 900px) {
+    .lp-custom-banner-texts h3 {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .lp-custom-banner-texts h3 {
+        font-size: 1.25rem;
+    }
 }
 
 .lp-custom-banner-texts p {
@@ -3638,9 +3765,72 @@
     transition: background 0.15s ease, transform 0.1s ease;
 }
 
+@media (max-width: 768px) {
+    .lp-btn-purple {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
 .lp-btn-purple:hover {
     background: var(--lp-on-surface-variant);
     transform: scale(0.98);
+}
+
+.lp-pricing-email-form {
+    width: 100%;
+}
+
+.lp-pricing-form-wrapper {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lp-pricing-form-input {
+    border: 1px solid var(--lp-outline);
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    min-width: 220px;
+    background: var(--lp-surface-variant);
+    outline: none;
+    font-family: var(--lp-font);
+    color: var(--lp-on-surface);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.lp-pricing-form-input:hover {
+    border-color: var(--lp-outline-variant);
+    background: var(--lp-surface);
+}
+
+.lp-pricing-form-input:focus {
+    border-color: var(--lp-primary);
+    background: var(--lp-surface);
+}
+
+.lp-pricing-form-input::placeholder {
+    color: var(--lp-on-surface-variant);
+}
+
+@media (max-width: 768px) {
+    .lp-pricing-form-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .lp-pricing-form-input {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    .lp-btn-purple {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ========================================
@@ -3825,7 +4015,7 @@
    Testimonial Globe Section
    ======================================== */
 .tg-globe-section {
-    padding: 8rem 2rem;
+    padding: 0.3rem 2rem 4rem;
     display: flex;
     justify-content: center;
     background: var(--lp-surface-variant);
@@ -3838,18 +4028,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4rem;
+    gap: 2.5rem;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
 }
 
 /* Left Content */
 .tg-content-side {
     flex: 1.2;
-    max-width: 650px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 1.8rem;
     z-index: 2;
 }
 
@@ -3871,7 +4061,7 @@
 }
 
 .tg-orbit-heading {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 800;
     color: var(--lp-on-surface);
     margin: 0;
@@ -3880,7 +4070,7 @@
 }
 
 .tg-orbit-sub {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--lp-on-surface-variant);
     line-height: 1.6;
     margin: 0;
@@ -3892,12 +4082,12 @@
 .tg-active-testimonial-card {
     background: #ffffff;
     border: 1px solid var(--lp-outline-variant);
-    border-radius: 28px;
-    padding: 3.5rem;
+    border-radius: 20px;
+    padding: 1.8rem;
     box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.4rem;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
 }
@@ -3920,7 +4110,7 @@
 }
 
 .tg-quote-icon-large {
-    font-size: 7.5rem;
+    font-size: 4.5rem;
     line-height: 0.6;
     color: rgba(26, 179, 148, 0.2); /* Deeper Translucent Orbit Green */
     font-family: serif;
@@ -3968,8 +4158,8 @@
 }
 
 .tg-main-quote {
-    font-size: 1.4rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.4;
     font-weight: 400;
     font-style: italic;
     color: var(--lp-on-surface);
@@ -4019,13 +4209,13 @@
 }
 
 .tg-client-details strong {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--lp-on-surface);
 }
 
 .tg-client-details span {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: var(--lp-on-surface-variant);
     font-weight: 500;
     line-height: 1.4;
@@ -4046,7 +4236,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    min-height: 420px;
     transform: translateX(40px); /* Pushing right */
 }
 
@@ -4070,8 +4260,8 @@
 
 /* 3D Scene */
 .tg-scene {
-    width: 650px;
-    height: 650px;
+    width: 380px;
+    height: 380px;
     perspective: 2000px;
     cursor: grab;
     display: flex;
@@ -4122,11 +4312,49 @@
     border: none;
 }
 
+/* Navigation Controls */
+.tg-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    justify-content: flex-start;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--lp-outline);
+}
+
+.tg-nav-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--lp-outline);
+    background: #f5f7fa;
+    color: var(--lp-on-surface-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.tg-nav-button:hover:not(:disabled) {
+    background: var(--lp-surface-variant);
+    border-color: var(--lp-primary);
+    color: var(--lp-primary);
+    transform: scale(1.08);
+}
+
+.tg-nav-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
 /* ── Testimonial Globe Responsive ── */
 @media (max-width: 1100px) {
     .tg-dual-panel {
         flex-direction: column;
-        gap: 3rem;
+        gap: 2rem;
     }
 
     .tg-content-side {
@@ -4136,16 +4364,16 @@
     }
 
     .tg-orbit-heading {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .tg-globe-side {
-        min-height: 450px;
+        min-height: 320px;
     }
 
     .tg-scene {
-        width: 450px;
-        height: 450px;
+        width: 300px;
+        height: 300px;
     }
 }
 
@@ -4163,15 +4391,20 @@
     }
 
     .tg-globe-side {
-        min-height: 350px;
+        min-height: 280px;
     }
 
     .tg-scene {
-        width: 320px;
-        height: 320px;
+        width: 250px;
+        height: 250px;
     }
 
     .tg-drag-instruction {
         display: none;
+    }
+
+    .tg-nav-button {
+        width: 40px;
+        height: 40px;
     }
 }

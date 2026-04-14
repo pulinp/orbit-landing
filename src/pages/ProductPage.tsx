@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import {
     Zap,
     ShieldCheck,
     MessageSquare,
-    Menu,
-    X,
     Layers,
     GitBranch,
     Settings,
@@ -19,7 +17,27 @@ const goTo = (path: string) => {
 };
 
 export default function ProductPage() {
-    const [menuOpen, setMenuOpen] = useState(false);
+    // Handle hash navigation - scroll to element when hash changes
+    useEffect(() => {
+        const scrollToHash = () => {
+            const hash = window.location.hash.slice(1); // Remove '#'
+            if (hash) {
+                setTimeout(() => {
+                    const element = document.getElementById(hash);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        };
+
+        // Scroll on initial load
+        scrollToHash();
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', scrollToHash);
+        return () => window.removeEventListener('hashchange', scrollToHash);
+    }, []);
 
     return (
         <div className="landing-page">
@@ -31,24 +49,11 @@ export default function ProductPage() {
                         <span className="lp-logo-text">Orbit</span>
                     </a>
 
-                    <input
-                        className="lp-menu-toggle"
-                        type="checkbox"
-                        id="lp-menu-toggle"
-                        checked={menuOpen}
-                        onChange={() => setMenuOpen(!menuOpen)}
-                    />
-                    <label className="lp-menu-btn" htmlFor="lp-menu-toggle">
-                        {menuOpen ? <X size={22} /> : <Menu size={22} />}
-                        <span className="lp-sr-only">Toggle Menu</span>
-                    </label>
-
                     <nav className="lp-nav">
                         <ul>
-                            <li><a href="/#product">Platform</a></li>
-                            <li><a href="/#who">Network</a></li>
+                            <li><a href="/#functions">Solution</a></li>
+                            <li><a href="/#testimonials">Testimonials</a></li>
                             <li><a href="/#pricing">Pricing</a></li>
-                            <li><a href="/product" className="lp-nav-active">How It Works</a></li>
                         </ul>
                     </nav>
 
@@ -271,17 +276,12 @@ export default function ProductPage() {
                     <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
                     <div className="lp-footer-nav">
                         <div className="lp-footer-col">
-                            <a href="/#product">Download</a>
-                            <a href="/#product">Platform</a>
-                            <a href="#docs">Docs</a>
-                            <a href="#changelog">Changelog</a>
-                            <a href="#press">Press</a>
-                            <a href="#releases">Releases</a>
+                            <a href="/product">How It Works</a>
+                            <a href="/#functions">Solutions</a>
                         </div>
                         <div className="lp-footer-col">
-                            <a href="/blog">Blog</a>
-                            <a href="/pricing">Pricing</a>
-                            <a href="/use-cases">Use Cases</a>
+                            <a href="/case-study">Case Study</a>
+                            <a href="/#pricing">Pricing</a>
                         </div>
                     </div>
                 </div>
@@ -299,8 +299,6 @@ export default function ProductPage() {
                 <div className="lp-footer-bottom">
                     <div className="lp-footer-logo-small">Orbit</div>
                     <div className="lp-footer-legal">
-                        <a href="/about">About Orbit</a>
-                        <a href="/products">Orbit Products</a>
                         <a href="/privacy">Privacy</a>
                         <a href="/terms">Terms</a>
                     </div>

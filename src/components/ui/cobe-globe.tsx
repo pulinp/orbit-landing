@@ -169,13 +169,21 @@ export function Globe({
           const focusLng = loopProps.focusLocation![1];
           const focusLat = loopProps.focusLocation![0];
           
-          // Basic cobe location normalization + offset tracking to hit the visual front organically
+          // Calculate target phi for the focus location
           const targetPhiRaw = focusLng * Math.PI / 180 + Math.PI; 
           targetTheta = focusLat * Math.PI / 180;
           
-          targetPhi = phi + (((targetPhiRaw - phiOffsetRef.current) - phi) % (2 * Math.PI));
-          if (targetPhi - phi > Math.PI) targetPhi -= 2 * Math.PI;
-          if (targetPhi - phi < -Math.PI) targetPhi += 2 * Math.PI;
+          // CLOCKWISE ONLY: Always rotate clockwise to reach the target
+          // If target is "behind" current position, go the long way around clockwise
+          targetPhi = targetPhiRaw - phiOffsetRef.current;
+          
+          // Normalize to bring the target into range, ensuring clockwise direction
+          while (targetPhi <= phi) {
+            targetPhi += 2 * Math.PI;
+          }
+          if (targetPhi - phi > 2 * Math.PI) {
+            targetPhi -= 2 * Math.PI;
+          }
           
           state = "focusing";
           spinAccumulator = 0;
