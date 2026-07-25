@@ -565,6 +565,7 @@ div[id] {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(120, 120, 128, 0.12);
 }
 
 .cg-placeholder-orb {
@@ -575,7 +576,8 @@ div[id] {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    background: rgba(120, 120, 128, 0.35);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .cg-media-video-wrap {

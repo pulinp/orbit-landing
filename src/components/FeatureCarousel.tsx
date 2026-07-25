@@ -8,7 +8,6 @@ type MediaItem = {
     // Nothing else needs to change; muted autoplay, lazy loading, and
     // sound-on-click already wire up automatically once an item has one.
     videoSrc?: string;
-    accent: string; // placeholder color while real footage isn't in yet
 };
 
 type BrandPage = {
@@ -27,70 +26,39 @@ const BRANDS: BrandPage[] = [
         brand: "Bayangrom",
         caption: "Indian streetwear, now built to scale across the US.",
         subLine: "35% faster fulfillment · ~$180K saved in year one",
-        media: [
-            { accent: "#6366f1" },
-            { accent: "#8b5cf6" },
-            { accent: "#06b6d4" },
-            { accent: "#ec4899" },
-            { accent: "#f59e0b" },
-        ],
+        media: [{}, {}, {}, {}, {}],
     },
     {
         id: "emsworth",
         brand: "Emsworth",
         caption: "Premium terry cotton essentials, now selling direct to US buyers.",
         subLine: "$100K+ combined pre-orders · with Karama",
-        media: [
-            { accent: "#f59e0b" },
-            { accent: "#06b6d4" },
-            { accent: "#6366f1" },
-            { accent: "#8b5cf6" },
-        ],
+        media: [{}, {}, {}, {}],
     },
     {
         id: "karama",
         brand: "Karama",
         caption: "One of our two newest US launches, already gaining traction.",
         subLine: "$100K+ combined pre-orders · with Emsworth",
-        media: [
-            { accent: "#ec4899" },
-            { accent: "#f97316" },
-            { accent: "#6366f1" },
-            { accent: "#06b6d4" },
-        ],
+        media: [{}, {}, {}, {}],
     },
     {
         id: "indian-tapas",
         brand: "The Indian Tapas",
         caption: "Modern Indian street food, now live in the US.",
-        media: [
-            { accent: "#06b6d4" },
-            { accent: "#f59e0b" },
-            { accent: "#8b5cf6" },
-            { accent: "#ec4899" },
-        ],
+        media: [{}, {}, {}, {}],
     },
     {
         id: "flavor-atlas",
         brand: "Flavor Atlas",
         caption: "Premium exotic produce, now live in the US.",
-        media: [
-            { accent: "#f59e0b" },
-            { accent: "#6366f1" },
-            { accent: "#06b6d4" },
-            { accent: "#f97316" },
-        ],
+        media: [{}, {}, {}, {}],
     },
     {
         id: "kashida-layone",
         brand: "Kashida Layone",
         caption: "Original fine art, now live in the US.",
-        media: [
-            { accent: "#8b5cf6" },
-            { accent: "#ec4899" },
-            { accent: "#6366f1" },
-            { accent: "#f59e0b" },
-        ],
+        media: [{}, {}, {}, {}],
     },
 ];
 
@@ -125,12 +93,8 @@ function MediaTile({ item, isActivePage }: { item: MediaItem; isActivePage: bool
 
     if (!item.videoSrc) {
         return (
-            <div
-                ref={containerRef}
-                className="cg-media-placeholder"
-                style={{ background: `linear-gradient(155deg, ${item.accent}55 0%, ${item.accent}22 100%)` }}
-            >
-                <div className="cg-placeholder-orb" style={{ background: item.accent }}>
+            <div ref={containerRef} className="cg-media-placeholder">
+                <div className="cg-placeholder-orb">
                     <Play size={16} />
                 </div>
             </div>
