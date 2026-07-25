@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
       <div className="lp-header-wrapper">
         <header className="lp-header">
           <a href="/" className="lp-logo">
-            <span className="lp-logo-text">Orbit</span>
+            <span className="lp-logo-text">Vybd</span>
           </a>
 
           <input
@@ -30,9 +30,10 @@ export default function CaseStudiesPage() {
 
           <nav className="lp-nav">
             <ul>
-              <li><a href="/#functions">Solution</a></li>
-              <li><a href="/#testimonials">Testimonials</a></li>
+              <li><a href="/#functions">How it works</a></li>
+              <li><a href="/#testimonials">Results</a></li>
               <li><a href="/#pricing">Pricing</a></li>
+              <li><a href="/lab">Lab</a></li>
             </ul>
           </nav>
 
@@ -41,7 +42,7 @@ export default function CaseStudiesPage() {
               className="lp-btn lp-btn-primary"
               onClick={() => (window.location.href = "/auth")}
             >
-              Get Started
+              Book an entry call
             </button>
           </div>
         </header>
@@ -53,7 +54,10 @@ export default function CaseStudiesPage() {
 
       <footer className="lp-footer" id="footer">
         <div className="lp-footer-top">
-          <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+          <div className="lp-footer-tagline-group">
+            <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+            <p className="lp-footer-ethos">enabling commerce, disabling borders</p>
+          </div>
           <div className="lp-footer-nav">
             <div className="lp-footer-col">
               <a href="/product">How It Works</a>
@@ -62,6 +66,9 @@ export default function CaseStudiesPage() {
             <div className="lp-footer-col">
               <a href="/case-studies">Case Study</a>
               <a href="/#pricing">Pricing</a>
+            </div>
+            <div className="lp-footer-col">
+              <a href="/lab">Lab</a>
             </div>
           </div>
         </div>
@@ -72,12 +79,12 @@ export default function CaseStudiesPage() {
               <div className="lp-footer-ellipses lp-footer-ellipses--planet"></div>
             </div>
             <div className="lp-footer-ellipses lp-footer-ellipses--thick"></div>
-            <span>Orbit</span>
+            <span>Vybd</span>
           </div>
         </div>
 
         <div className="lp-footer-bottom">
-          <div className="lp-footer-logo-small">Orbit</div>
+          <div className="lp-footer-logo-small">Vybd</div>
           <div className="lp-footer-legal">
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>

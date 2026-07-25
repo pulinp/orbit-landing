@@ -46,14 +46,15 @@ export default function ProductPage() {
                 <header className="lp-header">
                     <a href="/" className="lp-logo">
                         {/* <span className="lp-logo-icon">O</span> */}
-                        <span className="lp-logo-text">Orbit</span>
+                        <span className="lp-logo-text">Vybd</span>
                     </a>
 
                     <nav className="lp-nav">
                         <ul>
-                            <li><a href="/#functions">Solution</a></li>
-                            <li><a href="/#testimonials">Testimonials</a></li>
+                            <li><a href="/#functions">How it works</a></li>
+                            <li><a href="/#testimonials">Results</a></li>
                             <li><a href="/#pricing">Pricing</a></li>
+                            <li><a href="/lab">Lab</a></li>
                         </ul>
                     </nav>
 
@@ -62,7 +63,7 @@ export default function ProductPage() {
                             className="lp-btn lp-btn-primary"
                             onClick={() => goTo("/auth")}
                         >
-                            Get Started
+                            Book an entry call
                         </button>
                     </div>
                 </header>
@@ -71,10 +72,10 @@ export default function ProductPage() {
             {/* ── Hero ── */}
             <section className="pp-hero">
                 <div className="pp-hero-inner">
-                    <div className="pp-hero-tag">How Orbit Works</div>
-                    <h1 className="pp-hero-h1">How Orbit Works</h1>
+                    <div className="pp-hero-tag">How Vybd Works</div>
+                    <h1 className="pp-hero-h1">How Vybd Works</h1>
                     <p className="pp-hero-sub">
-                        Orbit is built as a layered commerce operating system. Each function runs autonomously and synchronises through a central orchestration layer — so nothing falls through the gaps between vendors.
+                        Vybd runs as a layered operations system. Each operation runs autonomously and synchronises through a central orchestration layer — so nothing falls through the gaps between vendors.
                     </p>
                 </div>
             </section>
@@ -107,7 +108,7 @@ export default function ProductPage() {
                             </div>
                             <div className="pp-layer-badge">Layer 2</div>
                             <h3>Orchestration</h3>
-                            <p>A central coordination layer that synchronises inventory, logistics, compliance status, and order data across all functions.</p>
+                            <p>A central coordination layer that synchronises inventory, logistics, compliance status, and order data across all operations.</p>
                             <div className="pp-layer-footer">
                                 <span>Always in sync</span>
                                 <span>Zero gaps</span>
@@ -129,7 +130,7 @@ export default function ProductPage() {
                     </div>
 
                     <div className="pp-layers-body">
-                        <p>No function operates in isolation. When a compliance rule changes, the execution layer is updated automatically. When inventory drops below threshold, logistics is notified before you notice.</p>
+                        <p>No operation runs in isolation. When a compliance rule changes, the execution layer is updated automatically. When inventory drops below threshold, logistics is notified before you notice.</p>
                     </div>
                 </div>
             </section>
@@ -140,7 +141,7 @@ export default function ProductPage() {
                     <div className="lp-architecture-header" style={{ textAlign: 'center' }}>
                         <h2>A Full Commerce Stack, Coordinated.</h2>
                         <p className="pp-section-intro" style={{ margin: '1rem auto 0', maxWidth: '600px' }}>
-                            Orbit is built as a layered commerce operating system. Each module operates autonomously while synchronizing through a central orchestration layer.
+                            Vybd runs as a layered operations system. Each module operates autonomously while synchronizing through a central orchestration layer.
                         </p>
                     </div>
 
@@ -157,7 +158,7 @@ export default function ProductPage() {
                         <div className="lp-section-tag">02 / AGENT MODEL</div>
                         <h2>Autonomous. Supervised. Accountable.</h2>
                         <p className="pp-section-intro">
-                            Orbit automates what's safe, reviews what's complex, and lets you decide what matters most.
+                            Vybd automates what's safe, reviews what's complex, and lets you decide what matters most.
                         </p>
                     </div>
 
@@ -245,7 +246,7 @@ export default function ProductPage() {
                         <div className="pp-dashboard-img-wrap">
                             <img
                                 src="/assets/dashboard_mockup.png"
-                                alt="Orbit Dashboard Interface showing SKU performance and stock analytics"
+                                alt="Vybd Dashboard Interface showing SKU performance and stock analytics"
                                 className="lp-dashboard-img"
                             />
                         </div>
@@ -260,7 +261,7 @@ export default function ProductPage() {
                         <Settings size={32} strokeWidth={1.5} />
                     </div>
                     <h2>Want to go deeper?</h2>
-                    <p>Book a technical walkthrough with the Orbit team. We'll show you exactly how the orchestration layer handles your product category.</p>
+                    <p>Book a technical walkthrough with the Vybd team. We'll show you exactly how the orchestration layer handles your product category.</p>
                     <button
                         className="lp-btn lp-btn-accent"
                         onClick={() => goTo("/contact")}
@@ -273,7 +274,10 @@ export default function ProductPage() {
             {/* ── Footer ── */}
             <footer className="lp-footer" id="footer">
                 <div className="lp-footer-top">
-                    <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+                    <div className="lp-footer-tagline-group">
+                        <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+                        <p className="lp-footer-ethos">enabling commerce, disabling borders</p>
+                    </div>
                     <div className="lp-footer-nav">
                         <div className="lp-footer-col">
                             <a href="/product">How It Works</a>
@@ -282,6 +286,9 @@ export default function ProductPage() {
                         <div className="lp-footer-col">
                             <a href="/case-studies">Case Study</a>
                             <a href="/#pricing">Pricing</a>
+                        </div>
+                        <div className="lp-footer-col">
+                            <a href="/lab">Lab</a>
                         </div>
                     </div>
                 </div>
@@ -292,12 +299,12 @@ export default function ProductPage() {
                             <div className="lp-footer-ellipses lp-footer-ellipses--planet"></div>
                         </div>
                         <div className="lp-footer-ellipses lp-footer-ellipses--thick"></div>
-                        <span>Orbit</span>
+                        <span>Vybd</span>
                     </div>
                 </div>
 
                 <div className="lp-footer-bottom">
-                    <div className="lp-footer-logo-small">Orbit</div>
+                    <div className="lp-footer-logo-small">Vybd</div>
                     <div className="lp-footer-legal">
                         <a href="/privacy">Privacy</a>
                         <a href="/terms">Terms</a>

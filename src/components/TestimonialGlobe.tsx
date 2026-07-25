@@ -7,42 +7,42 @@ const testimonialsSource = [
     {
         name: "Keshida Layone",
         initials: "KL",
-        quote: "There's a particular kind of silence when your work is good and no one who can afford it knows you exist. Orbit broke that silence. Not with noise — with precision. The right eyes found me. The rest followed.",
+        quote: "There's a particular kind of silence when your work is good and no one who can afford it knows you exist. Vybd broke that silence. Not with noise — with precision. The right eyes found me. The rest followed.",
         title: "Visual Artist & Founder, Fine Art Brand — USA",
         metric: "→ First international collector sales, week three"
     },
     {
         name: "Karama",
         initials: "K",
-        quote: "Every market has a language. Ours didn't translate — not because the brand wasn't strong, but because we were speaking to people who didn't have the context yet. Orbit built that bridge. Same brand, new conversation.",
+        quote: "Every market has a language. Ours didn't translate — not because the brand wasn't strong, but because we were speaking to people who didn't have the context yet. Vybd built that bridge. Same brand, new conversation.",
         title: "Creative Director, Fashion Brand — USA",
         metric: "→ First international stockist secured, week six"
     },
     {
         name: "Elena S.",
         initials: "ES",
-        quote: "Scaling into North America felt like a gamble until we found Orbit. They didn't just provide a platform; they provided a roadmap. The level of operational detail they handle allowed us to focus entirely on the creative side of the brand.",
+        quote: "Scaling into North America felt like a gamble until we found Vybd. They didn't just provide a platform; they provided a roadmap. The level of operational detail they handle allowed us to focus entirely on the creative side of the brand.",
         title: "Founder, Sustainable Decor Brand — Mexico City, Mexico",
         metric: "→ 3x growth in North American reach, quarter one"
     },
     {
         name: "Emsworth Terry Cotton",
         initials: "ETC",
-        quote: "We didn't need someone to just sell for us. We needed to understand the room — who was already in it, what they were charging, where the gap was. Orbit came back with answers we hadn't thought to ask for. We positioned around them and it landed exactly right.",
+        quote: "We didn't need someone to just sell for us. We needed to understand the room — who was already in it, what they were charging, where the gap was. Vybd came back with answers we hadn't thought to ask for. We positioned around them and it landed exactly right.",
         title: "Founder, Premium Cotton Goods Brand — UK",
         metric: "→ Wholesale enquiries up 4x, month two"
     },
     {
         name: "Lucas M.",
         initials: "LM",
-        quote: "Compliance in the US is a massive roadblock for European health tech. We anticipated six months of deep legal review before even seeing a customer. Orbit's native infrastructure bypassed the friction completely—we were fully compliant and selling in under three weeks.",
+        quote: "Compliance in the US is a massive roadblock for European health tech. We anticipated six months of deep legal review before even seeing a customer. Vybd's native infrastructure bypassed the friction completely—we were fully compliant and selling in under three weeks.",
         title: "Director of Ops, HealthTech Brand — Berlin, Germany",
         metric: "→ US market entry accelerated by 5 months"
     },
     {
         name: "Bayangrom",
         initials: "B",
-        quote: "The brand was alive. The orders were coming. But the backend was swallowing us whole. Orbit took the weight — literally. Warehousing, shipping, fulfilment — handled. We got back to building, not firefighting.",
+        quote: "The brand was alive. The orders were coming. But the backend was swallowing us whole. Vybd took the weight — literally. Warehousing, shipping, fulfilment — handled. We got back to building, not firefighting.",
         title: "Founder, Cultural Streetwear Brand — India",
         metric: "→ Fulfilment time cut from 12 days to 3"
     },
@@ -56,7 +56,7 @@ const testimonialsSource = [
     {
         name: "Ji-Hoon K.",
         initials: "JK",
-        quote: "We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Orbit had us live in twelve days. I still don't fully understand how they moved that fast.",
+        quote: "We'd been trying to crack the US market for eighteen months. We had a great product, a team that believed in it, and no idea how to navigate FDA requirements at the same time as an Amazon launch. Vybd had us live in twelve days. I still don't fully understand how they moved that fast.",
         title: "Founder, Premium Skincare Brand — Seoul, Korea",
         metric: "→ $82K US revenue, month one"
     }
@@ -65,7 +65,7 @@ const testimonialsSource = [
 const NYC_LOCATION: [number, number] = [40.7128, -74.006];
 
 const globeMarkers = [
-  { id: "nyc", location: NYC_LOCATION, label: "Orbit Operations (NY)" },
+  { id: "nyc", location: NYC_LOCATION, label: "Vybd Operations (NY)" },
   { id: "t1", location: [34.0522, -118.2437] as [number, number], label: "Los Angeles, USA" },
   { id: "t2", location: [41.8781, -87.6298] as [number, number], label: "Chicago, USA" },
   { id: "t3", location: [19.4326, -99.1332] as [number, number], label: "Mexico City, Mexico" },

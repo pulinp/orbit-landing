@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import SupplierParticleCanvas from "../components/SupplierParticleCanvas";
-import LlmLogos from "../components/LlmLogos";
 import FinalCtaParticleCanvas from "../components/FinalCtaParticleCanvas";
 import {
     Zap,
@@ -26,14 +25,10 @@ import {
     Share2,
     ArrowRight,
     Calendar,
-    CreditCard,
-    Search,
-    Sparkles,
-    TrendingUp,
     Rocket,
-    Check
+    Plus
 } from "lucide-react";
-import HeroVisual from "../components/HeroVisual";
+import FeatureCarousel from "../components/FeatureCarousel";
 import TestimonialGlobe from "../components/TestimonialGlobe";
 import "./LandingPage.css";
 
@@ -47,14 +42,25 @@ const goTo = (path: string) => {
     window.location.href = `${PLATFORM_URL}${path}`;
 };
 
+// Confirmed real, permission-cleared clients. 3 slots left open below —
+// need 3 more brand names/logos to complete the row of ten.
+const LOGO_ROW_BRANDS = [
+    "Bayangrom",
+    "Emsworth",
+    "Karama",
+    "The Indian Tapas",
+    "Flavor Atlas",
+    "Kashida Layone",
+    "TanRom Lifesciences",
+];
+const LOGO_ROW_PLACEHOLDER_SLOTS = [0, 1, 2];
+
 const bentoModules = [
   {
     id: "01",
     label: "Market Intelligence",
     problemHook: "You're guessing. Your competitors aren't.",
     problemBody: "Entering a new market without market intelligence isn’t bold, it’s expensive. Most companies realize their assumptions about customers segments, geographic alignment, competition, and positioning were wrong only after they’ve already spent resources.",
-    stat: "Day 1",
-    statLabel: "Competitive clarity",
     solutionDetail: "We continuously analyze customer behavior, regional and competitive signals before, during, and after market entry, enabling data-driven positioning, and efficient resource allocation.",
     tags: ["Competitor tracking", "Pricing analysis"],
     status: "Active",
@@ -65,8 +71,6 @@ const bentoModules = [
     label: "Compliance & Regulatory",
     problemHook: "One wrong filing and your shipment doesn't move.",
     problemBody: "Companies discover documentation gaps only after shipments are delayed, fined, or blocked, resulting in financial loss and operational disruption.",
-    stat: "100%",
-    statLabel: "AI clearance rate",
     solutionDetail: "Auto-classification, document management, and end-to-end customs handling. Nothing was held at the border because someone missed a field.",
     tags: ["FDA", "Customs", "HS codes"],
     status: "Active",
@@ -75,34 +79,30 @@ const bentoModules = [
   {
     id: "03",
     label: "Logistics & Fulfillment",
-    problemHook: "You ship but you don’t see",
+    problemHook: "You ship, but you're flying blind.",
     problemBody: "Disconnected carriers and systems create blind spots and brands lack real-time visibility, predictable delivery, and cost control across shipments.",
-    stat: "24/7",
-    statLabel: "AI-routed freight",
     solutionDetail: "We continuously optimize routing, carrier selection, and tracking across the shipment lifecycle, ensuring end-to-end visibility, reliability, and cost efficiency.",
     tags: ["Door to Warehouse", "Last-mile"],
     status: "Active",
     category: "Core",
+    result: "↓22% shipping cost · Bayangrom",
   },
   {
     id: "04",
     label: "Warehousing & Inventory",
-    problemHook: "Inventory guesswork is expensive.",
+    problemHook: "Guess wrong and it's cash or sales — you lose either way.",
     problemBody: "Limited demand visibility leads to overstocking or stockouts lead to tying up capital or losing sales due to reactive, manual planning.",
-    stat: "0",
-    statLabel: "",
     solutionDetail: "We align inventory with demand through intelligent replenishment by understanding geographic and demographic data, ensuring optimal stock levels and efficient capital use.",
     tags: ["US-based", "No minimums"],
     status: "Active",
     category: "Core",
+    result: "↓28% excess inventory · Bayangrom",
   },
   {
     id: "05",
     label: "E-commerce Setup",
     problemHook: "Weeks of setup before a single sale.",
     problemBody: "Fragmented setup across entities, payments, storefronts, and marketplaces slows time-to-market and delays revenue.",
-    stat: "Day 1",
-    statLabel: "Ready to transact",
     solutionDetail: "We handle US entity formation, merchant of record setup, your Shopify store, and marketplace listings. You sell. We make sure the infrastructure lets you.",
     tags: ["Shopify", "Amazon", "US entity"],
     status: "Active",
@@ -111,14 +111,13 @@ const bentoModules = [
   {
     id: "06",
     label: "Marketing & Growth",
-    problemHook: "Guesswork burns budget",
+    problemHook: "Spend without insight burns budget.",
     problemBody: "Brands invest in marketing without validated insights, resulting in poor targeting, weak messaging, inefficient SEO, and misaligned geographic spend.",
-    stat: "Data-led",
-    statLabel: "Growth execution",
     solutionDetail: "We continuously use market intelligence to refine targeting, positioning, SEO, and geographic strategy, driving adaptive, data-driven growth with measurable returns.",
     tags: ["Performance", "Brand", "D2C"],
     status: "Active",
     category: "Revenue",
+    result: "$100K+ pre-orders · Emsworth & Karama",
   },
 ];
 
@@ -254,7 +253,7 @@ export default function LandingPage() {
                 <header className="lp-header">
                     <a href="/" className="lp-logo">
                         {/* <span className="lp-logo-icon">O</span> */}
-                        <span className="lp-logo-text">Orbit</span>
+                        <span className="lp-logo-text">Vybd</span>
                     </a>
 
                     <input
@@ -271,9 +270,10 @@ export default function LandingPage() {
 
                     <nav className="lp-nav">
                         <ul>
-                            <li><a href="#functions">Solution</a></li>
-                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#functions">How it works</a></li>
+                            <li><a href="#testimonials">Results</a></li>
                             <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="/lab">Lab</a></li>
                         </ul>
                     </nav>
 
@@ -282,7 +282,7 @@ export default function LandingPage() {
                             className="lp-btn lp-btn-primary"
                             onClick={() => goTo("/auth")}
                         >
-                            Get Started
+                            Book an entry call
                         </button>
                     </div>
                 </header>
@@ -292,31 +292,46 @@ export default function LandingPage() {
             <section className="lp-hero" id="hero">
                 <div className="lp-hero-content">
                     <div className="lp-hero-supporting">
-                        One platform. Six functions. US launch in 14 days.
+                        US market entry for international brands
                     </div>
                     <h2 className="lp-hero-title">
-                        You bring the brand.<br />
-                        <span>We bring the operations.</span>
+                        Your brand, established in America.
                     </h2>
                     <p className="lp-hero-subtitle">
-                        Orbit helps international brands enter the US market by handling compliance, e-commerce, logistics, warehousing, and marketing in one place.
+                        Vybd runs your entire US launch — demand, storefront, and supply chain — so you enter a market you don't know without building a team you don't have.
                     </p>
 
                     <div className="lp-hero-cta">
                         <a href="#product" className="lp-btn-link" style={{ fontWeight: 600, color: 'var(--lp-on-surface)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                            Explore Platform <ArrowRight size={16} />
+                            See what we run <ArrowRight size={16} />
                         </a>
                         <button
                             className="lp-btn lp-btn-accent"
                             onClick={() => goTo("/auth")}
                         >
-                            Launch on Orbit <Calendar size={16} style={{ marginBottom: '-1px' }} />
+                            Book an entry call <Calendar size={16} style={{ marginBottom: '-1px' }} />
                         </button>
                     </div>
                 </div>
+            </section>
 
-                <div className="lp-hero-visual-wrapper">
-                    <HeroVisual />
+            {/* ── Feature Carousel (real client proof, given room to breathe) ── */}
+            <section className="lp-carousel-section" id="client-carousel">
+                <FeatureCarousel />
+            </section>
+
+            {/* ── Logo Row ── */}
+            <section className="lp-logo-row-section">
+                <div className="lp-logo-row-header">Brands entering the US with Vybd</div>
+                <div className="lp-logo-row-grid">
+                    {LOGO_ROW_BRANDS.map((brand) => (
+                        <div className="lp-logo-chip" key={brand}>{brand}</div>
+                    ))}
+                    {LOGO_ROW_PLACEHOLDER_SLOTS.map((_, i) => (
+                        <div className="lp-logo-chip lp-logo-chip-placeholder" key={`logo-slot-${i}`}>
+                            <Plus size={14} />
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -358,7 +373,7 @@ export default function LandingPage() {
                         <h2>Six problems. One contract.</h2>
                     </div>
                     <div className="lp-functions-header-right">
-                        <p>Most international brands don't lose the US market to a better product. They lose it to the infrastructure gap. Wrong compliance, wrong channels, wrong timing, no single operator holding it together. Orbit closes that gap before it costs you.</p>
+                        <p>Most international brands don't lose the US to a better product. They lose it to the infrastructure gap — wrong compliance, wrong channels, wrong timing, and no single operator holding it together. Vybd closes that gap before it costs you.</p>
                     </div>
                 </div>
 
@@ -381,8 +396,12 @@ export default function LandingPage() {
                                 </div>
                             </div>
                             <div className="lp-fn-bento-solution-footer">
-                                <div className="lp-fn-large-stat">{module.stat}</div>
-                                <div className="lp-fn-large-stat-label">{module.statLabel}</div>
+                                {module.result && (
+                                    <div className="lp-fn-result-chip">
+                                        <span className="lp-fn-result-label">RESULT</span>
+                                        <span className="lp-fn-result-value">{module.result}</span>
+                                    </div>
+                                )}
                                 <div className="lp-fn-footer mt-auto">
                                     <span className="lp-fn-footer-label">{module.tags.join(" \u00b7 ")}</span>
                                     <span className="lp-fn-footer-status">{module.status}</span>
@@ -392,87 +411,76 @@ export default function LandingPage() {
                     ))}
                 </div>
                 
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-                    <a href="/product" className="lp-product-tech-link" style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--lp-primary)', textDecoration: 'none' }}>See how it works technically &rarr;</a>
-                </div>
             </section>
 
-            {/* ── Process Section ── */}
-            <section className="lp-process-section" id="process">
+            {/* ── Where to Start ── */}
+            <section className="lp-process-section" id="where-to-start">
                 <div className="lp-process-inner">
                     <div className="pp-section-header">
-                        <div className="lp-section-tag">02 / PROCESS</div>
-                        <h2 className="lp-process-h2">From first call<br />to first US sale.</h2>
+                        <div className="lp-section-tag">02 / WHERE TO START</div>
+                        <h2 className="lp-process-h2">You don't need all six.<br />Start where you need us.</h2>
+                        <p className="pp-section-intro">
+                            Most brands hand us the whole US entry. Some come for one piece — a store, a campaign, a warehouse — and add the rest as they grow. You only pay for what you need.
+                        </p>
                     </div>
 
                     <div className="lp-agent-steps-container">
-                        <div className="lp-agent-steps-line"></div>
                         <div className="lp-agent-steps">
-                            {/* Intake */}
+                            {/* Storefront */}
                             <div className="lp-agent-step">
-                                <div className="lp-agent-step-icon-wrap autonomous">
+                                <div className="lp-agent-step-icon-wrap doorway">
                                     <div className="lp-agent-step-icon">
-                                        <Zap size={24} strokeWidth={2.5} />
+                                        <ShoppingCart size={24} strokeWidth={2.5} />
                                     </div>
                                 </div>
                                 <div className="lp-agent-step-content">
-                                    <h3>Intake</h3>
-                                    <p>Tell Us About Your Brand</p>
+                                    <h3>Get your US storefront live</h3>
                                 </div>
                                 <div className="lp-agent-step-card">
-                                    <ul>
-                                        <li>One intake session</li>
-                                        <li>Product & market mapping</li>
-                                        <li>Day 0 → Day 1</li>
-                                    </ul>
+                                    <p>Shopify store, website, payments, US entity, merchant-of-record — the whole digital storefront, built to convert American buyers.</p>
+                                    <a href="#" className="lp-doorway-link" onClick={(e) => { e.preventDefault(); goTo("/auth"); }}>Start here <ArrowRight size={14} /></a>
                                 </div>
                             </div>
 
-                            {/* Planning */}
+                            {/* Crowdfunding */}
                             <div className="lp-agent-step">
-                                <div className="lp-agent-step-icon-wrap supervised">
+                                <div className="lp-agent-step-icon-wrap doorway">
                                     <div className="lp-agent-step-icon">
-                                        <ShieldCheck size={24} strokeWidth={2.5} />
+                                        <Rocket size={24} strokeWidth={2.5} />
                                     </div>
                                 </div>
                                 <div className="lp-agent-step-content">
-                                    <h3>Planning</h3>
-                                    <p>We Build Your US Launch Plan</p>
+                                    <h3>Run your Kickstarter or crowdfunding launch</h3>
                                 </div>
                                 <div className="lp-agent-step-card">
-                                    <ul>
-                                        <li>48h compliance checklist</li>
-                                        <li>Logistics & marketing roadmap</li>
-                                        <li>Day 1 → Day 3</li>
-                                    </ul>
+                                    <p>Validate US demand before you commit. We build and run the campaign end to end.</p>
+                                    <a href="#" className="lp-doorway-link" onClick={(e) => { e.preventDefault(); goTo("/auth"); }}>Start here <ArrowRight size={14} /></a>
                                 </div>
                             </div>
 
-                            {/* Launch */}
+                            {/* Warehousing */}
                             <div className="lp-agent-step">
-                                <div className="lp-agent-step-icon-wrap approval">
+                                <div className="lp-agent-step-icon-wrap doorway">
                                     <div className="lp-agent-step-icon">
-                                        <MessageSquare size={24} strokeWidth={2.5} />
+                                        <Warehouse size={24} strokeWidth={2.5} />
                                     </div>
                                 </div>
                                 <div className="lp-agent-step-content">
-                                    <h3>Launch</h3>
-                                    <p>Your Brand is Live in the US</p>
+                                    <h3>Set up US warehousing & fulfillment</h3>
                                 </div>
                                 <div className="lp-agent-step-card">
-                                    <ul>
-                                        <li>Warehoused & listed</li>
-                                        <li>Live marketing programme</li>
-                                        <li>Day 3 → Day 14</li>
-                                    </ul>
+                                    <p>Stock on US soil with fast, tracked last-mile — without signing a 3PL you don't understand.</p>
+                                    <a href="#" className="lp-doorway-link" onClick={(e) => { e.preventDefault(); goTo("/auth"); }}>Start here <ArrowRight size={14} /></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <p className="lp-doorway-closing">One partner, whichever door you enter through.</p>
                 </div>
             </section>
 
-            {/* ── Two-Column CTA (For Brands/Warehouses) ── */}
+            {/* ── Mechanism Section (How We Run It) ── */}
             <section className="lp-who" id="who">
                 <div
                     className="lp-who-card lp-who-card--suppliers"
@@ -480,16 +488,19 @@ export default function LandingPage() {
                     onMouseLeave={() => setSupplierHovered(false)}
                 >
                     <SupplierParticleCanvas hovered={supplierHovered} />
+                    <div className="lp-section-tag" style={{ justifyContent: 'center' }}>03 / HOW WE RUN IT</div>
                     <h3>
-                        For brands
-                        <span>Manage brand operations</span>
+                        Operate at the speed of culture
                     </h3>
+                    <p style={{ maxWidth: '640px', margin: '0 auto', color: 'var(--lp-on-surface-variant)', fontSize: '1.05rem', lineHeight: 1.6 }}>
+                        Agents carry the volume — monitoring, classifying, routing, optimizing, around the clock. Senior operators carry the judgment and own the outcome.
+                    </p>
 
                     <button
                         className="lp-btn lp-btn-accent"
                         onClick={() => goTo("/auth")}
                     >
-                        Get Started
+                        Book an entry call
                     </button>
                 </div>
             </section>
@@ -499,116 +510,17 @@ export default function LandingPage() {
             {/* ── Testimonial Globe (Interactive 3D) ── */}
             <TestimonialGlobe />
 
-            {/* ── Pricing Section (05 / PRICING) ── */}
-            <section className="lp-pricing-section" id="pricing">
-                <div className="lp-pricing-header">
-                    {/* <div className="lp-section-tag" style={{ justifyContent: 'center', marginBottom: '1rem' }}>05 / PRICING</div> */}
-                    <h2>Pricing and plans</h2>
-                    {/* <p className="lp-pricing-sub">Local Businesses or Enterprises, A Plan for All</p> */}
-                </div>
-
-                <LlmLogos />
-
-                <div className="lp-pricing-features">
-                    <div className="lp-feature-pill"><Calendar size={14} className="lp-pricing-feat-icon" /> No Long Term Contracts</div>
-                    <div className="lp-feature-pill"><CreditCard size={14} className="lp-pricing-feat-icon" /> Cancel Anytime</div>
-                    <div className="lp-feature-pill"><Search size={14} className="lp-pricing-feat-icon" /> 100% Transparency</div>
-                </div>
-
-                {/* ── Pricing Tiers Grid ── */}
-                <div className="lp-pricing-roi-banner" style={{ textAlign: 'center', marginBottom: '1.5rem', fontSize: '0.85rem', color: 'var(--lp-on-surface-variant)' }}>
-                    <span style={{ display: 'inline-block', padding: '0.3rem 1.2rem', background: 'var(--lp-surface-variant)', borderRadius: '999px' }}>
-                        <strong>ROI:</strong> A typical client saves ~$93,000 annually by consolidating agencies and hires.
-                    </span>
-                </div>
-
-                <div className="lp-pricing-grid">
-                    {/* Launch Tier */}
-                    <div className="lp-pricing-card">
-                        <div className="lp-pricing-card-top">
-                            <div className="lp-pricing-icon" style={{ color: '#4CAF50' }}>
-                                <Sparkles size={28} strokeWidth={1.5} />
-                            </div>
-                            <h3>Launch</h3>
-                            <div className="lp-pricing-price">$499<span>/ mo</span></div>
-                            <div className="lp-pricing-gmv">+ 9% GMV Fee</div>
-                            <p className="lp-pricing-desc">For brands doing &lt;$25k/mo US sales. Foundational market entry and compliance setup.</p>
-                            <button className="lp-btn-dark lp-btn-pricing" style={{ width: '100%', justifyContent: 'center' }}>Get Started →</button>
-                        </div>
-                        <div className="lp-pricing-card-bottom">
-                            <ul className="lp-pricing-list">
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> AI-powered onboarding for 1 product category</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Setup for 1 sales channel (Shopify/Amazon)</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> AI-powered compliance intelligence snapshot</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Growth Tier */}
-                    <div className="lp-pricing-card">
-                        <div className="lp-pricing-card-top">
-                            <div className="lp-pricing-icon" style={{ color: '#FF7043' }}>
-                                <TrendingUp size={28} strokeWidth={1.5} />
-                            </div>
-                            <h3>Growth</h3>
-                            <div className="lp-pricing-price">$999<span>/ mo</span></div>
-                            <div className="lp-pricing-gmv">+ 7% GMV Fee</div>
-                            <p className="lp-pricing-desc">For brands doing $25k - $100k/mo. Scaling operations with advanced AI and analytics.</p>
-                            <button className="lp-btn-dark lp-btn-pricing" style={{ width: '100%', justifyContent: 'center' }}>Get Started →</button>
-                        </div>
-                        <div className="lp-pricing-card-bottom">
-                            <ul className="lp-pricing-list">
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Full compliance roadmaps for up to 3 categories</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Multi-warehouse strategy for 2-day shipping</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Fulfillment Orchestration Agent</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Replaces multiple agencies and hires</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Scale Tier */}
-                    <div className="lp-pricing-card">
-                        <div className="lp-pricing-card-top">
-                            <div className="lp-pricing-icon" style={{ color: '#42A5F5' }}>
-                                <Rocket size={28} strokeWidth={1.5} />
-                            </div>
-                            <h3>Scale</h3>
-                            <div className="lp-pricing-price">$1,999<span>/ mo</span></div>
-                            <div className="lp-pricing-gmv">+ 6% GMV Fee</div>
-                            <p className="lp-pricing-desc">For brands doing &gt;$100k/mo. Enterprise-grade partnership and custom integration.</p>
-                            <button className="lp-btn-dark lp-btn-pricing" style={{ width: '100%', justifyContent: 'center' }}>Get Started →</button>
-                        </div>
-                        <div className="lp-pricing-card-bottom">
-                            <ul className="lp-pricing-list">
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Dedicated Account Manager</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Custom ERP or CRM integrations</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Priority access to beta features</li>
-                                <li><Check size={16} strokeWidth={2.5} className="lp-check-icon" /> Competitive fee structure for high-volume</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="lp-custom-plan-banner">
-                    <div className="lp-custom-banner-left">
-                        <div className="lp-custom-banner-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
-                                <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" stroke="#FF4D4D" />
-                            </svg>
-                        </div>
-                        <div className="lp-custom-banner-texts">
-                            <h3>Custom Plan For You</h3>
-                            <p>For enterprises requiring tailored solutions, integrations, and support.</p>
-                        </div>
-                    </div>
-                    <div className="lp-custom-banner-right">
-                        <form className="lp-pricing-email-form" onSubmit={(e) => { e.preventDefault(); const btn = e.currentTarget.querySelector('button') as HTMLButtonElement; if (btn) { btn.textContent = '✓ Received'; btn.style.background = '#158d75'; btn.disabled = true; } }}>
-                            <div className="lp-pricing-form-wrapper">
-                                <input type="email" placeholder="you@brand.com" required className="lp-pricing-form-input" />
-                                <button type="submit" className="lp-btn-purple">Talk To Sales →</button>
-                            </div>
-                        </form>
-                    </div>
+            {/* ── Horizon Band (routes to the Lab) ── */}
+            <section className="lp-horizon-section" id="horizon">
+                <div className="lp-horizon-inner">
+                    <div className="lp-section-tag" style={{ justifyContent: 'center' }}>THE HORIZON</div>
+                    <h3 className="lp-horizon-headline">The agency is what we run today. Here's what we're building next.</h3>
+                    <p className="lp-horizon-body">
+                        Every entry we run feeds a per-brand knowledge layer we call Brand Brain — so each launch makes the next one smarter. It's early, and it's in development. But it's where Vybd is headed.
+                    </p>
+                    <a href="/lab" className="lp-horizon-link">
+                        See the Lab <ArrowRight size={16} />
+                    </a>
                 </div>
             </section>
 
@@ -618,8 +530,8 @@ export default function LandingPage() {
                     <FinalCtaParticleCanvas />
                     <div style={{ position: 'relative', zIndex: 1 }}>
                         <h2>
-                            You Bring the Vision.<br />
-                            Orbit Runs the Operations.
+                            Ready to enter the US?<br />
+                            Let's map your launch.
                         </h2>
 
                         <div className="lp-final-cta-buttons">
@@ -627,7 +539,7 @@ export default function LandingPage() {
                                 className="lp-btn lp-btn-primary"
                                 onClick={() => goTo("/auth")}
                             >
-                                Launch on Orbit
+                                Book an entry call
                             </button>
                         </div>
                     </div>
@@ -637,7 +549,10 @@ export default function LandingPage() {
             {/* ── Footer ── */}
             <footer className="lp-footer" id="footer">
                 <div className="lp-footer-top">
-                    <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+                    <div className="lp-footer-tagline-group">
+                        <h3 className="lp-footer-tagline">Commerce, Coordinated.</h3>
+                        <p className="lp-footer-ethos">enabling commerce, disabling borders</p>
+                    </div>
                     <div className="lp-footer-nav">
                         <div className="lp-footer-col">
                             <a href="/product">How It Works</a>
@@ -646,6 +561,9 @@ export default function LandingPage() {
                         <div className="lp-footer-col">
                             <a href="/case-studies">Case Study</a>
                             <a href="/#pricing">Pricing</a>
+                        </div>
+                        <div className="lp-footer-col">
+                            <a href="/lab">Lab</a>
                         </div>
                     </div>
                 </div>
@@ -656,12 +574,12 @@ export default function LandingPage() {
                             <div className="lp-footer-ellipses lp-footer-ellipses--planet"></div>
                         </div>
                         <div className="lp-footer-ellipses lp-footer-ellipses--thick"></div>
-                        <span>Orbit</span>
+                        <span>Vybd</span>
                     </div>
                 </div>
 
                 <div className="lp-footer-bottom">
-                    <div className="lp-footer-logo-small">Orbit</div>
+                    <div className="lp-footer-logo-small">Vybd</div>
                     <div className="lp-footer-legal">
                         <a href="/privacy">Privacy</a>
                         <a href="/terms">Terms</a>
