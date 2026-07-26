@@ -1,6 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Globe } from "./ui/cobe-globe";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+
+// The 3D globe is a real GPU cost and its drag-to-spin interaction doesn't
+// translate to touch. Below this width we skip mounting it entirely rather
+// than just hiding it with CSS, so mobile never pays for the WebGL context.
+const MOBILE_BREAKPOINT_QUERY = "(max-width: 1100px)";
 
 // Sorted by longitude: west to east (US → Europe → Asia)
 const testimonialsSource = [
@@ -90,6 +96,8 @@ const globeArcs = [
 export default function TestimonialGlobe() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [autoAdvance, setAutoAdvance] = useState(true);
+    const isMobile = useMediaQuery(MOBILE_BREAKPOINT_QUERY);
+    const touchStartX = useRef<number | null>(null);
 
     // Auto-advance testimonials every 12 seconds (reduced switch speed)
     useEffect(() => {
@@ -126,6 +134,20 @@ export default function TestimonialGlobe() {
         setAutoAdvance(false);
     };
 
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartX.current === null) return;
+        const delta = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(delta) > 40) {
+            if (delta < 0) handleNext();
+            else handlePrevious();
+        }
+        touchStartX.current = null;
+    };
+
     const active = testimonialsSource[activeIndex];
     const activeMarkerId = `t${activeIndex + 1}`;
     const activeMarkerData = globeMarkers.find(m => m.id === activeMarkerId);
@@ -153,7 +175,11 @@ export default function TestimonialGlobe() {
                         </p>
                     </header>
 
-                    <div className="tg-active-testimonial-card shadow-premium\" style={{ minHeight: '280px' }}>
+                    <div
+                        className="tg-active-testimonial-card shadow-premium\" style={{ minHeight: '280px' }}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         <div className="tg-card-top-row">
                             <div className="tg-quote-section-group">
                                 <div className="tg-quote-icon-large">“</div>
@@ -181,15 +207,15 @@ export default function TestimonialGlobe() {
 
                         {/* Navigation Controls Inside Card */}
                         <div className="tg-nav-controls">
-                            <button 
-                                className="tg-nav-button" 
+                            <button
+                                className="tg-nav-button"
                                 onClick={handlePrevious}
                                 aria-label="Previous testimonial"
                             >
                                 <ChevronLeft size={18} />
                             </button>
-                            <button 
-                                className="tg-nav-button" 
+                            <button
+                                className="tg-nav-button"
                                 onClick={handleNext}
                                 aria-label="Next testimonial"
                             >
@@ -197,11 +223,25 @@ export default function TestimonialGlobe() {
                             </button>
                         </div>
                     </div>
+
+                    {/* Position dots — mobile card-stack fallback only */}
+                    <div className="tg-mobile-dots">
+                        {testimonialsSource.map((t, i) => (
+                            <button
+                                key={t.name}
+                                className={`tg-mobile-dot ${i === activeIndex ? "active" : ""}`}
+                                onClick={() => { setActiveIndex(i); setAutoAdvance(false); }}
+                                aria-label={`Go to ${t.name}'s testimonial`}
+                            />
+                        ))}
+                    </div>
                 </div>
 
-                {/* Right: Interactive 3D Globe */}
+                {/* Right: Interactive 3D Globe — skipped entirely on mobile,
+                    not just hidden, so touch devices never pay the WebGL cost */}
+                {!isMobile && (
                 <div className="tg-globe-side" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Globe 
+                    <Globe
                         markers={dynamicMarkers}
                         onMarkerClick={handleMarkerClick}
                         focusLocation={activeMarkerData?.location}
@@ -222,6 +262,7 @@ export default function TestimonialGlobe() {
                         speed={0.005} // Slower rotation: ~20 seconds per full rotation
                     />
                 </div>
+                )}
             </div>
         </section>
     );

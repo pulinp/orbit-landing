@@ -69,6 +69,13 @@ export default function ProductPage() {
                 </header>
             </div>
 
+            {/* ── Sticky mobile CTA (header's CTA is hidden below 930px) ── */}
+            <div className="lp-mobile-sticky-cta">
+                <button className="lp-btn lp-btn-primary" onClick={() => goTo("/auth")}>
+                    Book an entry call
+                </button>
+            </div>
+
             {/* ── Hero ── */}
             <section className="pp-hero">
                 <div className="pp-hero-inner">

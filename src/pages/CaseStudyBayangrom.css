@@ -1,0 +1,355 @@
+/* ========================================
+   Bayangrom Case Study
+   ======================================== */
+
+.cs-hero {
+    grid-column: fullbleed;
+    padding: 8rem 1.5rem 3rem;
+    background:
+        radial-gradient(circle, rgba(26, 179, 148, 0.18) 1px, transparent 1px),
+        var(--lp-surface);
+    background-size: 22px 22px;
+}
+
+.cs-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cs-back-link {
+    display: inline-flex;
+    font-size: 0.9rem;
+    font-weight: 550;
+    color: var(--lp-on-surface-variant);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.cs-back-link:hover {
+    color: var(--lp-on-surface);
+}
+
+.cs-hero-headline {
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--lp-on-surface);
+    margin: 0 0 1rem;
+}
+
+.cs-hero-sub {
+    font-size: 1.15rem;
+    color: var(--lp-on-surface-variant);
+    line-height: 1.5;
+    max-width: 620px;
+    margin: 0 auto 1.75rem;
+}
+
+.cs-meta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.cs-results-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--lp-outline-variant);
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 14px;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.cs-result-stat {
+    background: var(--lp-surface);
+    padding: 1.5rem 1rem;
+}
+
+.cs-result-value {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--lp-primary);
+}
+
+.cs-result-label {
+    font-size: 0.78rem;
+    color: var(--lp-on-surface-variant);
+    margin-top: 0.3rem;
+}
+
+/* ── Generic section shell ── */
+.cs-section {
+    grid-column: fullbleed;
+    padding: 4.5rem 1.5rem;
+}
+
+.cs-section-tinted {
+    background: var(--lp-surface-variant);
+    border-top: 1px solid var(--lp-outline-variant);
+    border-bottom: 1px solid var(--lp-outline-variant);
+}
+
+.cs-section-inner {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.cs-section-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--lp-on-surface);
+    margin: 0.75rem 0 2rem;
+}
+
+.cs-body-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--lp-on-surface-variant);
+    margin: 0.75rem 0 0;
+}
+
+.cs-about-layout {
+    display: grid;
+    gap: 2rem;
+}
+
+.cs-photo-placeholder-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cs-photo-placeholder {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    background: rgba(120, 120, 128, 0.12);
+    border: 1px dashed var(--lp-outline);
+}
+
+.cs-challenge-text {
+    font-size: 1.25rem;
+    font-weight: 450;
+    line-height: 1.6;
+    color: var(--lp-on-surface);
+    margin: 0.75rem 0 0;
+    max-width: 720px;
+}
+
+/* ── Timeline ── */
+.cs-timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+.cs-timeline-step {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.cs-timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cs-timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--lp-primary);
+    box-shadow: 0 0 0 4px rgba(26, 179, 148, 0.15);
+    margin-top: 0.35rem;
+}
+
+.cs-timeline-line {
+    flex: 1;
+    width: 2px;
+    background: var(--lp-outline-variant);
+    margin: 0.25rem 0;
+}
+
+.cs-timeline-content {
+    padding-bottom: 2.25rem;
+}
+
+.cs-timeline-phase {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lp-primary);
+}
+
+.cs-timeline-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--lp-on-surface);
+    margin: 0.3rem 0 0.4rem;
+}
+
+.cs-timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--lp-on-surface-variant);
+    margin: 0;
+}
+
+/* ── Results table ── */
+.cs-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--lp-outline-variant);
+    border-radius: 14px;
+    background: var(--lp-surface);
+}
+
+.cs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.cs-table th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--lp-on-surface-variant);
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+    white-space: nowrap;
+}
+
+.cs-table td {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--lp-outline-variant);
+    color: var(--lp-on-surface);
+}
+
+.cs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.cs-table-metric {
+    font-weight: 550;
+}
+
+.cs-table-impact {
+    font-weight: 650;
+    color: var(--lp-primary-dark);
+}
+
+/* ── Testimonial ── */
+.cs-testimonial-layout {
+    display: grid;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.cs-pull-quote {
+    font-size: 1.3rem;
+    font-weight: 450;
+    line-height: 1.55;
+    color: var(--lp-on-surface);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.cs-pull-quote cite {
+    display: block;
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    font-style: normal;
+    font-weight: 550;
+    color: var(--lp-on-surface-variant);
+}
+
+.cs-video-placeholder {
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    background: rgba(120, 120, 128, 0.12);
+    border: 1px dashed var(--lp-outline);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 480px;
+}
+
+.cs-placeholder-orb {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(120, 120, 128, 0.35);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-video-placeholder-label {
+    font-size: 0.8rem;
+    font-weight: 550;
+    color: var(--lp-on-surface-variant);
+}
+
+/* ── Positioning line ── */
+.cs-positioning {
+    grid-column: fullbleed;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.cs-positioning p {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--lp-on-surface);
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+    .cs-about-layout {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: center;
+    }
+
+    .cs-photo-placeholder-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 100%;
+    }
+
+    .cs-testimonial-layout {
+        grid-template-columns: 1.3fr 1fr;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .cs-hero {
+        padding: 7rem 1.25rem 2.5rem;
+    }
+
+    .cs-results-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cs-section {
+        padding: 3rem 1.25rem;
+    }
+}

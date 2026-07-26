@@ -144,6 +144,7 @@ export default function LandingPage() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [iconsVisible, setIconsVisible] = useState(false);
     const [supplierHovered, setSupplierHovered] = useState(false);
+    const [expandedTile, setExpandedTile] = useState<string | null>(null);
     const iconsRef = useRef<HTMLDivElement>(null);
 
     // Paint Worklet Registration
@@ -288,6 +289,13 @@ export default function LandingPage() {
                 </header>
             </div>
 
+            {/* ── Sticky mobile CTA (header's CTA is hidden below 930px) ── */}
+            <div className="lp-mobile-sticky-cta">
+                <button className="lp-btn lp-btn-primary" onClick={() => goTo("/auth")}>
+                    Book an entry call
+                </button>
+            </div>
+
             {/* ── Hero ── */}
             <section className="lp-hero" id="hero">
                 <div className="lp-hero-content">
@@ -379,18 +387,32 @@ export default function LandingPage() {
 
                 <div className="lp-fn-bento">
                     {bentoModules.map((module) => (
-                        <div key={module.id} className={`lp-fn-tile lp-fn-bento-tile ${bentoClasses[module.id]}`}>
+                        <div
+                            key={module.id}
+                            className={`lp-fn-tile lp-fn-bento-tile ${bentoClasses[module.id]} ${expandedTile === module.id ? "is-expanded" : ""}`}
+                            onClick={() => setExpandedTile((prev) => (prev === module.id ? null : module.id))}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") {
+                                    e.preventDefault();
+                                    setExpandedTile((prev) => (prev === module.id ? null : module.id));
+                                }
+                            }}
+                            role="button"
+                            tabIndex={0}
+                            aria-expanded={expandedTile === module.id}
+                        >
                             <div>
                                 <div className="lp-fn-tile-header">
                                     <span className="lp-fn-index">{module.id}</span>
                                     {module.category && <span className="lp-fn-category">{module.category}</span>}
                                 </div>
                                 <div className="lp-fn-title">{module.label}</div>
-                                
+
                                 <div className="lp-fn-bento-content-stack">
                                     <div className="lp-fn-bento-problem-state">
                                         <div className="lp-fn-tile-problem-hook">{module.problemHook}</div>
                                         <div className="lp-fn-tile-problem-body">{module.problemBody}</div>
+                                        <div className="lp-fn-mobile-hint">Tap to see how we solve it \u2192</div>
                                     </div>
                                     <div className="lp-fn-desc-full lp-fn-bento-solution-state">{module.solutionDetail}</div>
                                 </div>

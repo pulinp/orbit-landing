@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, Volume2, VolumeX } from "lucide-react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 type MediaItem = {
     // Left empty until real footage/storefront captures are cleared for use.
@@ -15,6 +16,8 @@ type BrandPage = {
     brand: string;
     caption: string;
     subLine?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
     media: MediaItem[]; // 4-5 videos/images for this brand
 };
 
@@ -26,6 +29,8 @@ const BRANDS: BrandPage[] = [
         brand: "Bayangrom",
         caption: "Indian streetwear, now built to scale across the US.",
         subLine: "35% faster fulfillment · ~$180K saved in year one",
+        ctaLabel: "Read the case study →",
+        ctaHref: "/work/bayangrom",
         media: [{}, {}, {}, {}, {}],
     },
     {
@@ -64,18 +69,33 @@ const BRANDS: BrandPage[] = [
 
 const AUTO_ADVANCE_MS = 8000;
 const RESUME_AFTER_MS = 12000;
+// Below this width, treat as a phone: skip autoplay entirely, require a tap
+// to load/play a video, and never allow more than one loaded at once.
+const MOBILE_QUERY = "(max-width: 768px)";
 
-function MediaTile({ item, isActivePage }: { item: MediaItem; isActivePage: boolean }) {
+function MediaTile({
+    item,
+    isActivePage,
+    isMobile,
+    isPlaying,
+    onRequestPlay,
+}: {
+    item: MediaItem;
+    isActivePage: boolean;
+    isMobile: boolean;
+    isPlaying: boolean;
+    onRequestPlay: () => void;
+}) {
     const [isVisible, setIsVisible] = useState(false);
     const [isMuted, setIsMuted] = useState(true);
     const containerRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    // Only start loading/playing once this brand page is the active one AND
-    // the tile has actually scrolled into view within its gallery row —
-    // with up to 5 items per brand across 6 brands, loading everything
-    // up front would wreck first paint.
+    // Desktop only: start loading/playing once this brand page is active AND
+    // the tile has scrolled into view within its gallery row. Mobile never
+    // autoplays — see the tap-to-play branch below.
     useEffect(() => {
+        if (isMobile) return;
         const el = containerRef.current;
         if (!el || !isActivePage) return;
         const observer = new IntersectionObserver(
@@ -89,7 +109,7 @@ function MediaTile({ item, isActivePage }: { item: MediaItem; isActivePage: bool
         );
         observer.observe(el);
         return () => observer.disconnect();
-    }, [isActivePage]);
+    }, [isActivePage, isMobile]);
 
     if (!item.videoSrc) {
         return (
@@ -101,10 +121,31 @@ function MediaTile({ item, isActivePage }: { item: MediaItem; isActivePage: bool
         );
     }
 
+    // Mobile: poster-only until tapped. Only the single tile the user tapped
+    // ever loads a video file — tapping another tile hands off playback and
+    // this one unmounts its <video>, so at most one is ever loaded.
+    if (isMobile && !isPlaying) {
+        return (
+            <button
+                className="cg-media-placeholder cg-media-tap-target"
+                onClick={onRequestPlay}
+                aria-label="Play video"
+            >
+                <div className="cg-placeholder-orb">
+                    <Play size={16} />
+                </div>
+            </button>
+        );
+    }
+
+    const shouldLoad = isMobile ? isPlaying : isVisible;
+
     return (
         <div ref={containerRef} className="cg-media-video-wrap">
-            <video ref={videoRef} muted={isMuted} autoPlay={isVisible} loop playsInline preload="none">
-                {isVisible && <source src={item.videoSrc} type="video/mp4" />}
+            {/* muted + playsInline are required on iOS Safari — without both,
+                the browser force-fullscreens the video on play. */}
+            <video ref={videoRef} muted={isMuted} autoPlay={shouldLoad} loop playsInline preload="none">
+                {shouldLoad && <source src={item.videoSrc} type="video/mp4" />}
             </video>
             <button
                 className="cg-sound-toggle"
@@ -123,7 +164,19 @@ function MediaTile({ item, isActivePage }: { item: MediaItem; isActivePage: bool
     );
 }
 
-function BrandGallery({ brand, isActivePage }: { brand: BrandPage; isActivePage: boolean }) {
+function BrandGallery({
+    brand,
+    isActivePage,
+    isMobile,
+    playingKey,
+    setPlayingKey,
+}: {
+    brand: BrandPage;
+    isActivePage: boolean;
+    isMobile: boolean;
+    playingKey: string | null;
+    setPlayingKey: (key: string | null) => void;
+}) {
     const rowRef = useRef<HTMLDivElement>(null);
 
     const scrollNext = () => {
@@ -140,15 +193,29 @@ function BrandGallery({ brand, isActivePage }: { brand: BrandPage; isActivePage:
                 <h3 className="cg-brand-name">{brand.brand}</h3>
                 <p className="cg-brand-caption">{brand.caption}</p>
                 {brand.subLine && <div className="cg-brand-subline">{brand.subLine}</div>}
+                {brand.ctaHref && brand.ctaLabel && (
+                    <a href={brand.ctaHref} className="cg-brand-cta-link">
+                        {brand.ctaLabel}
+                    </a>
+                )}
             </div>
 
             <div className="cg-media-row-wrap">
                 <div className="cg-media-row" ref={rowRef}>
-                    {brand.media.map((item, i) => (
-                        <div className="cg-media-tile" key={`${brand.id}:${i}`}>
-                            <MediaTile item={item} isActivePage={isActivePage} />
-                        </div>
-                    ))}
+                    {brand.media.map((item, i) => {
+                        const key = `${brand.id}:${i}`;
+                        return (
+                            <div className="cg-media-tile" key={key}>
+                                <MediaTile
+                                    item={item}
+                                    isActivePage={isActivePage}
+                                    isMobile={isMobile}
+                                    isPlaying={playingKey === key}
+                                    onRequestPlay={() => setPlayingKey(key)}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
                 <button className="cg-media-next" onClick={scrollNext} aria-label={`See more from ${brand.brand}`}>
                     <ChevronRight size={18} />
@@ -161,12 +228,16 @@ function BrandGallery({ brand, isActivePage }: { brand: BrandPage; isActivePage:
 export default function FeatureCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [autoAdvance, setAutoAdvance] = useState(true);
+    const [playingKey, setPlayingKey] = useState<string | null>(null);
+    const isMobile = useMediaQuery(MOBILE_QUERY);
     const touchStartX = useRef<number | null>(null);
     const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         if (!autoAdvance) return;
         const timer = setInterval(() => {
+            // Never carry a "playing" video across brand pages — land fresh.
+            setPlayingKey(null);
             setActiveIndex((prev) => (prev + 1) % BRANDS.length);
         }, AUTO_ADVANCE_MS);
         return () => clearInterval(timer);
@@ -185,6 +256,7 @@ export default function FeatureCarousel() {
     };
 
     const goTo = (index: number) => {
+        setPlayingKey(null);
         setActiveIndex((index + BRANDS.length) % BRANDS.length);
         pauseThenResume();
     };
@@ -215,7 +287,13 @@ export default function FeatureCarousel() {
                 <div className="cg-carousel-track" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
                     {BRANDS.map((brand, i) => (
                         <div className="cg-carousel-slide" key={brand.id}>
-                            <BrandGallery brand={brand} isActivePage={i === activeIndex} />
+                            <BrandGallery
+                                brand={brand}
+                                isActivePage={i === activeIndex}
+                                isMobile={isMobile}
+                                playingKey={playingKey}
+                                setPlayingKey={setPlayingKey}
+                            />
                         </div>
                     ))}
                 </div>

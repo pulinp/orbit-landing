@@ -5,6 +5,8 @@ import MarkdownPage from "./pages/MarkdownPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import CaseStudyDetailPage from "./pages/CaseStudyDetailPage";
 import LabPage from "./pages/LabPage";
+import WorkIndexPage from "./pages/WorkIndexPage";
+import BayangromCaseStudyPage from "./pages/BayangromCaseStudyPage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
         <Route path="/case-study" element={<Navigate to="/case-studies" replace />} />
         <Route path="/lab" element={<LabPage />} />
+        <Route path="/work" element={<WorkIndexPage />} />
+        <Route path="/work/bayangrom" element={<BayangromCaseStudyPage />} />
         <Route path="/privacy" element={<MarkdownPage title="Privacy Policy" filePath="/privacy.md" />} />
         <Route path="/terms" element={<MarkdownPage title="Terms of Service" filePath="/terms.md" />} />
       </Routes>

@@ -205,8 +205,8 @@ div[id] {
 .lp-menu-btn {
     display: none;
     cursor: pointer;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 44px;
+    height: 44px;
     border-radius: 999px;
     border: none;
     background: transparent;
@@ -273,6 +273,41 @@ div[id] {
         background: var(--lp-primary);
         color: white;
         border-radius: 999px;
+    }
+}
+
+/* Sticky mobile CTA — the header's CTA button is hidden below 930px (no
+   room next to logo + hamburger), so this replaces it. Conversion depends
+   on "Book an entry call" always being reachable without opening the menu. */
+.lp-mobile-sticky-cta {
+    display: none;
+}
+
+@media (max-width: 930px) {
+    .lp-mobile-sticky-cta {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 98;
+        padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--lp-outline);
+    }
+
+    .lp-mobile-sticky-cta .lp-btn {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    /* Leave room so the sticky bar never covers the final CTA/footer content */
+    .lp-footer {
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom));
     }
 }
 
@@ -530,6 +565,19 @@ div[id] {
     width: fit-content;
 }
 
+.cg-brand-cta-link {
+    display: block;
+    margin-top: 0.85rem;
+    font-size: 0.92rem;
+    font-weight: 650;
+    color: var(--lp-primary);
+    text-decoration: none;
+}
+
+.cg-brand-cta-link:hover {
+    color: var(--lp-primary-dark);
+}
+
 .cg-media-row-wrap {
     position: relative;
 }
@@ -566,6 +614,16 @@ div[id] {
     align-items: center;
     justify-content: center;
     background: rgba(120, 120, 128, 0.12);
+}
+
+/* The mobile tap-to-play poster is a <button>, not a <div> — reset the
+   browser defaults so it matches the plain placeholder look exactly. */
+.cg-media-tap-target {
+    width: 100%;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
 
 .cg-placeholder-orb {
@@ -1295,18 +1353,26 @@ div[id] {
     .lp-agent-steps-line {
         display: none;
     }
-    
+
     .lp-agent-steps {
         flex-direction: column;
         gap: 4rem;
     }
-    
+
     .lp-agent-step-icon-wrap {
         margin-bottom: 1rem;
     }
-    
+
     .lp-agent-step-content p {
         min-height: auto;
+    }
+
+    /* Bump the "Start here" tap target to 44px without changing its
+       visual text size. */
+    .lp-doorway-link {
+        min-height: 44px;
+        padding: 0.6rem 0;
+        margin-top: 0.5rem;
     }
 }
 
@@ -1962,6 +2028,10 @@ div[id] {
     .lp-footer-top {
         flex-direction: column;
         gap: 3rem;
+        /* Desktop pulls this up -18rem to overlap the giant wordmark below —
+           tuned for a single-row layout. Stacked at mobile that overlap
+           collides with whatever's above the footer instead, so drop it. */
+        margin: 2rem 0 1rem;
     }
 
     .lp-footer-nav {
@@ -1970,6 +2040,10 @@ div[id] {
 
     .lp-footer-brand span {
         font-size: 28vw;
+    }
+
+    .lp-footer-orbit-container {
+        height: 26rem;
     }
 
     .lp-footer-bottom {
@@ -2126,6 +2200,10 @@ div[id] {
     line-height: 1.6;
     margin-top: 0.2rem;
     transition: opacity 0.25s ease;
+}
+
+.lp-fn-mobile-hint {
+    display: none;
 }
 
 .lp-fn-bento-tile:hover {
@@ -2357,7 +2435,90 @@ div[id] {
 @media (max-width: 600px) {
     .lp-fn-bento { grid-template-columns: 1fr; }
     .lp-fn-compliance, .lp-fn-logistics, .lp-fn-marketing { grid-column: 1; }
-}/* ========================================
+
+    /* Touch has no reliable :hover, so tap toggles .is-expanded via JS —
+       collapsed shows just the red hook; expanded mirrors the desktop
+       hover reveal (solution detail + proof chip) exactly. */
+    .lp-fn-bento-tile {
+        cursor: pointer;
+    }
+
+    .lp-fn-bento-content-stack {
+        display: block;
+    }
+
+    .lp-fn-bento-solution-state,
+    .lp-fn-bento-solution-footer {
+        display: none;
+    }
+
+    .lp-fn-mobile-hint {
+        display: block;
+        margin-top: 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+        color: var(--color-problem-accent);
+        opacity: 0.7;
+    }
+
+    .lp-fn-bento-tile.is-expanded {
+        background: var(--lp-primary);
+        border-color: var(--lp-primary);
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-index {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-category {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-title {
+        color: #ffffff;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-tile-problem-hook,
+    .lp-fn-bento-tile.is-expanded .lp-fn-tile-problem-body,
+    .lp-fn-bento-tile.is-expanded .lp-fn-mobile-hint {
+        display: none;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-bento-solution-state {
+        display: block;
+        opacity: 1;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-bento-solution-footer {
+        display: block;
+        opacity: 1;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-footer {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-footer-label {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-footer-status {
+        color: #ffffff;
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-result-label {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .lp-fn-bento-tile.is-expanded .lp-fn-result-value {
+        color: #ffffff;
+    }
+}
+/* ========================================
    Process Section
    ======================================== */
 .lp-process-section {
@@ -3748,15 +3909,22 @@ div[id] {
     cursor: not-allowed;
 }
 
+/* Mobile card-stack position dots — hidden on desktop where the globe's
+   own marker-click navigation is the primary way to switch testimonials */
+.tg-mobile-dots {
+    display: none;
+}
+
 /* ── Testimonial Globe Responsive ── */
 @media (max-width: 1100px) {
     .tg-dual-panel {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .tg-content-side {
         max-width: 100%;
+        width: 100%;
         align-items: center;
         text-align: center;
     }
@@ -3765,13 +3933,33 @@ div[id] {
         font-size: 2.2rem;
     }
 
-    .tg-globe-side {
-        min-height: 320px;
+    .tg-active-testimonial-card {
+        width: 100%;
+        max-width: 560px;
     }
 
-    .tg-scene {
-        width: 300px;
-        height: 300px;
+    .tg-mobile-dots {
+        display: flex;
+        gap: 0.4rem;
+        justify-content: center;
+        margin-top: 1.25rem;
+    }
+
+    .tg-mobile-dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: var(--lp-outline-variant);
+        cursor: pointer;
+        transition: width 0.25s ease, background 0.25s ease;
+    }
+
+    .tg-mobile-dot.active {
+        width: 22px;
+        border-radius: 4px;
+        background: var(--lp-primary);
     }
 }
 
@@ -3788,21 +3976,8 @@ div[id] {
         padding: 1.5rem;
     }
 
-    .tg-globe-side {
-        min-height: 280px;
-    }
-
-    .tg-scene {
-        width: 250px;
-        height: 250px;
-    }
-
-    .tg-drag-instruction {
-        display: none;
-    }
-
     .tg-nav-button {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
     }
 }

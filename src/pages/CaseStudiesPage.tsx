@@ -48,6 +48,13 @@ export default function CaseStudiesPage() {
         </header>
       </div>
 
+      {/* ── Sticky mobile CTA (header's CTA is hidden below 930px) ── */}
+      <div className="lp-mobile-sticky-cta">
+        <button className="lp-btn lp-btn-primary" onClick={() => (window.location.href = "/auth")}>
+          Book an entry call
+        </button>
+      </div>
+
       <main className="case-page-shell">
         <CaseStudiesSection items={caseStudies} />
       </main>
